@@ -1,0 +1,51 @@
+﻿var,name,domain,df,F,p
+age_grp,연령,demo,6,19.50031,0.00000
+sex,성별,demo,1,145.56434,0.00000
+educ,교육수준,demo,4,0.22022,0.92728
+marital,혼인상태,demo,4,6.69219,0.00002
+hh_type,세대유형,demo,6,5.35223,0.00002
+inc_q,균등화 소득,econ,4,3.84025,0.00402
+livelihood,기초생활수급,econ,2,7.41335,0.00061
+food_insecurity,식품안정성,econ,3,69.22759,0.00000
+occupation,직업,econ,5,34.55137,0.00000
+bmi_grp,BMI,phys,4,5.42405,0.00023
+body_image,인지 체형,phys,4,54.34202,0.00000
+htn,고혈압,phys,1,4.61275,0.03175
+dm,당뇨병,phys,1,31.66194,0.00000
+osteo,골다공증,phys,1,51.72189,0.00000
+oral_health,구강건강,phys,4,12.48088,0.00000
+chewing,저작불편,phys,4,51.36282,0.00000
+fall,낙상,phys,1,169.38571,0.00000
+injury,사고·중독,phys,1,15.52172,0.00008
+walk_ok,걷기 실천,behav,1,45.32128,0.00000
+aerobic_ok,중강도 이상 신체활동,behav,1,0.09464,0.75836
+strength_ok,근력운동 주2일+,behav,1,13.66780,0.00022
+smoking_status,흡연,behav,2,24.66843,0.00000
+ecig_current,전자담배,behav,1,28.88298,0.00000
+drinking,음주 빈도,behav,3,5.45053,0.00096
+high_risk_drinking,고위험음주,behav,1,1.15318,0.28290
+breakfast,아침식사,behav,3,21.82334,0.00000
+weight_control,체중조절,behav,3,10.62505,0.00000
+brushing_lunch,점심 후 칫솔질,behav,2,12.89313,0.00000
+contact_friend,친구 연락,social,5,39.78354,0.00000
+contact_family,친척 연락,social,5,8.76317,0.00000
+contact_neighbor,이웃 연락,social,5,7.51650,0.00000
+neighbor_trust,이웃 신뢰,social,2,27.86799,0.00000
+neighbor_events,이웃 경조사,social,2,0.96079,0.38261
+dementia_care,치매환자 가족,social,2,26.87295,0.00000
+env_safety,동네 안전,env,2,28.83059,0.00000
+env_nature,자연환경,env,2,7.36372,0.00064
+env_living,생활환경,env,2,16.67052,0.00000
+env_transport,대중교통,env,2,0.69003,0.50157
+env_medical,의료서비스,env,2,3.06011,0.04691
+urban_type,동/읍면,env,1,1.02109,0.31227
+housing,주택유형,env,1,7.69238,0.00555
+region,시도,env,16,6.52333,0.00000
+unmet_medical,미충족 의료,care,2,138.26880,0.00000
+unmet_dental,미충족 치과,care,2,25.46915,0.00000
+checkup,건강검진,care,1,0.16610,0.68361
+flu_vax,독감접종,care,1,0.05711,0.81113
+public_health_use,보건기관 이용,care,1,9.91770,0.00164
+hl_explain,의료진 설명 이해,care,3,25.78443,0.00000
+hl_written,건강정보 글 이해,care,4,2.59661,0.03443
+hl_seek,건강정보 찾기,care,4,5.61300,0.00016

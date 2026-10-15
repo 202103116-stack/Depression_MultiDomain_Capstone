@@ -1,0 +1,5 @@
+train 184,762 / test 46,528 / 시험 양성률 0.0390
+[full__dummy__cv                         ] AP 0.0390 AUC 0.5000 (0.0s)
+[full__logistic__cv                      ] AP 0.2765 AUC 0.8452 (2.4s)
+[full__lightgbm__cv                      ] AP 0.2759 AUC 0.8464 (4.3s)
+[full__random_forest__cv                 ] AP 0.2462 AUC 0.8357 (18.2s)
