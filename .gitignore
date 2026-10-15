@@ -11,3 +11,6 @@ __pycache__/
 *.pyc
 catboost_info/
 .ipynb_checkpoints/
+
+# 논문 생성용 node 패키지
+paper/node_modules/

@@ -1,0 +1,5085 @@
+{
+ "n": {
+  "raw": 231615,
+  "y_missing": 325,
+  "analysis": 231290,
+  "y1": 8704,
+  "y0": 222586,
+  "prev_unw": 3.7632409529162523,
+  "prev_w": 3.7569423133117064,
+  "train": 184762,
+  "test": 46528,
+  "train_y1": 6891,
+  "test_y1": 1813,
+  "train_hh": 109355,
+  "test_hh": 27338,
+  "households": 136693,
+  "reg": 227351,
+  "combo_min": 228496,
+  "combo_max": 228573,
+  "n_features": 66,
+  "n_main_features": 53,
+  "strata": 5726,
+  "psu": 22714,
+  "max_missing_pct": 0.8577975701500281,
+  "reg_pct": 98.29694323144105,
+  "train_prev": 3.7296630259468935,
+  "test_prev": 3.8965784044016507
+ },
+ "algos": {
+  "dummy": {
+   "full": {
+    "cv_ap": 0.037,
+    "cv_ap_sd": 0.001,
+    "ap": 0.039,
+    "auc": 0.5,
+    "brier": 0.0374,
+    "prec10": 3.5,
+    "rec10": 9.1,
+    "prec5": 3.4,
+    "rec5": 4.4,
+    "ap_lo": 0.037,
+    "ap_hi": 0.041,
+    "auc_lo": 0.5,
+    "auc_hi": 0.5,
+    "oe": 1.04,
+    "slope": 0.9
+   },
+   "full+proximal": {
+    "cv_ap": 0.037,
+    "cv_ap_sd": 0.001,
+    "ap": 0.039,
+    "auc": 0.5,
+    "brier": 0.0374,
+    "prec10": 3.5,
+    "rec10": 9.1,
+    "prec5": 3.4,
+    "rec5": 4.4,
+    "ap_lo": 0.037,
+    "ap_hi": 0.041,
+    "auc_lo": 0.5,
+    "auc_hi": 0.5,
+    "oe": 1.04,
+    "slope": 0.9
+   }
+  },
+  "logistic": {
+   "full": {
+    "cv_ap": 0.251,
+    "cv_ap_sd": 0.004,
+    "ap": 0.276,
+    "auc": 0.845,
+    "brier": 0.0323,
+    "prec10": 20.5,
+    "rec10": 52.6,
+    "prec5": 29.0,
+    "rec5": 37.2,
+    "ap_lo": 0.255,
+    "ap_hi": 0.3,
+    "auc_lo": 0.836,
+    "auc_hi": 0.854,
+    "oe": 1.05,
+    "slope": 1.01
+   },
+   "full+proximal": {
+    "cv_ap": 0.461,
+    "cv_ap_sd": 0.005,
+    "ap": 0.475,
+    "auc": 0.93,
+    "brier": 0.0268,
+    "prec10": 28.5,
+    "rec10": 73.1,
+    "prec5": 42.4,
+    "rec5": 54.4,
+    "ap_lo": 0.45,
+    "ap_hi": 0.499,
+    "auc_lo": 0.924,
+    "auc_hi": 0.935,
+    "oe": 1.03,
+    "slope": 0.98
+   }
+  },
+  "lightgbm": {
+   "full": {
+    "cv_ap": 0.254,
+    "cv_ap_sd": 0.006,
+    "ap": 0.276,
+    "auc": 0.846,
+    "brier": 0.0323,
+    "prec10": 20.7,
+    "rec10": 53.1,
+    "prec5": 29.4,
+    "rec5": 37.7,
+    "ap_lo": 0.254,
+    "ap_hi": 0.3,
+    "auc_lo": 0.837,
+    "auc_hi": 0.855,
+    "oe": 1.01,
+    "slope": 0.97
+   },
+   "full+proximal": {
+    "cv_ap": 0.465,
+    "cv_ap_sd": 0.008,
+    "ap": 0.483,
+    "auc": 0.934,
+    "brier": 0.0266,
+    "prec10": 28.8,
+    "rec10": 74.0,
+    "prec5": 42.8,
+    "rec5": 55.0,
+    "ap_lo": 0.459,
+    "ap_hi": 0.507,
+    "auc_lo": 0.929,
+    "auc_hi": 0.939,
+    "oe": 1.02,
+    "slope": 0.96
+   }
+  },
+  "random_forest": {
+   "full": {
+    "cv_ap": 0.234,
+    "cv_ap_sd": 0.009,
+    "ap": 0.246,
+    "auc": 0.836,
+    "brier": 0.0336,
+    "prec10": 19.7,
+    "rec10": 50.5,
+    "prec5": 27.2,
+    "rec5": 35.0,
+    "ap_lo": 0.228,
+    "ap_hi": 0.269,
+    "auc_lo": 0.826,
+    "auc_hi": 0.845,
+    "oe": 1.05,
+    "slope": 1.37
+   },
+   "full+proximal": {
+    "cv_ap": 0.437,
+    "cv_ap_sd": 0.008,
+    "ap": 0.45,
+    "auc": 0.928,
+    "brier": 0.0287,
+    "prec10": 28.0,
+    "rec10": 71.8,
+    "prec5": 41.2,
+    "rec5": 52.9,
+    "ap_lo": 0.425,
+    "ap_hi": 0.473,
+    "auc_lo": 0.923,
+    "auc_hi": 0.934,
+    "oe": 1.04,
+    "slope": 1.51
+   }
+  },
+  "mlp": {
+   "full": {
+    "cv_ap": 0.242,
+    "cv_ap_sd": 0.004,
+    "ap": 0.265,
+    "auc": 0.843,
+    "brier": 0.0326,
+    "prec10": 20.5,
+    "rec10": 52.7,
+    "prec5": 28.6,
+    "rec5": 36.7,
+    "ap_lo": 0.244,
+    "ap_hi": 0.288,
+    "auc_lo": 0.834,
+    "auc_hi": 0.852,
+    "oe": 1.04,
+    "slope": 1.07
+   },
+   "full+proximal": {
+    "cv_ap": 0.452,
+    "cv_ap_sd": 0.01,
+    "ap": 0.47,
+    "auc": 0.931,
+    "brier": 0.0269,
+    "prec10": 28.7,
+    "rec10": 73.7,
+    "prec5": 42.6,
+    "rec5": 54.7,
+    "ap_lo": 0.444,
+    "ap_hi": 0.495,
+    "auc_lo": 0.925,
+    "auc_hi": 0.936,
+    "oe": 0.87,
+    "slope": 0.98
+   }
+  },
+  "catboost": {
+   "full": {
+    "cv_ap": 0.257,
+    "cv_ap_sd": 0.004,
+    "ap": 0.283,
+    "auc": 0.846,
+    "brier": 0.0322,
+    "prec10": 20.7,
+    "rec10": 53.2,
+    "prec5": 29.7,
+    "rec5": 38.2,
+    "ap_lo": 0.261,
+    "ap_hi": 0.305,
+    "auc_lo": 0.837,
+    "auc_hi": 0.855,
+    "oe": 1.05,
+    "slope": 1.02
+   },
+   "full+proximal": {
+    "cv_ap": 0.468,
+    "cv_ap_sd": 0.009,
+    "ap": 0.484,
+    "auc": 0.934,
+    "brier": 0.0265,
+    "prec10": 28.9,
+    "rec10": 74.3,
+    "prec5": 42.7,
+    "rec5": 54.8,
+    "ap_lo": 0.46,
+    "ap_hi": 0.507,
+    "auc_lo": 0.929,
+    "auc_hi": 0.939,
+    "oe": 1.02,
+    "slope": 0.98
+   }
+  }
+ },
+ "sets": {
+  "base": {
+   "catboost": {
+    "ap": 0.086,
+    "auc": 0.687
+   },
+   "lightgbm": {
+    "ap": 0.083,
+    "auc": 0.681
+   },
+   "logistic": {
+    "ap": 0.083,
+    "auc": 0.68
+   }
+  },
+  "base+econ": {
+   "catboost": {
+    "ap": 0.148,
+    "auc": 0.746
+   },
+   "lightgbm": {
+    "ap": 0.145,
+    "auc": 0.741
+   },
+   "logistic": {
+    "ap": 0.144,
+    "auc": 0.745
+   }
+  },
+  "base+phys": {
+   "catboost": {
+    "ap": 0.176,
+    "auc": 0.792
+   },
+   "lightgbm": {
+    "ap": 0.173,
+    "auc": 0.788
+   },
+   "logistic": {
+    "ap": 0.174,
+    "auc": 0.788
+   }
+  },
+  "base+behav": {
+   "catboost": {
+    "ap": 0.129,
+    "auc": 0.741
+   },
+   "lightgbm": {
+    "ap": 0.129,
+    "auc": 0.74
+   },
+   "logistic": {
+    "ap": 0.118,
+    "auc": 0.728
+   }
+  },
+  "base+social": {
+   "catboost": {
+    "ap": 0.129,
+    "auc": 0.74
+   },
+   "lightgbm": {
+    "ap": 0.129,
+    "auc": 0.738
+   },
+   "logistic": {
+    "ap": 0.122,
+    "auc": 0.736
+   }
+  },
+  "base+env": {
+   "catboost": {
+    "ap": 0.109,
+    "auc": 0.72
+   },
+   "lightgbm": {
+    "ap": 0.107,
+    "auc": 0.718
+   },
+   "logistic": {
+    "ap": 0.108,
+    "auc": 0.719
+   }
+  },
+  "base+care": {
+   "catboost": {
+    "ap": 0.15,
+    "auc": 0.755
+   },
+   "lightgbm": {
+    "ap": 0.149,
+    "auc": 0.753
+   },
+   "logistic": {
+    "ap": 0.149,
+    "auc": 0.752
+   }
+  },
+  "full": {
+   "catboost": {
+    "ap": 0.283,
+    "auc": 0.846
+   },
+   "lightgbm": {
+    "ap": 0.276,
+    "auc": 0.846
+   },
+   "logistic": {
+    "ap": 0.276,
+    "auc": 0.845
+   }
+  },
+  "full-demo": {
+   "catboost": {
+    "ap": 0.273,
+    "auc": 0.841
+   },
+   "lightgbm": {
+    "ap": 0.266,
+    "auc": 0.84
+   },
+   "logistic": {
+    "ap": 0.269,
+    "auc": 0.839
+   }
+  },
+  "full-econ": {
+   "catboost": {
+    "ap": 0.265,
+    "auc": 0.838
+   },
+   "lightgbm": {
+    "ap": 0.262,
+    "auc": 0.84
+   },
+   "logistic": {
+    "ap": 0.255,
+    "auc": 0.835
+   }
+  },
+  "full-phys": {
+   "catboost": {
+    "ap": 0.247,
+    "auc": 0.822
+   },
+   "lightgbm": {
+    "ap": 0.237,
+    "auc": 0.82
+   },
+   "logistic": {
+    "ap": 0.24,
+    "auc": 0.82
+   }
+  },
+  "full-behav": {
+   "catboost": {
+    "ap": 0.263,
+    "auc": 0.84
+   },
+   "lightgbm": {
+    "ap": 0.26,
+    "auc": 0.838
+   },
+   "logistic": {
+    "ap": 0.264,
+    "auc": 0.84
+   }
+  },
+  "full-social": {
+   "catboost": {
+    "ap": 0.268,
+    "auc": 0.842
+   },
+   "lightgbm": {
+    "ap": 0.265,
+    "auc": 0.842
+   },
+   "logistic": {
+    "ap": 0.264,
+    "auc": 0.839
+   }
+  },
+  "full-env": {
+   "catboost": {
+    "ap": 0.274,
+    "auc": 0.845
+   },
+   "lightgbm": {
+    "ap": 0.274,
+    "auc": 0.845
+   },
+   "logistic": {
+    "ap": 0.269,
+    "auc": 0.842
+   }
+  },
+  "full-care": {
+   "catboost": {
+    "ap": 0.263,
+    "auc": 0.837
+   },
+   "lightgbm": {
+    "ap": 0.257,
+    "auc": 0.836
+   },
+   "logistic": {
+    "ap": 0.26,
+    "auc": 0.835
+   }
+  },
+  "full+proximal": {
+   "catboost": {
+    "ap": 0.484,
+    "auc": 0.934
+   },
+   "lightgbm": {
+    "ap": 0.483,
+    "auc": 0.934
+   },
+   "logistic": {
+    "ap": 0.475,
+    "auc": 0.93
+   }
+  },
+  "base+proximal": {
+   "catboost": {
+    "ap": 0.46,
+    "auc": 0.928
+   },
+   "lightgbm": {
+    "ap": 0.459,
+    "auc": 0.927
+   },
+   "logistic": {
+    "ap": 0.451,
+    "auc": 0.921
+   }
+  }
+ },
+ "subgroup": [
+  {
+   "subgroup": "남자",
+   "n": 21514,
+   "events": 616,
+   "prevalence": 0.029,
+   "AP": 0.262,
+   "AP_low": 0.226,
+   "AP_high": 0.296,
+   "AUC": 0.853,
+   "AUC_low": 0.837,
+   "AUC_high": 0.868,
+   "OE": 1.05,
+   "cal_slope": 1.04
+  },
+  {
+   "subgroup": "여자",
+   "n": 25014,
+   "events": 1197,
+   "prevalence": 0.048,
+   "AP": 0.294,
+   "AP_low": 0.269,
+   "AP_high": 0.322,
+   "AUC": 0.834,
+   "AUC_low": 0.823,
+   "AUC_high": 0.845,
+   "OE": 1.057,
+   "cal_slope": 1.009
+  },
+  {
+   "subgroup": "19~39세",
+   "n": 8906,
+   "events": 351,
+   "prevalence": 0.039,
+   "AP": 0.224,
+   "AP_low": 0.183,
+   "AP_high": 0.268,
+   "AUC": 0.795,
+   "AUC_low": 0.773,
+   "AUC_high": 0.818,
+   "OE": 1.093,
+   "cal_slope": 0.978
+  },
+  {
+   "subgroup": "40~64세",
+   "n": 20179,
+   "events": 610,
+   "prevalence": 0.03,
+   "AP": 0.257,
+   "AP_low": 0.224,
+   "AP_high": 0.294,
+   "AUC": 0.844,
+   "AUC_low": 0.826,
+   "AUC_high": 0.861,
+   "OE": 1.049,
+   "cal_slope": 1.023
+  },
+  {
+   "subgroup": "65세 이상",
+   "n": 17443,
+   "events": 852,
+   "prevalence": 0.049,
+   "AP": 0.324,
+   "AP_low": 0.291,
+   "AP_high": 0.359,
+   "AUC": 0.86,
+   "AUC_low": 0.847,
+   "AUC_high": 0.872,
+   "OE": 1.043,
+   "cal_slope": 1.04
+  }
+ ],
+ "domains": {
+  "econ": {
+   "catboost": {
+    "add": {
+     "d": 0.061,
+     "lo": 0.05,
+     "hi": 0.075
+    },
+    "drop": {
+     "d": 0.018,
+     "lo": 0.009,
+     "hi": 0.027
+    }
+   },
+   "lightgbm": {
+    "add": {
+     "d": 0.062,
+     "lo": 0.049,
+     "hi": 0.073
+    },
+    "drop": {
+     "d": 0.014,
+     "lo": 0.005,
+     "hi": 0.023
+    }
+   },
+   "logistic": {
+    "add": {
+     "d": 0.061,
+     "lo": 0.049,
+     "hi": 0.072
+    },
+    "drop": {
+     "d": 0.022,
+     "lo": 0.014,
+     "hi": 0.028
+    }
+   },
+   "shap_share": 13.1,
+   "perm": 0.055
+  },
+  "phys": {
+   "catboost": {
+    "add": {
+     "d": 0.09,
+     "lo": 0.077,
+     "hi": 0.105
+    },
+    "drop": {
+     "d": 0.036,
+     "lo": 0.026,
+     "hi": 0.046
+    }
+   },
+   "lightgbm": {
+    "add": {
+     "d": 0.09,
+     "lo": 0.077,
+     "hi": 0.103
+    },
+    "drop": {
+     "d": 0.039,
+     "lo": 0.027,
+     "hi": 0.05
+    }
+   },
+   "logistic": {
+    "add": {
+     "d": 0.09,
+     "lo": 0.077,
+     "hi": 0.105
+    },
+    "drop": {
+     "d": 0.036,
+     "lo": 0.027,
+     "hi": 0.043
+    }
+   },
+   "shap_share": 22.7,
+   "perm": 0.096
+  },
+  "behav": {
+   "catboost": {
+    "add": {
+     "d": 0.043,
+     "lo": 0.032,
+     "hi": 0.052
+    },
+    "drop": {
+     "d": 0.02,
+     "lo": 0.012,
+     "hi": 0.028
+    }
+   },
+   "lightgbm": {
+    "add": {
+     "d": 0.046,
+     "lo": 0.035,
+     "hi": 0.056
+    },
+    "drop": {
+     "d": 0.016,
+     "lo": 0.007,
+     "hi": 0.025
+    }
+   },
+   "logistic": {
+    "add": {
+     "d": 0.035,
+     "lo": 0.027,
+     "hi": 0.044
+    },
+    "drop": {
+     "d": 0.012,
+     "lo": 0.007,
+     "hi": 0.017
+    }
+   },
+   "shap_share": 16.4,
+   "perm": 0.044
+  },
+  "social": {
+   "catboost": {
+    "add": {
+     "d": 0.043,
+     "lo": 0.033,
+     "hi": 0.055
+    },
+    "drop": {
+     "d": 0.015,
+     "lo": 0.009,
+     "hi": 0.021
+    }
+   },
+   "lightgbm": {
+    "add": {
+     "d": 0.045,
+     "lo": 0.036,
+     "hi": 0.057
+    },
+    "drop": {
+     "d": 0.011,
+     "lo": 0.004,
+     "hi": 0.017
+    }
+   },
+   "logistic": {
+    "add": {
+     "d": 0.039,
+     "lo": 0.033,
+     "hi": 0.048
+    },
+    "drop": {
+     "d": 0.013,
+     "lo": 0.007,
+     "hi": 0.019
+    }
+   },
+   "shap_share": 13.7,
+   "perm": 0.025
+  },
+  "env": {
+   "catboost": {
+    "add": {
+     "d": 0.022,
+     "lo": 0.015,
+     "hi": 0.031
+    },
+    "drop": {
+     "d": 0.009,
+     "lo": 0.003,
+     "hi": 0.015
+    }
+   },
+   "lightgbm": {
+    "add": {
+     "d": 0.023,
+     "lo": 0.016,
+     "hi": 0.031
+    },
+    "drop": {
+     "d": 0.002,
+     "lo": -0.006,
+     "hi": 0.009
+    }
+   },
+   "logistic": {
+    "add": {
+     "d": 0.024,
+     "lo": 0.018,
+     "hi": 0.032
+    },
+    "drop": {
+     "d": 0.007,
+     "lo": 0.004,
+     "hi": 0.011
+    }
+   },
+   "shap_share": 9.1,
+   "perm": 0.014
+  },
+  "care": {
+   "catboost": {
+    "add": {
+     "d": 0.063,
+     "lo": 0.053,
+     "hi": 0.076
+    },
+    "drop": {
+     "d": 0.02,
+     "lo": 0.012,
+     "hi": 0.027
+    }
+   },
+   "lightgbm": {
+    "add": {
+     "d": 0.066,
+     "lo": 0.055,
+     "hi": 0.078
+    },
+    "drop": {
+     "d": 0.019,
+     "lo": 0.012,
+     "hi": 0.026
+    }
+   },
+   "logistic": {
+    "add": {
+     "d": 0.066,
+     "lo": 0.054,
+     "hi": 0.077
+    },
+    "drop": {
+     "d": 0.016,
+     "lo": 0.01,
+     "hi": 0.023
+    }
+   },
+   "shap_share": 10.5,
+   "perm": 0.04
+  },
+  "demo": {
+   "catboost": {
+    "drop": {
+     "d": 0.01,
+     "lo": 0.004,
+     "hi": 0.017
+    }
+   },
+   "lightgbm": {
+    "drop": {
+     "d": 0.01,
+     "lo": 0.005,
+     "hi": 0.017
+    }
+   },
+   "logistic": {
+    "drop": {
+     "d": 0.007,
+     "lo": 0.002,
+     "hi": 0.012
+    }
+   },
+   "shap_share": 14.6,
+   "perm": 0.026
+  },
+  "proximal": {
+   "catboost": {
+    "proximal": {
+     "d": 0.201,
+     "lo": 0.181,
+     "hi": 0.221
+    }
+   },
+   "lightgbm": {
+    "proximal": {
+     "d": 0.207,
+     "lo": 0.189,
+     "hi": 0.227
+    }
+   },
+   "logistic": {
+    "proximal": {
+     "d": 0.199,
+     "lo": 0.179,
+     "hi": 0.219
+    }
+   }
+  }
+ },
+ "domain_labels": {
+  "demo": "인구",
+  "econ": "경제",
+  "phys": "신체건강",
+  "behav": "건강행태",
+  "social": "사회관계",
+  "env": "생활환경",
+  "care": "의료접근·건강정보",
+  "proximal": "심리·증상근접"
+ },
+ "shap_top": [
+  {
+   "feature": "chewing",
+   "label": "저작불편",
+   "domain": "phys",
+   "modifiable": true,
+   "shap": 0.221,
+   "direction": "값이 클수록 위험 ↓ (ρ=-0.95)"
+  },
+  {
+   "feature": "sex",
+   "label": "성별",
+   "domain": "demo",
+   "modifiable": false,
+   "shap": 0.221,
+   "direction": "위험↑ 수준=2 / 위험↓ 수준=1"
+  },
+  {
+   "feature": "occupation",
+   "label": "직업분류",
+   "domain": "econ",
+   "modifiable": true,
+   "shap": 0.183,
+   "direction": "위험↑ 수준=0 / 위험↓ 수준=8"
+  },
+  {
+   "feature": "breakfast",
+   "label": "아침식사 빈도",
+   "domain": "behav",
+   "modifiable": true,
+   "shap": 0.176,
+   "direction": "값이 클수록 위험 ↑ (ρ=+0.83)"
+  },
+  {
+   "feature": "age",
+   "label": "만 나이",
+   "domain": "demo",
+   "modifiable": false,
+   "shap": 0.175,
+   "direction": "값이 클수록 위험 ↓ (ρ=-0.86)"
+  },
+  {
+   "feature": "fall",
+   "label": "연간 낙상 경험",
+   "domain": "phys",
+   "modifiable": true,
+   "shap": 0.168,
+   "direction": "위험↑ 수준=1 / 위험↓ 수준=0"
+  },
+  {
+   "feature": "contact_friend",
+   "label": "친구와 연락 빈도",
+   "domain": "social",
+   "modifiable": true,
+   "shap": 0.159,
+   "direction": "위험↑ 수준=1 / 위험↓ 수준=5"
+  },
+  {
+   "feature": "food_insecurity",
+   "label": "가구 식품안정성",
+   "domain": "econ",
+   "modifiable": true,
+   "shap": 0.151,
+   "direction": "값이 클수록 위험 ↑ (ρ=+0.79)"
+  },
+  {
+   "feature": "body_image",
+   "label": "본인 인지 체형",
+   "domain": "phys",
+   "modifiable": true,
+   "shap": 0.15,
+   "direction": "위험↑ 수준=5 / 위험↓ 수준=3"
+  },
+  {
+   "feature": "hl_explain",
+   "label": "의료진 설명 이해 어려움",
+   "domain": "care",
+   "modifiable": true,
+   "shap": 0.142,
+   "direction": "값이 클수록 위험 ↑ (ρ=+0.66)"
+  },
+  {
+   "feature": "contact_neighbor",
+   "label": "이웃과 연락 빈도",
+   "domain": "social",
+   "modifiable": true,
+   "shap": 0.12,
+   "direction": "위험↑ 수준=1 / 위험↓ 수준=6"
+  },
+  {
+   "feature": "log_met_min",
+   "label": "log(1+주간 신체활동량 MET-분)",
+   "domain": "behav",
+   "modifiable": true,
+   "shap": 0.111,
+   "direction": "값이 클수록 위험 ↓ (ρ=-0.75)"
+  },
+  {
+   "feature": "neighbor_trust",
+   "label": "이웃 간 신뢰",
+   "domain": "social",
+   "modifiable": true,
+   "shap": 0.109,
+   "direction": "위험↑ 수준=2 / 위험↓ 수준=1"
+  },
+  {
+   "feature": "oral_health",
+   "label": "주관적 구강건강",
+   "domain": "phys",
+   "modifiable": true,
+   "shap": 0.103,
+   "direction": "값이 클수록 위험 ↑ (ρ=+0.94)"
+  },
+  {
+   "feature": "env_safety",
+   "label": "동네 안전 만족",
+   "domain": "env",
+   "modifiable": true,
+   "shap": 0.093,
+   "direction": "위험↑ 수준=2 / 위험↓ 수준=1"
+  },
+  {
+   "feature": "unmet_dental",
+   "label": "연간 미충족 치과의료",
+   "domain": "care",
+   "modifiable": true,
+   "shap": 0.073,
+   "direction": "위험↑ 수준=1 / 위험↓ 수준=3"
+  },
+  {
+   "feature": "log_income_equiv",
+   "label": "log(1+균등화 가구 연소득)",
+   "domain": "econ",
+   "modifiable": true,
+   "shap": 0.072,
+   "direction": "값이 클수록 위험 ↓ (ρ=-0.98)"
+  },
+  {
+   "feature": "unmet_medical",
+   "label": "연간 미충족 의료",
+   "domain": "care",
+   "modifiable": true,
+   "shap": 0.072,
+   "direction": "위험↑ 수준=1 / 위험↓ 수준=3"
+  },
+  {
+   "feature": "marital",
+   "label": "혼인상태",
+   "domain": "demo",
+   "modifiable": false,
+   "shap": 0.07,
+   "direction": "위험↑ 수준=4 / 위험↓ 수준=1"
+  },
+  {
+   "feature": "region",
+   "label": "시도",
+   "domain": "env",
+   "modifiable": false,
+   "shap": 0.067,
+   "direction": "위험↑ 수준=41 / 위험↓ 수준=45"
+  },
+  {
+   "feature": "drinking_freq",
+   "label": "음주 빈도",
+   "domain": "behav",
+   "modifiable": true,
+   "shap": 0.054,
+   "direction": "값이 클수록 위험 ↓ (ρ=-0.64)"
+  },
+  {
+   "feature": "dementia_care",
+   "label": "치매환자 가족",
+   "domain": "social",
+   "modifiable": false,
+   "shap": 0.049,
+   "direction": "위험↑ 수준=2 / 위험↓ 수준=0"
+  },
+  {
+   "feature": "dm",
+   "label": "당뇨병 진단 경험",
+   "domain": "phys",
+   "modifiable": false,
+   "shap": 0.047,
+   "direction": "위험↑ 수준=1 / 위험↓ 수준=0"
+  },
+  {
+   "feature": "hl_seek",
+   "label": "건강정보 찾기 어려움",
+   "domain": "care",
+   "modifiable": true,
+   "shap": 0.046,
+   "direction": "위험↑ 수준=4 / 위험↓ 수준=2"
+  },
+  {
+   "feature": "smoking_status",
+   "label": "흡연 상태",
+   "domain": "behav",
+   "modifiable": true,
+   "shap": 0.043,
+   "direction": "위험↑ 수준=2 / 위험↓ 수준=0"
+  }
+ ],
+ "or_modifiable": [
+  {
+   "name": "식품안정성",
+   "level": "자주 부족",
+   "ref": "충분·다양",
+   "domain": "econ",
+   "or": 3.24,
+   "lo": 2.6,
+   "hi": 4.03,
+   "p": 0.0
+  },
+  {
+   "name": "저작불편",
+   "level": "매우 불편",
+   "ref": "전혀 안 불편",
+   "domain": "phys",
+   "or": 2.79,
+   "lo": 2.39,
+   "hi": 3.26,
+   "p": 0.0
+  },
+  {
+   "name": "인지 체형",
+   "level": "매우 비만",
+   "ref": "보통",
+   "domain": "phys",
+   "or": 2.36,
+   "lo": 2.05,
+   "hi": 2.71,
+   "p": 0.0
+  },
+  {
+   "name": "미충족 의료",
+   "level": "있음",
+   "ref": "없음",
+   "domain": "care",
+   "or": 2.15,
+   "lo": 1.96,
+   "hi": 2.37,
+   "p": 0.0
+  },
+  {
+   "name": "식품안정성",
+   "level": "가끔 부족",
+   "ref": "충분·다양",
+   "domain": "econ",
+   "or": 2.1,
+   "lo": 1.86,
+   "hi": 2.37,
+   "p": 0.0
+  },
+  {
+   "name": "인지 체형",
+   "level": "매우 마름",
+   "ref": "보통",
+   "domain": "phys",
+   "or": 2.06,
+   "lo": 1.75,
+   "hi": 2.42,
+   "p": 0.0
+  },
+  {
+   "name": "저작불편",
+   "level": "불편",
+   "ref": "전혀 안 불편",
+   "domain": "phys",
+   "or": 1.98,
+   "lo": 1.76,
+   "hi": 2.23,
+   "p": 0.0
+  },
+  {
+   "name": "의료진 설명 이해",
+   "level": "매우 어려움",
+   "ref": "쉬움",
+   "domain": "care",
+   "or": 1.76,
+   "lo": 1.51,
+   "hi": 2.06,
+   "p": 0.0
+  },
+  {
+   "name": "낙상",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "phys",
+   "or": 1.72,
+   "lo": 1.59,
+   "hi": 1.87,
+   "p": 0.0
+  },
+  {
+   "name": "저작불편",
+   "level": "그저그럼",
+   "ref": "전혀 안 불편",
+   "domain": "phys",
+   "or": 1.65,
+   "lo": 1.48,
+   "hi": 1.84,
+   "p": 0.0
+  },
+  {
+   "name": "친구 연락",
+   "level": "월 1회 미만",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 1.59,
+   "lo": 1.42,
+   "hi": 1.78,
+   "p": 0.0
+  },
+  {
+   "name": "흡연",
+   "level": "현재흡연",
+   "ref": "비흡연",
+   "domain": "behav",
+   "or": 1.45,
+   "lo": 1.3,
+   "hi": 1.62,
+   "p": 0.0
+  },
+  {
+   "name": "체중조절",
+   "level": "증량",
+   "ref": "유지",
+   "domain": "behav",
+   "or": 1.45,
+   "lo": 1.26,
+   "hi": 1.68,
+   "p": 0.0
+  },
+  {
+   "name": "점심 후 칫솔질",
+   "level": "점심 안 먹음",
+   "ref": "예",
+   "domain": "behav",
+   "or": 1.45,
+   "lo": 1.24,
+   "hi": 1.69,
+   "p": 0.0
+  },
+  {
+   "name": "미충족 의료",
+   "level": "필요 없었음",
+   "ref": "없음",
+   "domain": "care",
+   "or": 0.69,
+   "lo": 0.6,
+   "hi": 0.81,
+   "p": 0.0
+  },
+  {
+   "name": "구강건강",
+   "level": "매우 나쁨",
+   "ref": "보통",
+   "domain": "phys",
+   "or": 1.42,
+   "lo": 1.24,
+   "hi": 1.62,
+   "p": 0.0
+  },
+  {
+   "name": "아침식사",
+   "level": "거의 안 함",
+   "ref": "주5~7회",
+   "domain": "behav",
+   "or": 1.41,
+   "lo": 1.3,
+   "hi": 1.54,
+   "p": 0.0
+  },
+  {
+   "name": "직업",
+   "level": "기능·노무",
+   "ref": "사무",
+   "domain": "econ",
+   "or": 0.71,
+   "lo": 0.62,
+   "hi": 0.81,
+   "p": 0.0
+  },
+  {
+   "name": "전자담배",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "behav",
+   "or": 1.4,
+   "lo": 1.24,
+   "hi": 1.58,
+   "p": 0.0
+  },
+  {
+   "name": "동네 안전",
+   "level": "모름",
+   "ref": "예",
+   "domain": "env",
+   "or": 1.38,
+   "lo": 1.02,
+   "hi": 1.88,
+   "p": 0.03958
+  }
+ ],
+ "or_other": [
+  {
+   "name": "성별",
+   "level": "여",
+   "ref": "남",
+   "or": 1.79,
+   "lo": 1.63,
+   "hi": 1.97,
+   "p": 0.0
+  },
+  {
+   "name": "걷기 실천",
+   "level": "예",
+   "ref": "아니오",
+   "or": 0.8,
+   "lo": 0.75,
+   "hi": 0.85,
+   "p": 0.0
+  },
+  {
+   "name": "중강도 이상 신체활동",
+   "level": "예",
+   "ref": "아니오",
+   "or": 1.01,
+   "lo": 0.93,
+   "hi": 1.11,
+   "p": 0.75836
+  },
+  {
+   "name": "근력운동 주2일+",
+   "level": "예",
+   "ref": "아니오",
+   "or": 0.85,
+   "lo": 0.78,
+   "hi": 0.93,
+   "p": 0.00022
+  },
+  {
+   "name": "음주 빈도",
+   "level": "안 마심",
+   "ref": "월1회 이하",
+   "or": 1.13,
+   "lo": 1.04,
+   "hi": 1.22,
+   "p": 0.00256
+  },
+  {
+   "name": "음주 빈도",
+   "level": "월2~4회",
+   "ref": "월1회 이하",
+   "or": 0.95,
+   "lo": 0.86,
+   "hi": 1.05,
+   "p": 0.30898
+  },
+  {
+   "name": "음주 빈도",
+   "level": "주2회+",
+   "ref": "월1회 이하",
+   "or": 1.12,
+   "lo": 0.98,
+   "hi": 1.28,
+   "p": 0.10775
+  },
+  {
+   "name": "고위험음주",
+   "level": "예",
+   "ref": "아니오",
+   "or": 1.09,
+   "lo": 0.93,
+   "hi": 1.26,
+   "p": 0.2829
+  }
+ ],
+ "or_all": [
+  {
+   "name": "연령",
+   "level": "19-29세",
+   "ref": "40대",
+   "domain": "demo",
+   "or": 1.18,
+   "lo": 1.02,
+   "hi": 1.37,
+   "p": 0.0226
+  },
+  {
+   "name": "연령",
+   "level": "30대",
+   "ref": "40대",
+   "domain": "demo",
+   "or": 1.26,
+   "lo": 1.12,
+   "hi": 1.41,
+   "p": 0.00011
+  },
+  {
+   "name": "연령",
+   "level": "50대",
+   "ref": "40대",
+   "domain": "demo",
+   "or": 0.77,
+   "lo": 0.68,
+   "hi": 0.86,
+   "p": 1e-05
+  },
+  {
+   "name": "연령",
+   "level": "60대",
+   "ref": "40대",
+   "domain": "demo",
+   "or": 0.58,
+   "lo": 0.51,
+   "hi": 0.67,
+   "p": 0.0
+  },
+  {
+   "name": "연령",
+   "level": "70대",
+   "ref": "40대",
+   "domain": "demo",
+   "or": 0.63,
+   "lo": 0.53,
+   "hi": 0.73,
+   "p": 0.0
+  },
+  {
+   "name": "연령",
+   "level": "80세+",
+   "ref": "40대",
+   "domain": "demo",
+   "or": 0.64,
+   "lo": 0.54,
+   "hi": 0.77,
+   "p": 0.0
+  },
+  {
+   "name": "성별",
+   "level": "여",
+   "ref": "남",
+   "domain": "demo",
+   "or": 1.79,
+   "lo": 1.63,
+   "hi": 1.97,
+   "p": 0.0
+  },
+  {
+   "name": "교육수준",
+   "level": "고졸",
+   "ref": "대졸+",
+   "domain": "demo",
+   "or": 1.0,
+   "lo": 0.92,
+   "hi": 1.09,
+   "p": 0.94383
+  },
+  {
+   "name": "교육수준",
+   "level": "무학",
+   "ref": "대졸+",
+   "domain": "demo",
+   "or": 0.98,
+   "lo": 0.83,
+   "hi": 1.15,
+   "p": 0.79965
+  },
+  {
+   "name": "교육수준",
+   "level": "중졸",
+   "ref": "대졸+",
+   "domain": "demo",
+   "or": 1.02,
+   "lo": 0.89,
+   "hi": 1.16,
+   "p": 0.80556
+  },
+  {
+   "name": "교육수준",
+   "level": "초졸",
+   "ref": "대졸+",
+   "domain": "demo",
+   "or": 1.04,
+   "lo": 0.9,
+   "hi": 1.19,
+   "p": 0.62086
+  },
+  {
+   "name": "혼인상태",
+   "level": "미혼",
+   "ref": "배우자 동거",
+   "domain": "demo",
+   "or": 1.11,
+   "lo": 0.97,
+   "hi": 1.26,
+   "p": 0.12749
+  },
+  {
+   "name": "혼인상태",
+   "level": "별거",
+   "ref": "배우자 동거",
+   "domain": "demo",
+   "or": 1.05,
+   "lo": 0.86,
+   "hi": 1.28,
+   "p": 0.63907
+  },
+  {
+   "name": "혼인상태",
+   "level": "사별",
+   "ref": "배우자 동거",
+   "domain": "demo",
+   "or": 0.92,
+   "lo": 0.79,
+   "hi": 1.07,
+   "p": 0.26119
+  },
+  {
+   "name": "혼인상태",
+   "level": "이혼",
+   "ref": "배우자 동거",
+   "domain": "demo",
+   "or": 1.28,
+   "lo": 1.11,
+   "hi": 1.48,
+   "p": 0.00066
+  },
+  {
+   "name": "세대유형",
+   "level": "1인",
+   "ref": "부부",
+   "domain": "demo",
+   "or": 1.3,
+   "lo": 1.13,
+   "hi": 1.49,
+   "p": 0.00026
+  },
+  {
+   "name": "세대유형",
+   "level": "3세대",
+   "ref": "부부",
+   "domain": "demo",
+   "or": 0.93,
+   "lo": 0.79,
+   "hi": 1.1,
+   "p": 0.4072
+  },
+  {
+   "name": "세대유형",
+   "level": "기타1세대",
+   "ref": "부부",
+   "domain": "demo",
+   "or": 1.18,
+   "lo": 0.94,
+   "hi": 1.49,
+   "p": 0.16199
+  },
+  {
+   "name": "세대유형",
+   "level": "기타2세대",
+   "ref": "부부",
+   "domain": "demo",
+   "or": 1.11,
+   "lo": 0.94,
+   "hi": 1.31,
+   "p": 0.20071
+  },
+  {
+   "name": "세대유형",
+   "level": "부부+자녀",
+   "ref": "부부",
+   "domain": "demo",
+   "or": 0.93,
+   "lo": 0.84,
+   "hi": 1.03,
+   "p": 0.15652
+  },
+  {
+   "name": "세대유형",
+   "level": "한부모+자녀",
+   "ref": "부부",
+   "domain": "demo",
+   "or": 1.17,
+   "lo": 0.99,
+   "hi": 1.38,
+   "p": 0.06492
+  },
+  {
+   "name": "균등화 소득",
+   "level": "1분위(하)",
+   "ref": "3분위",
+   "domain": "econ",
+   "or": 1.17,
+   "lo": 1.05,
+   "hi": 1.31,
+   "p": 0.00602
+  },
+  {
+   "name": "균등화 소득",
+   "level": "2분위",
+   "ref": "3분위",
+   "domain": "econ",
+   "or": 1.07,
+   "lo": 0.96,
+   "hi": 1.18,
+   "p": 0.2182
+  },
+  {
+   "name": "균등화 소득",
+   "level": "4분위",
+   "ref": "3분위",
+   "domain": "econ",
+   "or": 0.92,
+   "lo": 0.82,
+   "hi": 1.03,
+   "p": 0.13021
+  },
+  {
+   "name": "균등화 소득",
+   "level": "5분위(상)",
+   "ref": "3분위",
+   "domain": "econ",
+   "or": 1.01,
+   "lo": 0.89,
+   "hi": 1.14,
+   "p": 0.87407
+  },
+  {
+   "name": "기초생활수급",
+   "level": "과거 수급",
+   "ref": "아님",
+   "domain": "econ",
+   "or": 0.91,
+   "lo": 0.65,
+   "hi": 1.27,
+   "p": 0.57664
+  },
+  {
+   "name": "기초생활수급",
+   "level": "현재 수급",
+   "ref": "아님",
+   "domain": "econ",
+   "or": 1.23,
+   "lo": 1.1,
+   "hi": 1.37,
+   "p": 0.00016
+  },
+  {
+   "name": "식품안정성",
+   "level": "가끔 부족",
+   "ref": "충분·다양",
+   "domain": "econ",
+   "or": 2.1,
+   "lo": 1.86,
+   "hi": 2.37,
+   "p": 0.0
+  },
+  {
+   "name": "식품안정성",
+   "level": "자주 부족",
+   "ref": "충분·다양",
+   "domain": "econ",
+   "or": 3.24,
+   "lo": 2.6,
+   "hi": 4.03,
+   "p": 0.0
+  },
+  {
+   "name": "식품안정성",
+   "level": "충분·단조",
+   "ref": "충분·다양",
+   "domain": "econ",
+   "or": 1.34,
+   "lo": 1.24,
+   "hi": 1.44,
+   "p": 0.0
+  },
+  {
+   "name": "직업",
+   "level": "관리·전문",
+   "ref": "사무",
+   "domain": "econ",
+   "or": 0.95,
+   "lo": 0.83,
+   "hi": 1.09,
+   "p": 0.4783
+  },
+  {
+   "name": "직업",
+   "level": "기능·노무",
+   "ref": "사무",
+   "domain": "econ",
+   "or": 0.71,
+   "lo": 0.62,
+   "hi": 0.81,
+   "p": 0.0
+  },
+  {
+   "name": "직업",
+   "level": "농림어업",
+   "ref": "사무",
+   "domain": "econ",
+   "or": 0.8,
+   "lo": 0.66,
+   "hi": 0.98,
+   "p": 0.03244
+  },
+  {
+   "name": "직업",
+   "level": "비경제활동",
+   "ref": "사무",
+   "domain": "econ",
+   "or": 1.31,
+   "lo": 1.16,
+   "hi": 1.48,
+   "p": 1e-05
+  },
+  {
+   "name": "직업",
+   "level": "서비스·판매",
+   "ref": "사무",
+   "domain": "econ",
+   "or": 0.93,
+   "lo": 0.81,
+   "hi": 1.06,
+   "p": 0.26158
+  },
+  {
+   "name": "BMI",
+   "level": "23-25",
+   "ref": "18.5-23",
+   "domain": "phys",
+   "or": 0.85,
+   "lo": 0.77,
+   "hi": 0.93,
+   "p": 0.00057
+  },
+  {
+   "name": "BMI",
+   "level": "25-30",
+   "ref": "18.5-23",
+   "domain": "phys",
+   "or": 0.79,
+   "lo": 0.71,
+   "hi": 0.88,
+   "p": 1e-05
+  },
+  {
+   "name": "BMI",
+   "level": "30+",
+   "ref": "18.5-23",
+   "domain": "phys",
+   "or": 0.79,
+   "lo": 0.67,
+   "hi": 0.93,
+   "p": 0.0051
+  },
+  {
+   "name": "BMI",
+   "level": "<18.5",
+   "ref": "18.5-23",
+   "domain": "phys",
+   "or": 1.03,
+   "lo": 0.89,
+   "hi": 1.18,
+   "p": 0.69404
+  },
+  {
+   "name": "인지 체형",
+   "level": "매우 마름",
+   "ref": "보통",
+   "domain": "phys",
+   "or": 2.06,
+   "lo": 1.75,
+   "hi": 2.42,
+   "p": 0.0
+  },
+  {
+   "name": "인지 체형",
+   "level": "매우 비만",
+   "ref": "보통",
+   "domain": "phys",
+   "or": 2.36,
+   "lo": 2.05,
+   "hi": 2.71,
+   "p": 0.0
+  },
+  {
+   "name": "인지 체형",
+   "level": "약간 마름",
+   "ref": "보통",
+   "domain": "phys",
+   "or": 1.18,
+   "lo": 1.07,
+   "hi": 1.31,
+   "p": 0.00152
+  },
+  {
+   "name": "인지 체형",
+   "level": "약간 비만",
+   "ref": "보통",
+   "domain": "phys",
+   "or": 1.36,
+   "lo": 1.24,
+   "hi": 1.49,
+   "p": 0.0
+  },
+  {
+   "name": "고혈압",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "phys",
+   "or": 1.08,
+   "lo": 1.01,
+   "hi": 1.17,
+   "p": 0.03175
+  },
+  {
+   "name": "당뇨병",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "phys",
+   "or": 1.26,
+   "lo": 1.16,
+   "hi": 1.37,
+   "p": 0.0
+  },
+  {
+   "name": "골다공증",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "phys",
+   "or": 1.39,
+   "lo": 1.27,
+   "hi": 1.52,
+   "p": 0.0
+  },
+  {
+   "name": "구강건강",
+   "level": "나쁨",
+   "ref": "보통",
+   "domain": "phys",
+   "or": 1.16,
+   "lo": 1.07,
+   "hi": 1.26,
+   "p": 0.00027
+  },
+  {
+   "name": "구강건강",
+   "level": "매우 나쁨",
+   "ref": "보통",
+   "domain": "phys",
+   "or": 1.42,
+   "lo": 1.24,
+   "hi": 1.62,
+   "p": 0.0
+  },
+  {
+   "name": "구강건강",
+   "level": "매우 좋음",
+   "ref": "보통",
+   "domain": "phys",
+   "or": 1.05,
+   "lo": 0.86,
+   "hi": 1.28,
+   "p": 0.63574
+  },
+  {
+   "name": "구강건강",
+   "level": "좋음",
+   "ref": "보통",
+   "domain": "phys",
+   "or": 0.83,
+   "lo": 0.76,
+   "hi": 0.92,
+   "p": 0.00025
+  },
+  {
+   "name": "저작불편",
+   "level": "그저그럼",
+   "ref": "전혀 안 불편",
+   "domain": "phys",
+   "or": 1.65,
+   "lo": 1.48,
+   "hi": 1.84,
+   "p": 0.0
+  },
+  {
+   "name": "저작불편",
+   "level": "매우 불편",
+   "ref": "전혀 안 불편",
+   "domain": "phys",
+   "or": 2.79,
+   "lo": 2.39,
+   "hi": 3.26,
+   "p": 0.0
+  },
+  {
+   "name": "저작불편",
+   "level": "별로 안 불편",
+   "ref": "전혀 안 불편",
+   "domain": "phys",
+   "or": 1.26,
+   "lo": 1.15,
+   "hi": 1.38,
+   "p": 0.0
+  },
+  {
+   "name": "저작불편",
+   "level": "불편",
+   "ref": "전혀 안 불편",
+   "domain": "phys",
+   "or": 1.98,
+   "lo": 1.76,
+   "hi": 2.23,
+   "p": 0.0
+  },
+  {
+   "name": "낙상",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "phys",
+   "or": 1.72,
+   "lo": 1.59,
+   "hi": 1.87,
+   "p": 0.0
+  },
+  {
+   "name": "사고·중독",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "phys",
+   "or": 1.22,
+   "lo": 1.11,
+   "hi": 1.35,
+   "p": 8e-05
+  },
+  {
+   "name": "걷기 실천",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "behav",
+   "or": 0.8,
+   "lo": 0.75,
+   "hi": 0.85,
+   "p": 0.0
+  },
+  {
+   "name": "중강도 이상 신체활동",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "behav",
+   "or": 1.01,
+   "lo": 0.93,
+   "hi": 1.11,
+   "p": 0.75836
+  },
+  {
+   "name": "근력운동 주2일+",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "behav",
+   "or": 0.85,
+   "lo": 0.78,
+   "hi": 0.93,
+   "p": 0.00022
+  },
+  {
+   "name": "흡연",
+   "level": "과거흡연",
+   "ref": "비흡연",
+   "domain": "behav",
+   "or": 1.29,
+   "lo": 1.17,
+   "hi": 1.43,
+   "p": 0.0
+  },
+  {
+   "name": "흡연",
+   "level": "현재흡연",
+   "ref": "비흡연",
+   "domain": "behav",
+   "or": 1.45,
+   "lo": 1.3,
+   "hi": 1.62,
+   "p": 0.0
+  },
+  {
+   "name": "전자담배",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "behav",
+   "or": 1.4,
+   "lo": 1.24,
+   "hi": 1.58,
+   "p": 0.0
+  },
+  {
+   "name": "음주 빈도",
+   "level": "안 마심",
+   "ref": "월1회 이하",
+   "domain": "behav",
+   "or": 1.13,
+   "lo": 1.04,
+   "hi": 1.22,
+   "p": 0.00256
+  },
+  {
+   "name": "음주 빈도",
+   "level": "월2~4회",
+   "ref": "월1회 이하",
+   "domain": "behav",
+   "or": 0.95,
+   "lo": 0.86,
+   "hi": 1.05,
+   "p": 0.30898
+  },
+  {
+   "name": "음주 빈도",
+   "level": "주2회+",
+   "ref": "월1회 이하",
+   "domain": "behav",
+   "or": 1.12,
+   "lo": 0.98,
+   "hi": 1.28,
+   "p": 0.10775
+  },
+  {
+   "name": "고위험음주",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "behav",
+   "or": 1.09,
+   "lo": 0.93,
+   "hi": 1.26,
+   "p": 0.2829
+  },
+  {
+   "name": "아침식사",
+   "level": "거의 안 함",
+   "ref": "주5~7회",
+   "domain": "behav",
+   "or": 1.41,
+   "lo": 1.3,
+   "hi": 1.54,
+   "p": 0.0
+  },
+  {
+   "name": "아침식사",
+   "level": "주1~2회",
+   "ref": "주5~7회",
+   "domain": "behav",
+   "or": 1.25,
+   "lo": 1.11,
+   "hi": 1.4,
+   "p": 0.00017
+  },
+  {
+   "name": "아침식사",
+   "level": "주3~4회",
+   "ref": "주5~7회",
+   "domain": "behav",
+   "or": 1.17,
+   "lo": 1.05,
+   "hi": 1.31,
+   "p": 0.00525
+  },
+  {
+   "name": "체중조절",
+   "level": "감량",
+   "ref": "유지",
+   "domain": "behav",
+   "or": 1.11,
+   "lo": 1.01,
+   "hi": 1.22,
+   "p": 0.03137
+  },
+  {
+   "name": "체중조절",
+   "level": "노력 안 함",
+   "ref": "유지",
+   "domain": "behav",
+   "or": 1.05,
+   "lo": 0.95,
+   "hi": 1.15,
+   "p": 0.35536
+  },
+  {
+   "name": "체중조절",
+   "level": "증량",
+   "ref": "유지",
+   "domain": "behav",
+   "or": 1.45,
+   "lo": 1.26,
+   "hi": 1.68,
+   "p": 0.0
+  },
+  {
+   "name": "점심 후 칫솔질",
+   "level": "아니오",
+   "ref": "예",
+   "domain": "behav",
+   "or": 1.1,
+   "lo": 1.03,
+   "hi": 1.17,
+   "p": 0.00695
+  },
+  {
+   "name": "점심 후 칫솔질",
+   "level": "점심 안 먹음",
+   "ref": "예",
+   "domain": "behav",
+   "or": 1.45,
+   "lo": 1.24,
+   "hi": 1.69,
+   "p": 0.0
+  },
+  {
+   "name": "친구 연락",
+   "level": "월 1회",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 1.11,
+   "lo": 0.98,
+   "hi": 1.26,
+   "p": 0.10959
+  },
+  {
+   "name": "친구 연락",
+   "level": "월 1회 미만",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 1.59,
+   "lo": 1.42,
+   "hi": 1.78,
+   "p": 0.0
+  },
+  {
+   "name": "친구 연락",
+   "level": "월 2~3회",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 1.0,
+   "lo": 0.88,
+   "hi": 1.14,
+   "p": 0.96489
+  },
+  {
+   "name": "친구 연락",
+   "level": "주 2~3회",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 0.92,
+   "lo": 0.8,
+   "hi": 1.05,
+   "p": 0.19609
+  },
+  {
+   "name": "친구 연락",
+   "level": "주 4회 이상",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 0.92,
+   "lo": 0.81,
+   "hi": 1.04,
+   "p": 0.18435
+  },
+  {
+   "name": "친척 연락",
+   "level": "월 1회",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 1.04,
+   "lo": 0.92,
+   "hi": 1.18,
+   "p": 0.50078
+  },
+  {
+   "name": "친척 연락",
+   "level": "월 1회 미만",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 1.28,
+   "lo": 1.14,
+   "hi": 1.43,
+   "p": 2e-05
+  },
+  {
+   "name": "친척 연락",
+   "level": "월 2~3회",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 1.03,
+   "lo": 0.91,
+   "hi": 1.17,
+   "p": 0.62062
+  },
+  {
+   "name": "친척 연락",
+   "level": "주 2~3회",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 0.97,
+   "lo": 0.86,
+   "hi": 1.1,
+   "p": 0.66861
+  },
+  {
+   "name": "친척 연락",
+   "level": "주 4회 이상",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 1.19,
+   "lo": 1.07,
+   "hi": 1.33,
+   "p": 0.00148
+  },
+  {
+   "name": "이웃 연락",
+   "level": "월 1회",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 1.01,
+   "lo": 0.85,
+   "hi": 1.19,
+   "p": 0.91721
+  },
+  {
+   "name": "이웃 연락",
+   "level": "월 1회 미만",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 1.19,
+   "lo": 1.04,
+   "hi": 1.35,
+   "p": 0.00884
+  },
+  {
+   "name": "이웃 연락",
+   "level": "월 2~3회",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 0.87,
+   "lo": 0.73,
+   "hi": 1.03,
+   "p": 0.11269
+  },
+  {
+   "name": "이웃 연락",
+   "level": "주 2~3회",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 0.93,
+   "lo": 0.8,
+   "hi": 1.08,
+   "p": 0.34235
+  },
+  {
+   "name": "이웃 연락",
+   "level": "주 4회 이상",
+   "ref": "주 1회",
+   "domain": "social",
+   "or": 0.94,
+   "lo": 0.82,
+   "hi": 1.08,
+   "p": 0.38558
+  },
+  {
+   "name": "이웃 신뢰",
+   "level": "모름",
+   "ref": "예",
+   "domain": "social",
+   "or": 0.98,
+   "lo": 0.79,
+   "hi": 1.2,
+   "p": 0.81336
+  },
+  {
+   "name": "이웃 신뢰",
+   "level": "아니오",
+   "ref": "예",
+   "domain": "social",
+   "or": 1.31,
+   "lo": 1.22,
+   "hi": 1.41,
+   "p": 0.0
+  },
+  {
+   "name": "이웃 경조사",
+   "level": "모름",
+   "ref": "예",
+   "domain": "social",
+   "or": 1.07,
+   "lo": 0.83,
+   "hi": 1.38,
+   "p": 0.61016
+  },
+  {
+   "name": "이웃 경조사",
+   "level": "아니오",
+   "ref": "예",
+   "domain": "social",
+   "or": 0.95,
+   "lo": 0.87,
+   "hi": 1.04,
+   "p": 0.27944
+  },
+  {
+   "name": "치매환자 가족",
+   "level": "가족(비동거)",
+   "ref": "해당 없음",
+   "domain": "social",
+   "or": 1.36,
+   "lo": 1.23,
+   "hi": 1.5,
+   "p": 0.0
+  },
+  {
+   "name": "치매환자 가족",
+   "level": "동거",
+   "ref": "해당 없음",
+   "domain": "social",
+   "or": 1.53,
+   "lo": 1.25,
+   "hi": 1.87,
+   "p": 3e-05
+  },
+  {
+   "name": "동네 안전",
+   "level": "모름",
+   "ref": "예",
+   "domain": "env",
+   "or": 1.38,
+   "lo": 1.02,
+   "hi": 1.88,
+   "p": 0.03958
+  },
+  {
+   "name": "동네 안전",
+   "level": "아니오",
+   "ref": "예",
+   "domain": "env",
+   "or": 1.38,
+   "lo": 1.27,
+   "hi": 1.5,
+   "p": 0.0
+  },
+  {
+   "name": "자연환경",
+   "level": "모름",
+   "ref": "예",
+   "domain": "env",
+   "or": 1.09,
+   "lo": 0.6,
+   "hi": 1.95,
+   "p": 0.78069
+  },
+  {
+   "name": "자연환경",
+   "level": "아니오",
+   "ref": "예",
+   "domain": "env",
+   "or": 1.18,
+   "lo": 1.08,
+   "hi": 1.28,
+   "p": 0.00013
+  },
+  {
+   "name": "생활환경",
+   "level": "모름",
+   "ref": "예",
+   "domain": "env",
+   "or": 1.35,
+   "lo": 0.74,
+   "hi": 2.45,
+   "p": 0.32948
+  },
+  {
+   "name": "생활환경",
+   "level": "아니오",
+   "ref": "예",
+   "domain": "env",
+   "or": 1.3,
+   "lo": 1.19,
+   "hi": 1.42,
+   "p": 0.0
+  },
+  {
+   "name": "대중교통",
+   "level": "모름",
+   "ref": "예",
+   "domain": "env",
+   "or": 1.05,
+   "lo": 0.78,
+   "hi": 1.42,
+   "p": 0.73623
+  },
+  {
+   "name": "대중교통",
+   "level": "아니오",
+   "ref": "예",
+   "domain": "env",
+   "or": 1.05,
+   "lo": 0.97,
+   "hi": 1.13,
+   "p": 0.24799
+  },
+  {
+   "name": "의료서비스",
+   "level": "모름",
+   "ref": "예",
+   "domain": "env",
+   "or": 0.83,
+   "lo": 0.48,
+   "hi": 1.44,
+   "p": 0.5037
+  },
+  {
+   "name": "의료서비스",
+   "level": "아니오",
+   "ref": "예",
+   "domain": "env",
+   "or": 1.1,
+   "lo": 1.02,
+   "hi": 1.19,
+   "p": 0.01909
+  },
+  {
+   "name": "동/읍면",
+   "level": "읍·면",
+   "ref": "동",
+   "domain": "env",
+   "or": 0.96,
+   "lo": 0.88,
+   "hi": 1.04,
+   "p": 0.31227
+  },
+  {
+   "name": "주택유형",
+   "level": "일반주택",
+   "ref": "아파트",
+   "domain": "env",
+   "or": 0.91,
+   "lo": 0.85,
+   "hi": 0.97,
+   "p": 0.00555
+  },
+  {
+   "name": "시도",
+   "level": "강원",
+   "ref": "서울",
+   "domain": "env",
+   "or": 0.93,
+   "lo": 0.78,
+   "hi": 1.11,
+   "p": 0.43455
+  },
+  {
+   "name": "시도",
+   "level": "경기",
+   "ref": "서울",
+   "domain": "env",
+   "or": 1.01,
+   "lo": 0.91,
+   "hi": 1.12,
+   "p": 0.86914
+  },
+  {
+   "name": "시도",
+   "level": "경남",
+   "ref": "서울",
+   "domain": "env",
+   "or": 0.76,
+   "lo": 0.65,
+   "hi": 0.88,
+   "p": 0.00041
+  },
+  {
+   "name": "시도",
+   "level": "경북",
+   "ref": "서울",
+   "domain": "env",
+   "or": 0.85,
+   "lo": 0.73,
+   "hi": 0.99,
+   "p": 0.03604
+  },
+  {
+   "name": "시도",
+   "level": "광주",
+   "ref": "서울",
+   "domain": "env",
+   "or": 0.58,
+   "lo": 0.46,
+   "hi": 0.72,
+   "p": 0.0
+  },
+  {
+   "name": "시도",
+   "level": "대구",
+   "ref": "서울",
+   "domain": "env",
+   "or": 0.76,
+   "lo": 0.64,
+   "hi": 0.9,
+   "p": 0.00113
+  },
+  {
+   "name": "시도",
+   "level": "대전",
+   "ref": "서울",
+   "domain": "env",
+   "or": 1.05,
+   "lo": 0.85,
+   "hi": 1.3,
+   "p": 0.62517
+  },
+  {
+   "name": "시도",
+   "level": "부산",
+   "ref": "서울",
+   "domain": "env",
+   "or": 0.77,
+   "lo": 0.67,
+   "hi": 0.88,
+   "p": 0.00021
+  },
+  {
+   "name": "시도",
+   "level": "세종",
+   "ref": "서울",
+   "domain": "env",
+   "or": 0.96,
+   "lo": 0.6,
+   "hi": 1.55,
+   "p": 0.88185
+  },
+  {
+   "name": "시도",
+   "level": "울산",
+   "ref": "서울",
+   "domain": "env",
+   "or": 1.01,
+   "lo": 0.83,
+   "hi": 1.23,
+   "p": 0.90752
+  },
+  {
+   "name": "시도",
+   "level": "인천",
+   "ref": "서울",
+   "domain": "env",
+   "or": 0.9,
+   "lo": 0.77,
+   "hi": 1.07,
+   "p": 0.23064
+  },
+  {
+   "name": "시도",
+   "level": "전남",
+   "ref": "서울",
+   "domain": "env",
+   "or": 0.85,
+   "lo": 0.73,
+   "hi": 1.0,
+   "p": 0.04707
+  },
+  {
+   "name": "시도",
+   "level": "전북",
+   "ref": "서울",
+   "domain": "env",
+   "or": 0.59,
+   "lo": 0.49,
+   "hi": 0.7,
+   "p": 0.0
+  },
+  {
+   "name": "시도",
+   "level": "제주",
+   "ref": "서울",
+   "domain": "env",
+   "or": 1.0,
+   "lo": 0.76,
+   "hi": 1.3,
+   "p": 0.988
+  },
+  {
+   "name": "시도",
+   "level": "충남",
+   "ref": "서울",
+   "domain": "env",
+   "or": 0.98,
+   "lo": 0.84,
+   "hi": 1.14,
+   "p": 0.80042
+  },
+  {
+   "name": "시도",
+   "level": "충북",
+   "ref": "서울",
+   "domain": "env",
+   "or": 0.72,
+   "lo": 0.61,
+   "hi": 0.86,
+   "p": 0.00026
+  },
+  {
+   "name": "미충족 의료",
+   "level": "있음",
+   "ref": "없음",
+   "domain": "care",
+   "or": 2.15,
+   "lo": 1.96,
+   "hi": 2.37,
+   "p": 0.0
+  },
+  {
+   "name": "미충족 의료",
+   "level": "필요 없었음",
+   "ref": "없음",
+   "domain": "care",
+   "or": 0.69,
+   "lo": 0.6,
+   "hi": 0.81,
+   "p": 0.0
+  },
+  {
+   "name": "미충족 치과",
+   "level": "있음",
+   "ref": "없음",
+   "domain": "care",
+   "or": 1.31,
+   "lo": 1.21,
+   "hi": 1.43,
+   "p": 0.0
+  },
+  {
+   "name": "미충족 치과",
+   "level": "필요 없었음",
+   "ref": "없음",
+   "domain": "care",
+   "or": 0.94,
+   "lo": 0.85,
+   "hi": 1.03,
+   "p": 0.18706
+  },
+  {
+   "name": "건강검진",
+   "level": "아니오",
+   "ref": "예",
+   "domain": "care",
+   "or": 1.01,
+   "lo": 0.95,
+   "hi": 1.09,
+   "p": 0.68361
+  },
+  {
+   "name": "독감접종",
+   "level": "아니오",
+   "ref": "예",
+   "domain": "care",
+   "or": 1.01,
+   "lo": 0.94,
+   "hi": 1.08,
+   "p": 0.81113
+  },
+  {
+   "name": "보건기관 이용",
+   "level": "예",
+   "ref": "아니오",
+   "domain": "care",
+   "or": 1.13,
+   "lo": 1.05,
+   "hi": 1.21,
+   "p": 0.00164
+  },
+  {
+   "name": "의료진 설명 이해",
+   "level": "다소 어려움",
+   "ref": "쉬움",
+   "domain": "care",
+   "or": 1.36,
+   "lo": 1.25,
+   "hi": 1.48,
+   "p": 0.0
+  },
+  {
+   "name": "의료진 설명 이해",
+   "level": "매우 어려움",
+   "ref": "쉬움",
+   "domain": "care",
+   "or": 1.76,
+   "lo": 1.51,
+   "hi": 2.06,
+   "p": 0.0
+  },
+  {
+   "name": "의료진 설명 이해",
+   "level": "아주 쉬움",
+   "ref": "쉬움",
+   "domain": "care",
+   "or": 1.02,
+   "lo": 0.91,
+   "hi": 1.14,
+   "p": 0.72553
+  },
+  {
+   "name": "건강정보 글 이해",
+   "level": "관심 없음",
+   "ref": "쉬움",
+   "domain": "care",
+   "or": 1.1,
+   "lo": 0.99,
+   "hi": 1.23,
+   "p": 0.0855
+  },
+  {
+   "name": "건강정보 글 이해",
+   "level": "다소 어려움",
+   "ref": "쉬움",
+   "domain": "care",
+   "or": 1.12,
+   "lo": 1.02,
+   "hi": 1.24,
+   "p": 0.01997
+  },
+  {
+   "name": "건강정보 글 이해",
+   "level": "매우 어려움",
+   "ref": "쉬움",
+   "domain": "care",
+   "or": 1.22,
+   "lo": 1.04,
+   "hi": 1.44,
+   "p": 0.01369
+  },
+  {
+   "name": "건강정보 글 이해",
+   "level": "아주 쉬움",
+   "ref": "쉬움",
+   "domain": "care",
+   "or": 0.94,
+   "lo": 0.84,
+   "hi": 1.06,
+   "p": 0.33163
+  },
+  {
+   "name": "건강정보 찾기",
+   "level": "다소 어려움",
+   "ref": "쉬움",
+   "domain": "care",
+   "or": 1.19,
+   "lo": 1.08,
+   "hi": 1.31,
+   "p": 0.00035
+  },
+  {
+   "name": "건강정보 찾기",
+   "level": "매우 어려움",
+   "ref": "쉬움",
+   "domain": "care",
+   "or": 1.36,
+   "lo": 1.17,
+   "hi": 1.57,
+   "p": 4e-05
+  },
+  {
+   "name": "건강정보 찾기",
+   "level": "아주 쉬움",
+   "ref": "쉬움",
+   "domain": "care",
+   "or": 1.11,
+   "lo": 1.0,
+   "hi": 1.23,
+   "p": 0.05249
+  },
+  {
+   "name": "건강정보 찾기",
+   "level": "찾지 않음",
+   "ref": "쉬움",
+   "domain": "care",
+   "or": 1.13,
+   "lo": 1.01,
+   "hi": 1.26,
+   "p": 0.02806
+  }
+ ],
+ "variable_tests": [
+  {
+   "var": "fall",
+   "name": "낙상",
+   "domain": "phys",
+   "df": 1,
+   "F": 169.4,
+   "p": 0.0
+  },
+  {
+   "var": "sex",
+   "name": "성별",
+   "domain": "demo",
+   "df": 1,
+   "F": 145.6,
+   "p": 0.0
+  },
+  {
+   "var": "unmet_medical",
+   "name": "미충족 의료",
+   "domain": "care",
+   "df": 2,
+   "F": 138.3,
+   "p": 0.0
+  },
+  {
+   "var": "food_insecurity",
+   "name": "식품안정성",
+   "domain": "econ",
+   "df": 3,
+   "F": 69.2,
+   "p": 0.0
+  },
+  {
+   "var": "body_image",
+   "name": "인지 체형",
+   "domain": "phys",
+   "df": 4,
+   "F": 54.3,
+   "p": 0.0
+  },
+  {
+   "var": "osteo",
+   "name": "골다공증",
+   "domain": "phys",
+   "df": 1,
+   "F": 51.7,
+   "p": 0.0
+  },
+  {
+   "var": "chewing",
+   "name": "저작불편",
+   "domain": "phys",
+   "df": 4,
+   "F": 51.4,
+   "p": 0.0
+  },
+  {
+   "var": "walk_ok",
+   "name": "걷기 실천",
+   "domain": "behav",
+   "df": 1,
+   "F": 45.3,
+   "p": 0.0
+  },
+  {
+   "var": "contact_friend",
+   "name": "친구 연락",
+   "domain": "social",
+   "df": 5,
+   "F": 39.8,
+   "p": 0.0
+  },
+  {
+   "var": "occupation",
+   "name": "직업",
+   "domain": "econ",
+   "df": 5,
+   "F": 34.6,
+   "p": 0.0
+  },
+  {
+   "var": "dm",
+   "name": "당뇨병",
+   "domain": "phys",
+   "df": 1,
+   "F": 31.7,
+   "p": 0.0
+  },
+  {
+   "var": "ecig_current",
+   "name": "전자담배",
+   "domain": "behav",
+   "df": 1,
+   "F": 28.9,
+   "p": 0.0
+  },
+  {
+   "var": "env_safety",
+   "name": "동네 안전",
+   "domain": "env",
+   "df": 2,
+   "F": 28.8,
+   "p": 0.0
+  },
+  {
+   "var": "neighbor_trust",
+   "name": "이웃 신뢰",
+   "domain": "social",
+   "df": 2,
+   "F": 27.9,
+   "p": 0.0
+  },
+  {
+   "var": "dementia_care",
+   "name": "치매환자 가족",
+   "domain": "social",
+   "df": 2,
+   "F": 26.9,
+   "p": 0.0
+  },
+  {
+   "var": "hl_explain",
+   "name": "의료진 설명 이해",
+   "domain": "care",
+   "df": 3,
+   "F": 25.8,
+   "p": 0.0
+  },
+  {
+   "var": "unmet_dental",
+   "name": "미충족 치과",
+   "domain": "care",
+   "df": 2,
+   "F": 25.5,
+   "p": 0.0
+  },
+  {
+   "var": "smoking_status",
+   "name": "흡연",
+   "domain": "behav",
+   "df": 2,
+   "F": 24.7,
+   "p": 0.0
+  },
+  {
+   "var": "breakfast",
+   "name": "아침식사",
+   "domain": "behav",
+   "df": 3,
+   "F": 21.8,
+   "p": 0.0
+  },
+  {
+   "var": "age_grp",
+   "name": "연령",
+   "domain": "demo",
+   "df": 6,
+   "F": 19.5,
+   "p": 0.0
+  },
+  {
+   "var": "env_living",
+   "name": "생활환경",
+   "domain": "env",
+   "df": 2,
+   "F": 16.7,
+   "p": 0.0
+  },
+  {
+   "var": "injury",
+   "name": "사고·중독",
+   "domain": "phys",
+   "df": 1,
+   "F": 15.5,
+   "p": 8e-05
+  },
+  {
+   "var": "strength_ok",
+   "name": "근력운동 주2일+",
+   "domain": "behav",
+   "df": 1,
+   "F": 13.7,
+   "p": 0.00022
+  },
+  {
+   "var": "brushing_lunch",
+   "name": "점심 후 칫솔질",
+   "domain": "behav",
+   "df": 2,
+   "F": 12.9,
+   "p": 0.0
+  },
+  {
+   "var": "oral_health",
+   "name": "구강건강",
+   "domain": "phys",
+   "df": 4,
+   "F": 12.5,
+   "p": 0.0
+  },
+  {
+   "var": "weight_control",
+   "name": "체중조절",
+   "domain": "behav",
+   "df": 3,
+   "F": 10.6,
+   "p": 0.0
+  },
+  {
+   "var": "public_health_use",
+   "name": "보건기관 이용",
+   "domain": "care",
+   "df": 1,
+   "F": 9.9,
+   "p": 0.00164
+  },
+  {
+   "var": "contact_family",
+   "name": "친척 연락",
+   "domain": "social",
+   "df": 5,
+   "F": 8.8,
+   "p": 0.0
+  },
+  {
+   "var": "housing",
+   "name": "주택유형",
+   "domain": "env",
+   "df": 1,
+   "F": 7.7,
+   "p": 0.00555
+  },
+  {
+   "var": "contact_neighbor",
+   "name": "이웃 연락",
+   "domain": "social",
+   "df": 5,
+   "F": 7.5,
+   "p": 0.0
+  },
+  {
+   "var": "livelihood",
+   "name": "기초생활수급",
+   "domain": "econ",
+   "df": 2,
+   "F": 7.4,
+   "p": 0.00061
+  },
+  {
+   "var": "env_nature",
+   "name": "자연환경",
+   "domain": "env",
+   "df": 2,
+   "F": 7.4,
+   "p": 0.00064
+  },
+  {
+   "var": "marital",
+   "name": "혼인상태",
+   "domain": "demo",
+   "df": 4,
+   "F": 6.7,
+   "p": 2e-05
+  },
+  {
+   "var": "region",
+   "name": "시도",
+   "domain": "env",
+   "df": 16,
+   "F": 6.5,
+   "p": 0.0
+  },
+  {
+   "var": "hl_seek",
+   "name": "건강정보 찾기",
+   "domain": "care",
+   "df": 4,
+   "F": 5.6,
+   "p": 0.00016
+  },
+  {
+   "var": "drinking",
+   "name": "음주 빈도",
+   "domain": "behav",
+   "df": 3,
+   "F": 5.5,
+   "p": 0.00096
+  },
+  {
+   "var": "bmi_grp",
+   "name": "BMI",
+   "domain": "phys",
+   "df": 4,
+   "F": 5.4,
+   "p": 0.00023
+  },
+  {
+   "var": "hh_type",
+   "name": "세대유형",
+   "domain": "demo",
+   "df": 6,
+   "F": 5.4,
+   "p": 2e-05
+  },
+  {
+   "var": "htn",
+   "name": "고혈압",
+   "domain": "phys",
+   "df": 1,
+   "F": 4.6,
+   "p": 0.03175
+  },
+  {
+   "var": "inc_q",
+   "name": "균등화 소득",
+   "domain": "econ",
+   "df": 4,
+   "F": 3.8,
+   "p": 0.00402
+  },
+  {
+   "var": "env_medical",
+   "name": "의료서비스",
+   "domain": "env",
+   "df": 2,
+   "F": 3.1,
+   "p": 0.04691
+  },
+  {
+   "var": "hl_written",
+   "name": "건강정보 글 이해",
+   "domain": "care",
+   "df": 4,
+   "F": 2.6,
+   "p": 0.03443
+  },
+  {
+   "var": "high_risk_drinking",
+   "name": "고위험음주",
+   "domain": "behav",
+   "df": 1,
+   "F": 1.2,
+   "p": 0.2829
+  },
+  {
+   "var": "urban_type",
+   "name": "동/읍면",
+   "domain": "env",
+   "df": 1,
+   "F": 1.0,
+   "p": 0.31227
+  },
+  {
+   "var": "neighbor_events",
+   "name": "이웃 경조사",
+   "domain": "social",
+   "df": 2,
+   "F": 1.0,
+   "p": 0.38261
+  },
+  {
+   "var": "env_transport",
+   "name": "대중교통",
+   "domain": "env",
+   "df": 2,
+   "F": 0.7,
+   "p": 0.50157
+  },
+  {
+   "var": "educ",
+   "name": "교육수준",
+   "domain": "demo",
+   "df": 4,
+   "F": 0.2,
+   "p": 0.92728
+  },
+  {
+   "var": "checkup",
+   "name": "건강검진",
+   "domain": "care",
+   "df": 1,
+   "F": 0.2,
+   "p": 0.68361
+  },
+  {
+   "var": "aerobic_ok",
+   "name": "중강도 이상 신체활동",
+   "domain": "behav",
+   "df": 1,
+   "F": 0.1,
+   "p": 0.75836
+  },
+  {
+   "var": "flu_vax",
+   "name": "독감접종",
+   "domain": "care",
+   "df": 1,
+   "F": 0.1,
+   "p": 0.81113
+  }
+ ],
+ "age": {
+  "19-39": {
+   "econ": {
+    "d": 0.016,
+    "lo": 0.003,
+    "hi": 0.033,
+    "n": 8906,
+    "prev": 3.94
+   },
+   "phys": {
+    "d": 0.052,
+    "lo": 0.032,
+    "hi": 0.081,
+    "n": 8906,
+    "prev": 3.94
+   },
+   "behav": {
+    "d": 0.051,
+    "lo": 0.028,
+    "hi": 0.078,
+    "n": 8906,
+    "prev": 3.94
+   },
+   "social": {
+    "d": 0.021,
+    "lo": 0.007,
+    "hi": 0.035,
+    "n": 8906,
+    "prev": 3.94
+   },
+   "env": {
+    "d": 0.017,
+    "lo": 0.002,
+    "hi": 0.035,
+    "n": 8906,
+    "prev": 3.94
+   },
+   "care": {
+    "d": 0.041,
+    "lo": 0.021,
+    "hi": 0.064,
+    "n": 8906,
+    "prev": 3.94
+   }
+  },
+  "40-64": {
+   "econ": {
+    "d": 0.069,
+    "lo": 0.049,
+    "hi": 0.096,
+    "n": 20179,
+    "prev": 3.02
+   },
+   "phys": {
+    "d": 0.065,
+    "lo": 0.045,
+    "hi": 0.086,
+    "n": 20179,
+    "prev": 3.02
+   },
+   "behav": {
+    "d": 0.031,
+    "lo": 0.011,
+    "hi": 0.051,
+    "n": 20179,
+    "prev": 3.02
+   },
+   "social": {
+    "d": 0.041,
+    "lo": 0.024,
+    "hi": 0.063,
+    "n": 20179,
+    "prev": 3.02
+   },
+   "env": {
+    "d": 0.016,
+    "lo": 0.004,
+    "hi": 0.031,
+    "n": 20179,
+    "prev": 3.02
+   },
+   "care": {
+    "d": 0.038,
+    "lo": 0.023,
+    "hi": 0.055,
+    "n": 20179,
+    "prev": 3.02
+   }
+  },
+  "65+": {
+   "econ": {
+    "d": 0.055,
+    "lo": 0.04,
+    "hi": 0.072,
+    "n": 17443,
+    "prev": 4.88
+   },
+   "phys": {
+    "d": 0.099,
+    "lo": 0.08,
+    "hi": 0.119,
+    "n": 17443,
+    "prev": 4.88
+   },
+   "behav": {
+    "d": 0.048,
+    "lo": 0.033,
+    "hi": 0.064,
+    "n": 17443,
+    "prev": 4.88
+   },
+   "social": {
+    "d": 0.048,
+    "lo": 0.033,
+    "hi": 0.065,
+    "n": 17443,
+    "prev": 4.88
+   },
+   "env": {
+    "d": 0.027,
+    "lo": 0.017,
+    "hi": 0.039,
+    "n": 17443,
+    "prev": 4.88
+   },
+   "care": {
+    "d": 0.085,
+    "lo": 0.064,
+    "hi": 0.108,
+    "n": 17443,
+    "prev": 4.88
+   }
+  }
+ },
+ "combos": [
+  {
+   "partner": "친구와 주 1회 이상 연락",
+   "domain": "social",
+   "proximal": false,
+   "n_domain": 228496,
+   "prev_both": 0.0245,
+   "prev_neither": 0.0455,
+   "joint_diff": -0.0211,
+   "joint_low": -0.0244,
+   "joint_high": -0.0177,
+   "pa_only_diff": -0.0115,
+   "f_only_diff": -0.0139,
+   "additive_interaction": 0.0043,
+   "add_low": -0.0007,
+   "add_high": 0.0092,
+   "add_p": 0.09,
+   "mult_interaction_p": 0.6276
+  },
+  {
+   "partner": "이웃을 신뢰함",
+   "domain": "social",
+   "proximal": false,
+   "n_domain": 228513,
+   "prev_both": 0.0215,
+   "prev_neither": 0.0497,
+   "joint_diff": -0.0282,
+   "joint_low": -0.0314,
+   "joint_high": -0.0251,
+   "pa_only_diff": -0.0092,
+   "f_only_diff": -0.0186,
+   "additive_interaction": -0.0004,
+   "add_low": -0.0057,
+   "add_high": 0.0049,
+   "add_p": 0.8893,
+   "mult_interaction_p": 0.0655
+  },
+  {
+   "partner": "비흡연(현재 흡연 아님)",
+   "domain": "behav",
+   "proximal": false,
+   "n_domain": 228569,
+   "prev_both": 0.0274,
+   "prev_neither": 0.0521,
+   "joint_diff": -0.0247,
+   "joint_low": -0.0291,
+   "joint_high": -0.0203,
+   "pa_only_diff": -0.0124,
+   "f_only_diff": -0.0157,
+   "additive_interaction": 0.0033,
+   "add_low": -0.0042,
+   "add_high": 0.0109,
+   "add_p": 0.3855,
+   "mult_interaction_p": 0.9536
+  },
+  {
+   "partner": "고위험음주 아님",
+   "domain": "behav",
+   "proximal": false,
+   "n_domain": 228570,
+   "prev_both": 0.0281,
+   "prev_neither": 0.0477,
+   "joint_diff": -0.0197,
+   "joint_low": -0.0243,
+   "joint_high": -0.015,
+   "pa_only_diff": -0.0084,
+   "f_only_diff": -0.0096,
+   "additive_interaction": -0.0016,
+   "add_low": -0.0108,
+   "add_high": 0.0076,
+   "add_p": 0.7292,
+   "mult_interaction_p": 0.3761
+  },
+  {
+   "partner": "아침식사 주 5회 이상",
+   "domain": "behav",
+   "proximal": false,
+   "n_domain": 228573,
+   "prev_both": 0.0252,
+   "prev_neither": 0.0464,
+   "joint_diff": -0.0212,
+   "joint_low": -0.0247,
+   "joint_high": -0.0177,
+   "pa_only_diff": -0.0106,
+   "f_only_diff": -0.0133,
+   "additive_interaction": 0.0027,
+   "add_low": -0.0024,
+   "add_high": 0.0077,
+   "add_p": 0.3049,
+   "mult_interaction_p": 0.9318
+  },
+  {
+   "partner": "동네가 안전하다고 느낌",
+   "domain": "env",
+   "proximal": false,
+   "n_domain": 228556,
+   "prev_both": 0.0239,
+   "prev_neither": 0.0617,
+   "joint_diff": -0.0378,
+   "joint_low": -0.0419,
+   "joint_high": -0.0337,
+   "pa_only_diff": -0.0071,
+   "f_only_diff": -0.0272,
+   "additive_interaction": -0.0035,
+   "add_low": -0.0121,
+   "add_high": 0.005,
+   "add_p": 0.4176,
+   "mult_interaction_p": 0.0113
+  },
+  {
+   "partner": "주중 수면 7~9시간",
+   "domain": "proximal",
+   "proximal": true,
+   "n_domain": 228530,
+   "prev_both": 0.0197,
+   "prev_neither": 0.0494,
+   "joint_diff": -0.0297,
+   "joint_low": -0.033,
+   "joint_high": -0.0265,
+   "pa_only_diff": -0.0121,
+   "f_only_diff": -0.0227,
+   "additive_interaction": 0.005,
+   "add_low": 0.0002,
+   "add_high": 0.0098,
+   "add_p": 0.0406,
+   "mult_interaction_p": 0.8849
+  }
+ ],
+ "counts": [
+  {
+   "k": "0개",
+   "prev": 13.9,
+   "lo": 10.0,
+   "hi": 17.8,
+   "n": 250
+  },
+  {
+   "k": "1개",
+   "prev": 10.0,
+   "lo": 8.7,
+   "hi": 11.2,
+   "n": 2080
+  },
+  {
+   "k": "2개",
+   "prev": 7.3,
+   "lo": 6.7,
+   "hi": 7.8,
+   "n": 8910
+  },
+  {
+   "k": "3개",
+   "prev": 5.7,
+   "lo": 5.4,
+   "hi": 6.0,
+   "n": 25942
+  },
+  {
+   "k": "4개",
+   "prev": 3.9,
+   "lo": 3.7,
+   "hi": 4.1,
+   "n": 54003
+  },
+  {
+   "k": "5개",
+   "prev": 2.8,
+   "lo": 2.6,
+   "hi": 2.9,
+   "n": 79227
+  },
+  {
+   "k": "6~7개",
+   "prev": 2.0,
+   "lo": 1.8,
+   "hi": 2.2,
+   "n": 60878
+  }
+ ],
+ "count_p": "1.03e-190",
+ "crude_top": [
+  {
+   "label": "EQ-5D 운동능력",
+   "domain": "proximal",
+   "max": 41.8,
+   "min": 2.7,
+   "range": 39.1
+  },
+  {
+   "label": "EQ-5D 일상활동",
+   "domain": "proximal",
+   "max": 38.6,
+   "min": 2.7,
+   "range": 35.9
+  },
+  {
+   "label": "EQ-5D 자기관리",
+   "domain": "proximal",
+   "max": 35.4,
+   "min": 3.2,
+   "range": 32.2
+  },
+  {
+   "label": "행복감 지수",
+   "domain": "proximal",
+   "max": 30.6,
+   "min": 0.6,
+   "range": 29.9
+  },
+  {
+   "label": "주관적 스트레스",
+   "domain": "proximal",
+   "max": 30.3,
+   "min": 0.9,
+   "range": 29.4
+  },
+  {
+   "label": "EQ-5D 통증·불편",
+   "domain": "proximal",
+   "max": 30.5,
+   "min": 2.0,
+   "range": 28.6
+  },
+  {
+   "label": "주관적 건강수준",
+   "domain": "proximal",
+   "max": 29.0,
+   "min": 0.8,
+   "range": 28.1
+  },
+  {
+   "label": "가구 식품안정성",
+   "domain": "econ",
+   "max": 29.8,
+   "min": 2.5,
+   "range": 27.3
+  },
+  {
+   "label": "저작불편",
+   "domain": "phys",
+   "max": 21.5,
+   "min": 2.2,
+   "range": 19.3
+  },
+  {
+   "label": "주관적 구강건강",
+   "domain": "phys",
+   "max": 16.4,
+   "min": 1.8,
+   "range": 14.6
+  },
+  {
+   "label": "의료진 설명 이해 어려움",
+   "domain": "care",
+   "max": 17.2,
+   "min": 2.6,
+   "range": 14.6
+  },
+  {
+   "label": "최근 1달 침상와병",
+   "domain": "proximal",
+   "max": 17.0,
+   "min": 2.9,
+   "range": 14.1
+  },
+  {
+   "label": "기초생활수급",
+   "domain": "econ",
+   "max": 15.2,
+   "min": 3.2,
+   "range": 11.9
+  },
+  {
+   "label": "연간 미충족 의료",
+   "domain": "care",
+   "max": 14.0,
+   "min": 2.1,
+   "range": 11.9
+  },
+  {
+   "label": "글로 된 건강정보 이해",
+   "domain": "care",
+   "max": 13.0,
+   "min": 2.5,
+   "range": 10.5
+  },
+  {
+   "label": "건강정보 찾기 어려움",
+   "domain": "care",
+   "max": 12.8,
+   "min": 2.7,
+   "range": 10.0
+  },
+  {
+   "label": "본인 인지 체형",
+   "domain": "phys",
+   "max": 12.3,
+   "min": 2.7,
+   "range": 9.6
+  },
+  {
+   "label": "인터넷·게임·스마트폰 일상 지장",
+   "domain": "proximal",
+   "max": 12.4,
+   "min": 3.0,
+   "range": 9.4
+  },
+  {
+   "label": "인지장애(기억력 감소) 경험",
+   "domain": "proximal",
+   "max": 10.7,
+   "min": 2.0,
+   "range": 8.8
+  },
+  {
+   "label": "교육수준 5분류",
+   "domain": "demo",
+   "max": 11.4,
+   "min": 2.7,
+   "range": 8.7
+  }
+ ],
+ "pa_interactions": [
+  {
+   "label": "직업분류",
+   "domain": "econ",
+   "s": 0.0194
+  },
+  {
+   "label": "만 나이",
+   "domain": "demo",
+   "s": 0.0172
+  },
+  {
+   "label": "음주 빈도",
+   "domain": "behav",
+   "s": 0.0142
+  },
+  {
+   "label": "아침식사 빈도",
+   "domain": "behav",
+   "s": 0.0105
+  },
+  {
+   "label": "폭음 빈도",
+   "domain": "behav",
+   "s": 0.0084
+  },
+  {
+   "label": "이웃과 연락 빈도",
+   "domain": "social",
+   "s": 0.0081
+  },
+  {
+   "label": "가구 식품안정성",
+   "domain": "econ",
+   "s": 0.0074
+  },
+  {
+   "label": "저작불편",
+   "domain": "phys",
+   "s": 0.0063
+  },
+  {
+   "label": "의료진 설명 이해 어려움",
+   "domain": "care",
+   "s": 0.0061
+  },
+  {
+   "label": "log(1+균등화 가구 연소득)",
+   "domain": "econ",
+   "s": 0.0061
+  }
+ ],
+ "table1": [
+  {
+   "type": "header",
+   "name": "연령",
+   "missing": 0
+  },
+  {
+   "type": "level",
+   "level": "19~29세",
+   "all_n": 19509,
+   "all_pct": 14.4,
+   "y0_n": 18814,
+   "y0_pct": 14.4,
+   "y1_n": 695,
+   "y1_pct": 14.7,
+   "prev_w": 3.83
+  },
+  {
+   "type": "level",
+   "level": "30~39세",
+   "all_n": 24207,
+   "all_pct": 15.1,
+   "y0_n": 23258,
+   "y0_pct": 15.1,
+   "y1_n": 949,
+   "y1_pct": 16.0,
+   "prev_w": 3.97
+  },
+  {
+   "type": "level",
+   "level": "40~49세",
+   "all_n": 31354,
+   "all_pct": 17.4,
+   "y0_n": 30306,
+   "y0_pct": 17.5,
+   "y1_n": 1048,
+   "y1_pct": 15.2,
+   "prev_w": 3.29
+  },
+  {
+   "type": "level",
+   "level": "50~59세",
+   "all_n": 42607,
+   "all_pct": 19.8,
+   "y0_n": 41430,
+   "y0_pct": 19.9,
+   "y1_n": 1177,
+   "y1_pct": 15.3,
+   "prev_w": 2.9
+  },
+  {
+   "type": "level",
+   "level": "60~69세",
+   "all_n": 53354,
+   "all_pct": 17.3,
+   "y0_n": 51855,
+   "y0_pct": 17.4,
+   "y1_n": 1499,
+   "y1_pct": 13.8,
+   "prev_w": 3.01
+  },
+  {
+   "type": "level",
+   "level": "70~79세",
+   "all_n": 38107,
+   "all_pct": 10.8,
+   "y0_n": 36578,
+   "y0_pct": 10.7,
+   "y1_n": 1529,
+   "y1_pct": 12.9,
+   "prev_w": 4.48
+  },
+  {
+   "type": "level",
+   "level": "80세 이상",
+   "all_n": 22152,
+   "all_pct": 5.3,
+   "y0_n": 20345,
+   "y0_pct": 5.0,
+   "y1_n": 1807,
+   "y1_pct": 12.1,
+   "prev_w": 8.65
+  },
+  {
+   "type": "header",
+   "name": "성별",
+   "missing": 0
+  },
+  {
+   "type": "level",
+   "level": "남",
+   "all_n": 106662,
+   "all_pct": 49.5,
+   "y0_n": 103732,
+   "y0_pct": 50.0,
+   "y1_n": 2930,
+   "y1_pct": 37.5,
+   "prev_w": 2.84
+  },
+  {
+   "type": "level",
+   "level": "여",
+   "all_n": 124628,
+   "all_pct": 50.5,
+   "y0_n": 118854,
+   "y0_pct": 50.0,
+   "y1_n": 5774,
+   "y1_pct": 62.5,
+   "prev_w": 4.65
+  },
+  {
+   "type": "header",
+   "name": "교육수준",
+   "missing": 112
+  },
+  {
+   "type": "level",
+   "level": "무학",
+   "all_n": 15823,
+   "all_pct": 3.0,
+   "y0_n": 14340,
+   "y0_pct": 2.8,
+   "y1_n": 1483,
+   "y1_pct": 9.2,
+   "prev_w": 11.44
+  },
+  {
+   "type": "level",
+   "level": "초졸",
+   "all_n": 30366,
+   "all_pct": 7.4,
+   "y0_n": 28715,
+   "y0_pct": 7.2,
+   "y1_n": 1651,
+   "y1_pct": 12.7,
+   "prev_w": 6.48
+  },
+  {
+   "type": "level",
+   "level": "중졸",
+   "all_n": 24471,
+   "all_pct": 7.4,
+   "y0_n": 23519,
+   "y0_pct": 7.3,
+   "y1_n": 952,
+   "y1_pct": 9.4,
+   "prev_w": 4.75
+  },
+  {
+   "type": "level",
+   "level": "고졸",
+   "all_n": 76153,
+   "all_pct": 34.5,
+   "y0_n": 73603,
+   "y0_pct": 34.5,
+   "y1_n": 2550,
+   "y1_pct": 34.3,
+   "prev_w": 3.75
+  },
+  {
+   "type": "level",
+   "level": "대졸+",
+   "all_n": 84365,
+   "all_pct": 47.7,
+   "y0_n": 82300,
+   "y0_pct": 48.2,
+   "y1_n": 2065,
+   "y1_pct": 34.4,
+   "prev_w": 2.71
+  },
+  {
+   "type": "header",
+   "name": "혼인상태",
+   "missing": 26
+  },
+  {
+   "type": "level",
+   "level": "배우자 동거",
+   "all_n": 145148,
+   "all_pct": 60.6,
+   "y0_n": 141391,
+   "y0_pct": 61.3,
+   "y1_n": 3757,
+   "y1_pct": 42.6,
+   "prev_w": 2.64
+  },
+  {
+   "type": "level",
+   "level": "별거",
+   "all_n": 7178,
+   "all_pct": 2.5,
+   "y0_n": 6937,
+   "y0_pct": 2.5,
+   "y1_n": 241,
+   "y1_pct": 2.5,
+   "prev_w": 3.77
+  },
+  {
+   "type": "level",
+   "level": "사별",
+   "all_n": 27672,
+   "all_pct": 7.2,
+   "y0_n": 25641,
+   "y0_pct": 6.9,
+   "y1_n": 2031,
+   "y1_pct": 14.6,
+   "prev_w": 7.65
+  },
+  {
+   "type": "level",
+   "level": "이혼",
+   "all_n": 13306,
+   "all_pct": 5.5,
+   "y0_n": 12269,
+   "y0_pct": 5.2,
+   "y1_n": 1037,
+   "y1_pct": 11.9,
+   "prev_w": 8.2
+  },
+  {
+   "type": "level",
+   "level": "미혼",
+   "all_n": 37960,
+   "all_pct": 24.2,
+   "y0_n": 36323,
+   "y0_pct": 24.1,
+   "y1_n": 1637,
+   "y1_pct": 28.4,
+   "prev_w": 4.4
+  },
+  {
+   "type": "header",
+   "name": "균등화 가구소득(가중 5분위)",
+   "missing": 439
+  },
+  {
+   "type": "level",
+   "level": "1분위(하)",
+   "all_n": 69570,
+   "all_pct": 20.0,
+   "y0_n": 64958,
+   "y0_pct": 19.2,
+   "y1_n": 4612,
+   "y1_pct": 40.7,
+   "prev_w": 7.65
+  },
+  {
+   "type": "level",
+   "level": "2분위",
+   "all_n": 47844,
+   "all_pct": 20.0,
+   "y0_n": 46290,
+   "y0_pct": 20.0,
+   "y1_n": 1554,
+   "y1_pct": 19.6,
+   "prev_w": 3.67
+  },
+  {
+   "type": "level",
+   "level": "3분위",
+   "all_n": 41017,
+   "all_pct": 20.0,
+   "y0_n": 39988,
+   "y0_pct": 20.2,
+   "y1_n": 1029,
+   "y1_pct": 15.4,
+   "prev_w": 2.89
+  },
+  {
+   "type": "level",
+   "level": "4분위",
+   "all_n": 37537,
+   "all_pct": 20.0,
+   "y0_n": 36762,
+   "y0_pct": 20.3,
+   "y1_n": 775,
+   "y1_pct": 12.4,
+   "prev_w": 2.33
+  },
+  {
+   "type": "level",
+   "level": "5분위(상)",
+   "all_n": 34883,
+   "all_pct": 20.0,
+   "y0_n": 34166,
+   "y0_pct": 20.3,
+   "y1_n": 717,
+   "y1_pct": 11.9,
+   "prev_w": 2.24
+  },
+  {
+   "type": "header",
+   "name": "가구 식품안정성",
+   "missing": 13
+  },
+  {
+   "type": "level",
+   "level": "충분·다양",
+   "all_n": 162555,
+   "all_pct": 74.3,
+   "y0_n": 158731,
+   "y0_pct": 75.3,
+   "y1_n": 3824,
+   "y1_pct": 50.3,
+   "prev_w": 2.54
+  },
+  {
+   "type": "level",
+   "level": "충분·단조",
+   "all_n": 59318,
+   "all_pct": 22.5,
+   "y0_n": 56045,
+   "y0_pct": 22.1,
+   "y1_n": 3273,
+   "y1_pct": 33.8,
+   "prev_w": 5.65
+  },
+  {
+   "type": "level",
+   "level": "가끔 부족",
+   "all_n": 7961,
+   "all_pct": 2.7,
+   "y0_n": 6750,
+   "y0_pct": 2.3,
+   "y1_n": 1211,
+   "y1_pct": 12.0,
+   "prev_w": 16.75
+  },
+  {
+   "type": "level",
+   "level": "자주 부족",
+   "all_n": 1443,
+   "all_pct": 0.5,
+   "y0_n": 1048,
+   "y0_pct": 0.4,
+   "y1_n": 395,
+   "y1_pct": 3.8,
+   "prev_w": 29.85
+  },
+  {
+   "type": "header",
+   "name": "기초생활수급",
+   "missing": 9
+  },
+  {
+   "type": "level",
+   "level": "현재 수급",
+   "all_n": 11291,
+   "all_pct": 4.2,
+   "y0_n": 9638,
+   "y0_pct": 3.7,
+   "y1_n": 1653,
+   "y1_pct": 16.9,
+   "prev_w": 15.17
+  },
+  {
+   "type": "level",
+   "level": "과거 수급",
+   "all_n": 921,
+   "all_pct": 0.4,
+   "y0_n": 847,
+   "y0_pct": 0.3,
+   "y1_n": 74,
+   "y1_pct": 0.8,
+   "prev_w": 8.12
+  },
+  {
+   "type": "level",
+   "level": "아님",
+   "all_n": 219069,
+   "all_pct": 95.5,
+   "y0_n": 212093,
+   "y0_pct": 96.0,
+   "y1_n": 6976,
+   "y1_pct": 82.3,
+   "prev_w": 3.24
+  },
+  {
+   "type": "header",
+   "name": "저작불편",
+   "missing": 7
+  },
+  {
+   "type": "level",
+   "level": "매우 불편",
+   "all_n": 7701,
+   "all_pct": 2.0,
+   "y0_n": 6191,
+   "y0_pct": 1.6,
+   "y1_n": 1510,
+   "y1_pct": 11.4,
+   "prev_w": 21.5
+  },
+  {
+   "type": "level",
+   "level": "불편",
+   "all_n": 31698,
+   "all_pct": 10.3,
+   "y0_n": 29301,
+   "y0_pct": 9.8,
+   "y1_n": 2397,
+   "y1_pct": 23.3,
+   "prev_w": 8.48
+  },
+  {
+   "type": "level",
+   "level": "그저그럼",
+   "all_n": 31117,
+   "all_pct": 12.7,
+   "y0_n": 29805,
+   "y0_pct": 12.6,
+   "y1_n": 1312,
+   "y1_pct": 16.7,
+   "prev_w": 4.93
+  },
+  {
+   "type": "level",
+   "level": "별로 안 불편",
+   "all_n": 71432,
+   "all_pct": 30.2,
+   "y0_n": 69672,
+   "y0_pct": 30.5,
+   "y1_n": 1760,
+   "y1_pct": 22.8,
+   "prev_w": 2.84
+  },
+  {
+   "type": "level",
+   "level": "전혀 안 불편",
+   "all_n": 89335,
+   "all_pct": 44.7,
+   "y0_n": 87610,
+   "y0_pct": 45.5,
+   "y1_n": 1725,
+   "y1_pct": 25.7,
+   "prev_w": 2.16
+  },
+  {
+   "type": "header",
+   "name": "연간 낙상 경험",
+   "missing": 11
+  },
+  {
+   "type": "level",
+   "level": "예",
+   "all_n": 33375,
+   "all_pct": 14.5,
+   "y0_n": 30471,
+   "y0_pct": 13.8,
+   "y1_n": 2904,
+   "y1_pct": 32.9,
+   "prev_w": 8.5
+  },
+  {
+   "type": "level",
+   "level": "아니오",
+   "all_n": 197904,
+   "all_pct": 85.5,
+   "y0_n": 192104,
+   "y0_pct": 86.2,
+   "y1_n": 5800,
+   "y1_pct": 67.1,
+   "prev_w": 2.95
+  },
+  {
+   "type": "header",
+   "name": "연간 미충족 의료",
+   "missing": 4
+  },
+  {
+   "type": "level",
+   "level": "있음",
+   "all_n": 10351,
+   "all_pct": 4.5,
+   "y0_n": 8906,
+   "y0_pct": 4.0,
+   "y1_n": 1445,
+   "y1_pct": 16.6,
+   "prev_w": 14.03
+  },
+  {
+   "type": "level",
+   "level": "없음",
+   "all_n": 204458,
+   "all_pct": 87.5,
+   "y0_n": 197524,
+   "y0_pct": 87.8,
+   "y1_n": 6934,
+   "y1_pct": 78.7,
+   "prev_w": 3.38
+  },
+  {
+   "type": "level",
+   "level": "필요 없었음",
+   "all_n": 16477,
+   "all_pct": 8.1,
+   "y0_n": 16153,
+   "y0_pct": 8.2,
+   "y1_n": 324,
+   "y1_pct": 4.6,
+   "prev_w": 2.15
+  },
+  {
+   "type": "header",
+   "name": "신체활동 권고 충족(유산소+근력)",
+   "missing": 19
+  },
+  {
+   "type": "level",
+   "level": "미충족",
+   "all_n": 190492,
+   "all_pct": 78.3,
+   "y0_n": 182551,
+   "y0_pct": 77.9,
+   "y1_n": 7941,
+   "y1_pct": 88.1,
+   "prev_w": 4.23
+  },
+  {
+   "type": "level",
+   "level": "충족",
+   "all_n": 40779,
+   "all_pct": 21.7,
+   "y0_n": 40016,
+   "y0_pct": 22.1,
+   "y1_n": 763,
+   "y1_pct": 11.9,
+   "prev_w": 2.05
+  },
+  {
+   "type": "header",
+   "name": "흡연 상태",
+   "missing": 12
+  },
+  {
+   "type": "level",
+   "level": "비흡연",
+   "all_n": 145640,
+   "all_pct": 62.1,
+   "y0_n": 140209,
+   "y0_pct": 62.2,
+   "y1_n": 5431,
+   "y1_pct": 59.2,
+   "prev_w": 3.58
+  },
+  {
+   "type": "level",
+   "level": "과거흡연",
+   "all_n": 50711,
+   "all_pct": 21.8,
+   "y0_n": 49090,
+   "y0_pct": 21.9,
+   "y1_n": 1621,
+   "y1_pct": 19.2,
+   "prev_w": 3.3
+  },
+  {
+   "type": "level",
+   "level": "현재흡연",
+   "all_n": 34927,
+   "all_pct": 16.1,
+   "y0_n": 33275,
+   "y0_pct": 15.9,
+   "y1_n": 1652,
+   "y1_pct": 21.7,
+   "prev_w": 5.06
+  },
+  {
+   "type": "header",
+   "name": "아침식사",
+   "missing": 1
+  },
+  {
+   "type": "level",
+   "level": "주5~7회",
+   "all_n": 154445,
+   "all_pct": 56.9,
+   "y0_n": 149306,
+   "y0_pct": 57.2,
+   "y1_n": 5139,
+   "y1_pct": 49.2,
+   "prev_w": 3.25
+  },
+  {
+   "type": "level",
+   "level": "주3~4회",
+   "all_n": 17015,
+   "all_pct": 9.1,
+   "y0_n": 16319,
+   "y0_pct": 9.1,
+   "y1_n": 696,
+   "y1_pct": 9.0,
+   "prev_w": 3.72
+  },
+  {
+   "type": "level",
+   "level": "주1~2회",
+   "all_n": 15805,
+   "all_pct": 9.0,
+   "y0_n": 15108,
+   "y0_pct": 9.0,
+   "y1_n": 697,
+   "y1_pct": 9.8,
+   "prev_w": 4.08
+  },
+  {
+   "type": "level",
+   "level": "거의 안 함",
+   "all_n": 44024,
+   "all_pct": 25.0,
+   "y0_n": 41852,
+   "y0_pct": 24.7,
+   "y1_n": 2172,
+   "y1_pct": 32.0,
+   "prev_w": 4.81
+  },
+  {
+   "type": "header",
+   "name": "친구와 연락 빈도",
+   "missing": 119
+  },
+  {
+   "type": "level",
+   "level": "월 1회 미만",
+   "all_n": 48977,
+   "all_pct": 19.0,
+   "y0_n": 45216,
+   "y0_pct": 18.3,
+   "y1_n": 3761,
+   "y1_pct": 38.8,
+   "prev_w": 7.65
+  },
+  {
+   "type": "level",
+   "level": "월 1회",
+   "all_n": 32155,
+   "all_pct": 15.1,
+   "y0_n": 31178,
+   "y0_pct": 15.3,
+   "y1_n": 977,
+   "y1_pct": 12.4,
+   "prev_w": 3.07
+  },
+  {
+   "type": "level",
+   "level": "월 2~3회",
+   "all_n": 32151,
+   "all_pct": 15.5,
+   "y0_n": 31325,
+   "y0_pct": 15.7,
+   "y1_n": 826,
+   "y1_pct": 11.0,
+   "prev_w": 2.66
+  },
+  {
+   "type": "level",
+   "level": "주 1회",
+   "all_n": 25893,
+   "all_pct": 12.1,
+   "y0_n": 25219,
+   "y0_pct": 12.3,
+   "y1_n": 674,
+   "y1_pct": 8.7,
+   "prev_w": 2.7
+  },
+  {
+   "type": "level",
+   "level": "주 2~3회",
+   "all_n": 38638,
+   "all_pct": 16.5,
+   "y0_n": 37700,
+   "y0_pct": 16.7,
+   "y1_n": 938,
+   "y1_pct": 11.4,
+   "prev_w": 2.6
+  },
+  {
+   "type": "level",
+   "level": "주 4회 이상",
+   "all_n": 53357,
+   "all_pct": 21.6,
+   "y0_n": 51841,
+   "y0_pct": 21.8,
+   "y1_n": 1516,
+   "y1_pct": 17.6,
+   "prev_w": 3.06
+  },
+  {
+   "type": "header",
+   "name": "이웃 간 신뢰",
+   "missing": 67
+  },
+  {
+   "type": "level",
+   "level": "예",
+   "all_n": 159341,
+   "all_pct": 62.8,
+   "y0_n": 154734,
+   "y0_pct": 63.5,
+   "y1_n": 4607,
+   "y1_pct": 45.0,
+   "prev_w": 2.69
+  },
+  {
+   "type": "level",
+   "level": "아니오",
+   "all_n": 63852,
+   "all_pct": 33.1,
+   "y0_n": 60058,
+   "y0_pct": 32.4,
+   "y1_n": 3794,
+   "y1_pct": 51.3,
+   "prev_w": 5.83
+  },
+  {
+   "type": "level",
+   "level": "모름",
+   "all_n": 8030,
+   "all_pct": 4.1,
+   "y0_n": 7732,
+   "y0_pct": 4.1,
+   "y1_n": 298,
+   "y1_pct": 3.7,
+   "prev_w": 3.42
+  },
+  {
+   "type": "header",
+   "name": "동네 안전 만족",
+   "missing": 22
+  },
+  {
+   "type": "level",
+   "level": "예",
+   "all_n": 205763,
+   "all_pct": 87.1,
+   "y0_n": 199115,
+   "y0_pct": 87.7,
+   "y1_n": 6648,
+   "y1_pct": 72.5,
+   "prev_w": 3.13
+  },
+  {
+   "type": "level",
+   "level": "아니오",
+   "all_n": 23754,
+   "all_pct": 12.0,
+   "y0_n": 21812,
+   "y0_pct": 11.5,
+   "y1_n": 1942,
+   "y1_pct": 26.2,
+   "prev_w": 8.17
+  },
+  {
+   "type": "level",
+   "level": "모름",
+   "all_n": 1751,
+   "all_pct": 0.9,
+   "y0_n": 1638,
+   "y0_pct": 0.9,
+   "y1_n": 113,
+   "y1_pct": 1.3,
+   "prev_w": 5.71
+  }
+ ],
+ "variables": [
+  {
+   "name": "age",
+   "label": "만 나이",
+   "domain": "demo",
+   "kind": "num",
+   "modifiable": false,
+   "source": "age",
+   "logic": "원본",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "sex",
+   "label": "성별",
+   "domain": "demo",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "sex",
+   "logic": "1=남, 2=여",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "educ",
+   "label": "교육수준 5분류",
+   "domain": "demo",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "sob_01z1, sob_02z1",
+   "logic": "지침서 educ SAS 로직(1차와 동일)",
+   "missing_pct": 0.05
+  },
+  {
+   "name": "marital",
+   "label": "혼인상태",
+   "domain": "demo",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "sod_02z3",
+   "logic": "1=배우자 동거 … 5=미혼",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "hh_type",
+   "label": "세대유형",
+   "domain": "demo",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "fma_19z3",
+   "logic": "7분류",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "log_income_equiv",
+   "label": "log(1+균등화 가구 연소득)",
+   "domain": "econ",
+   "kind": "num",
+   "modifiable": true,
+   "source": "fma_12/13/14z1, fma_24z2, mbhld_co",
+   "logic": "1차 2단계 소득 산출 ÷ √가구원수, log1p",
+   "missing_pct": 0.19
+  },
+  {
+   "name": "livelihood",
+   "label": "기초생활수급",
+   "domain": "econ",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "fma_04z1",
+   "logic": "1=현재 수급, 2=과거 수급, 3=아님",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "food_insecurity",
+   "label": "가구 식품안정성",
+   "domain": "econ",
+   "kind": "num",
+   "modifiable": true,
+   "source": "nue_01z1",
+   "logic": "1=양·종류 충분, 2=양 충분·종류 부족, 3=가끔 부족, 4=자주 부족(클수록 불안정)",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "occupation",
+   "label": "직업분류",
+   "domain": "econ",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "soa_06z2",
+   "logic": "1~10 직업군, 0=비경제활동(원래 비해당 88)",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "emp_status",
+   "label": "종사상 지위",
+   "domain": "econ",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "soa_07z1",
+   "logic": "1=고용주·자영업, 2=임금근로, 3=무급가족, 0=비경제활동(88)",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "bmi",
+   "label": "체질량지수",
+   "domain": "phys",
+   "kind": "num",
+   "modifiable": true,
+   "source": "oba_02z1, oba_03z1",
+   "logic": "1차와 동일(지침서 범위 규칙)",
+   "missing_pct": 0.86
+  },
+  {
+   "name": "body_image",
+   "label": "본인 인지 체형",
+   "domain": "phys",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "oba_01z1",
+   "logic": "1=매우 마름 … 5=매우 비만",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "htn",
+   "label": "고혈압 진단 경험",
+   "domain": "phys",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "hya_04z1",
+   "logic": "1=예, 0=아니오",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "dm",
+   "label": "당뇨병 진단 경험",
+   "domain": "phys",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "dia_04z1",
+   "logic": "1=예, 0=아니오",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "osteo",
+   "label": "골다공증 진단",
+   "domain": "phys",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "osa_04z1",
+   "logic": "1=예, 0=아니오",
+   "missing_pct": 0.07
+  },
+  {
+   "name": "oral_health",
+   "label": "주관적 구강건강",
+   "domain": "phys",
+   "kind": "num",
+   "modifiable": true,
+   "source": "ora_01z1",
+   "logic": "1=매우 좋음 … 5=매우 나쁨",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "chewing",
+   "label": "저작불편",
+   "domain": "phys",
+   "kind": "num",
+   "modifiable": true,
+   "source": "orb_01z1",
+   "logic": "1=매우 불편 … 5=전혀 불편하지 않음",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "fall",
+   "label": "연간 낙상 경험",
+   "domain": "phys",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "irb_01z1",
+   "logic": "1=예, 0=아니오",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "injury",
+   "label": "연간 사고·중독 경험",
+   "domain": "phys",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "ira_01z1",
+   "logic": "1=예, 0=아니오",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "walk_days",
+   "label": "주간 걷기 일수",
+   "domain": "behav",
+   "kind": "num",
+   "modifiable": true,
+   "source": "phb_01z1",
+   "logic": "0~7(1차와 동일)",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "strength_code",
+   "label": "근력운동 일수 코드",
+   "domain": "behav",
+   "kind": "num",
+   "modifiable": true,
+   "source": "pha_19z1",
+   "logic": "1=안 함, 2=1일 … 6=5일 이상",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "vig_days",
+   "label": "고강도 신체활동 일수",
+   "domain": "behav",
+   "kind": "num",
+   "modifiable": true,
+   "source": "pha_04z1",
+   "logic": "0~7",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "mod_days",
+   "label": "중강도 신체활동 일수",
+   "domain": "behav",
+   "kind": "num",
+   "modifiable": true,
+   "source": "pha_07z1",
+   "logic": "0~7",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "log_met_min",
+   "label": "log(1+주간 신체활동량 MET-분)",
+   "domain": "behav",
+   "kind": "num",
+   "modifiable": true,
+   "source": "pha_04~09z1, phb_01~03z1",
+   "logic": "8×고강도 + 4×중강도 + 3.3×걷기(일수×1일 분, 1일 최대 180분, IPAQ 규칙), log1p",
+   "missing_pct": 0.02
+  },
+  {
+   "name": "smoking_status",
+   "label": "흡연 상태",
+   "domain": "behav",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "smf_01z1, sma_01z1, sma_03z2",
+   "logic": "0=비흡연(평생 5갑 미만 포함), 1=과거흡연, 2=현재흡연(지침서 sm_a0100)",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "ecig_current",
+   "label": "전자담배 현재 사용",
+   "domain": "behav",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "sma_36/37z1, sma_08z1, sma_11z2",
+   "logic": "궐련형 현재 사용(sm_a2700) 또는 액상형 최근 1달 사용(sm_a1000) = 1",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "drinking_freq",
+   "label": "음주 빈도",
+   "domain": "behav",
+   "kind": "num",
+   "modifiable": true,
+   "source": "dra_01z1, drb_01z3",
+   "logic": "0=최근 1년 안 마심(평생 비음주 포함), 1=월1회 미만 … 5=주4회 이상",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "binge_freq",
+   "label": "폭음 빈도",
+   "domain": "behav",
+   "kind": "num",
+   "modifiable": true,
+   "source": "drb_04z1(남), drb_05z1(여)",
+   "logic": "0=최근 1년 음주 안 함, 1=폭음 전혀 없음 … 5=거의 매일 (남 7잔·여 5잔 기준)",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "breakfast",
+   "label": "아침식사 빈도",
+   "domain": "behav",
+   "kind": "num",
+   "modifiable": true,
+   "source": "nua_01z2",
+   "logic": "1=주5~7회 … 4=거의 안 함",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "weight_control",
+   "label": "체중조절 노력",
+   "domain": "behav",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "obb_01z1",
+   "logic": "1=감량, 2=유지, 3=증량, 4=노력 안 함",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "brushing_lunch",
+   "label": "점심 후 칫솔질",
+   "domain": "behav",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "ord_01d2",
+   "logic": "1=예, 2=아니오, 3=점심 안 먹음",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "contact_family",
+   "label": "친척과 연락 빈도",
+   "domain": "social",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "enb_01z1",
+   "logic": "1=월1회 미만 … 6=주4회 이상(1차와 동일)",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "contact_neighbor",
+   "label": "이웃과 연락 빈도",
+   "domain": "social",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "enb_02z1",
+   "logic": "1~6",
+   "missing_pct": 0.3
+  },
+  {
+   "name": "contact_friend",
+   "label": "친구와 연락 빈도",
+   "domain": "social",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "enb_03z1",
+   "logic": "1~6",
+   "missing_pct": 0.05
+  },
+  {
+   "name": "neighbor_trust",
+   "label": "이웃 간 신뢰",
+   "domain": "social",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "ena_01a1",
+   "logic": "1=예, 2=아니오, 9=모름(별도 범주)",
+   "missing_pct": 0.03
+  },
+  {
+   "name": "neighbor_events",
+   "label": "이웃 경조사 참여",
+   "domain": "social",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "ena_01b1",
+   "logic": "1=예, 2=아니오, 9=모름",
+   "missing_pct": 0.02
+  },
+  {
+   "name": "dementia_care",
+   "label": "치매환자 가족",
+   "domain": "social",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "fma_27z1, fma_26z1",
+   "logic": "0=해당 없음, 1=치매환자 가족(비동거), 2=치매환자와 동거",
+   "missing_pct": 0.02
+  },
+  {
+   "name": "env_safety",
+   "label": "동네 안전 만족",
+   "domain": "env",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "ena_01c1",
+   "logic": "1=예, 2=아니오, 9=모름",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "env_nature",
+   "label": "동네 자연환경 만족",
+   "domain": "env",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "ena_01d1",
+   "logic": "1=예, 2=아니오, 9=모름",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "env_living",
+   "label": "동네 생활환경 만족",
+   "domain": "env",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "ena_01e1",
+   "logic": "1=예, 2=아니오, 9=모름",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "env_transport",
+   "label": "동네 대중교통 만족",
+   "domain": "env",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "ena_01f1",
+   "logic": "1=예, 2=아니오, 9=모름",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "env_medical",
+   "label": "동네 의료서비스 만족",
+   "domain": "env",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "ena_01g1",
+   "logic": "1=예, 2=아니오, 9=모름",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "urban_type",
+   "label": "동/읍·면",
+   "domain": "env",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "DONG_TY_CODE",
+   "logic": "1=동, 2=읍·면",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "housing",
+   "label": "주택유형",
+   "domain": "env",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "HOUSE_TY_CODE",
+   "logic": "1=일반주택, 2=아파트",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "region",
+   "label": "시도",
+   "domain": "env",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "CTPRVN_CODE",
+   "logic": "17개 시도 코드",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "unmet_medical",
+   "label": "연간 미충족 의료",
+   "domain": "care",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "sra_01z3",
+   "logic": "1=있음, 2=없음, 3=진료 필요 없었음",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "unmet_dental",
+   "label": "연간 미충족 치과의료",
+   "domain": "care",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "ore_02z2",
+   "logic": "1=있음, 2=없음, 3=필요 없었음",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "checkup",
+   "label": "최근 2년 건강검진",
+   "domain": "care",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "scb_01z1",
+   "logic": "1=예, 0=아니오",
+   "missing_pct": 0.02
+  },
+  {
+   "name": "flu_vax",
+   "label": "연간 독감 예방접종",
+   "domain": "care",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "sca_01z1",
+   "logic": "1=예, 0=아니오",
+   "missing_pct": 0.06
+  },
+  {
+   "name": "public_health_use",
+   "label": "보건기관 이용",
+   "domain": "care",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "hma_01z3",
+   "logic": "1=예, 0=아니오",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "hl_explain",
+   "label": "의료진 설명 이해 어려움",
+   "domain": "care",
+   "kind": "num",
+   "modifiable": true,
+   "source": "hia_01z1",
+   "logic": "1=아주 쉽다 … 4=매우 어렵다",
+   "missing_pct": 0.04
+  },
+  {
+   "name": "hl_written",
+   "label": "글로 된 건강정보 이해",
+   "domain": "care",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "hia_02z1",
+   "logic": "1~4 쉬움→어려움, 5=주의를 기울이지 않음",
+   "missing_pct": 0.04
+  },
+  {
+   "name": "hl_seek",
+   "label": "건강정보 찾기 어려움",
+   "domain": "care",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "hia_03z1",
+   "logic": "1~4 쉬움→어려움, 5=찾지 않음",
+   "missing_pct": 0.05
+  },
+  {
+   "name": "stress",
+   "label": "주관적 스트레스",
+   "domain": "proximal",
+   "kind": "num",
+   "modifiable": true,
+   "source": "mta_01z1",
+   "logic": "1=대단히 많이 … 4=거의 느끼지 않음",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "sleep_weekday",
+   "label": "주중 하루 수면시간",
+   "domain": "proximal",
+   "kind": "num",
+   "modifiable": true,
+   "source": "mtc_17z1",
+   "logic": "시간(1~24), 77/99 결측",
+   "missing_pct": 0.02
+  },
+  {
+   "name": "sleep_weekend",
+   "label": "주말 하루 수면시간",
+   "domain": "proximal",
+   "kind": "num",
+   "modifiable": true,
+   "source": "mtc_18z1",
+   "logic": "시간(1~24)",
+   "missing_pct": 0.07
+  },
+  {
+   "name": "self_rated_health",
+   "label": "주관적 건강수준",
+   "domain": "proximal",
+   "kind": "num",
+   "modifiable": true,
+   "source": "qoa_01z1",
+   "logic": "1=매우 좋음 … 5=매우 나쁨",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "eq_mobility",
+   "label": "EQ-5D 운동능력",
+   "domain": "proximal",
+   "kind": "num",
+   "modifiable": false,
+   "source": "qoc_01z1",
+   "logic": "1=문제 없음 … 3=심함",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "eq_selfcare",
+   "label": "EQ-5D 자기관리",
+   "domain": "proximal",
+   "kind": "num",
+   "modifiable": false,
+   "source": "qoc_02z1",
+   "logic": "1~3",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "eq_usual",
+   "label": "EQ-5D 일상활동",
+   "domain": "proximal",
+   "kind": "num",
+   "modifiable": false,
+   "source": "qoc_03z1",
+   "logic": "1~3",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "eq_pain",
+   "label": "EQ-5D 통증·불편",
+   "domain": "proximal",
+   "kind": "num",
+   "modifiable": false,
+   "source": "qoc_04z1",
+   "logic": "1~3",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "happiness",
+   "label": "행복감 지수",
+   "domain": "proximal",
+   "kind": "num",
+   "modifiable": true,
+   "source": "qoc_07z1",
+   "logic": "0~10",
+   "missing_pct": 0.07
+  },
+  {
+   "name": "bedridden",
+   "label": "최근 1달 침상와병",
+   "domain": "proximal",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "qoa_02z1",
+   "logic": "1=예, 0=아니오",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "internet_interf",
+   "label": "인터넷·게임·스마트폰 일상 지장",
+   "domain": "proximal",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "mtg_01z1",
+   "logic": "1=이용 안 함, 2=전혀 없음 … 6=거의 매일",
+   "missing_pct": 0.01
+  },
+  {
+   "name": "gambling_interf",
+   "label": "도박으로 인한 일상 지장",
+   "domain": "proximal",
+   "kind": "cat",
+   "modifiable": true,
+   "source": "mti_01z1",
+   "logic": "1=도박 안 함, 2=전혀 없음 … 6=거의 매일",
+   "missing_pct": 0.0
+  },
+  {
+   "name": "cognitive_decline",
+   "label": "인지장애(기억력 감소) 경험",
+   "domain": "proximal",
+   "kind": "cat",
+   "modifiable": false,
+   "source": "mtj_05z2",
+   "logic": "1=예, 0=아니오, 8=비해당(40세 미만에게는 묻지 않음)",
+   "missing_pct": 0.01
+  }
+ ]
+}

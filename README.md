@@ -65,7 +65,26 @@ $env:PYTHONIOENCODING = "utf-8"
 | 주 지표 | Average Precision (PR-AUC) |
 | 설명 모형 | 가중치 `wt_p`, 층 `kstrata`, 집락 `spot_no` 반영 로지스틱 회귀(테일러 선형화) |
 
-## 결과 요약 (2026-10-12)
+## 2차 방향 (v2): 우울 증상의 다차원 요인 분석 — 브랜치 `v2-multidomain`
+
+교수 피드백에 따라 8개 영역 66개 변수로 확장했다. 1차 결과는 태그 `v1-activity-network`로 동결했다.
+
+```powershell
+.venv\Scripts\python src2\preprocess_v2.py        # 변수 구성·분기 검증 → data/processed/v2/
+.venv\Scripts\python src2\describe_v2.py          # docs/v2/dataset_description_v2.md
+.venv\Scripts\python src2\eda_v2.py               # outputs/v2/figures/eda_v2_*
+.venv\Scripts\python src2	rain_v2.py             # ML 영역 기여도·SHAP (2~3시간, 절전 해제)
+.venv\Scripts\python src2\survey_regression_v2.py # 조사설계 회귀·신체활동 조합
+.venv\Scripts\python src2\performance_v2.py       # 성능 CI·보정·하위집단
+.venv\Scripts\python paperuild_paper_data.py      # 논문 수치 JSON
+cd paper; npm install; node build_manuscript.js       # paper/manuscript_v2.docx
+cd ..; .venv\Scripts\python paperender_check.py paper\manuscript_v2.docx; .venv\Scripts\python paper\section_pages.py
+cd paper; node build_checklist.js                     # paper/strobe_tripod_checklist.docx
+```
+
+진행 기록은 `docs/v2/WORKFLOW_v2.md`, 변수 검증은 `docs/v2/data_dictionary_v2.md`에 있다.
+
+## 1차 결과 요약 (2026-10-12)
 
 | 가설 | 결과 | 판정 |
 |---|---|---|
