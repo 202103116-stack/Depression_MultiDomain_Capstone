@@ -1,0 +1,54 @@
+﻿feature,mean_abs_shap,label,domain,modifiable,direction
+chewing,0.22121,저작불편,phys,True,값이 클수록 위험 ↓ (ρ=-0.95)
+sex,0.22096,성별,demo,False,위험↑ 수준=2 / 위험↓ 수준=1
+occupation,0.18341,직업분류,econ,True,위험↑ 수준=0 / 위험↓ 수준=8
+breakfast,0.17588,아침식사 빈도,behav,True,값이 클수록 위험 ↑ (ρ=+0.83)
+age,0.17500,만 나이,demo,False,값이 클수록 위험 ↓ (ρ=-0.86)
+fall,0.16790,연간 낙상 경험,phys,True,위험↑ 수준=1 / 위험↓ 수준=0
+contact_friend,0.15899,친구와 연락 빈도,social,True,위험↑ 수준=1 / 위험↓ 수준=5
+food_insecurity,0.15080,가구 식품안정성,econ,True,값이 클수록 위험 ↑ (ρ=+0.79)
+body_image,0.14979,본인 인지 체형,phys,True,위험↑ 수준=5 / 위험↓ 수준=3
+hl_explain,0.14158,의료진 설명 이해 어려움,care,True,값이 클수록 위험 ↑ (ρ=+0.66)
+contact_neighbor,0.11978,이웃과 연락 빈도,social,True,위험↑ 수준=1 / 위험↓ 수준=6
+log_met_min,0.11108,log(1+주간 신체활동량 MET-분),behav,True,값이 클수록 위험 ↓ (ρ=-0.75)
+neighbor_trust,0.10866,이웃 간 신뢰,social,True,위험↑ 수준=2 / 위험↓ 수준=1
+oral_health,0.10330,주관적 구강건강,phys,True,값이 클수록 위험 ↑ (ρ=+0.94)
+env_safety,0.09347,동네 안전 만족,env,True,위험↑ 수준=2 / 위험↓ 수준=1
+unmet_dental,0.07329,연간 미충족 치과의료,care,True,위험↑ 수준=1 / 위험↓ 수준=3
+log_income_equiv,0.07213,log(1+균등화 가구 연소득),econ,True,값이 클수록 위험 ↓ (ρ=-0.98)
+unmet_medical,0.07211,연간 미충족 의료,care,True,위험↑ 수준=1 / 위험↓ 수준=3
+marital,0.06977,혼인상태,demo,False,위험↑ 수준=4 / 위험↓ 수준=1
+region,0.06679,시도,env,False,위험↑ 수준=41 / 위험↓ 수준=45
+drinking_freq,0.05415,음주 빈도,behav,True,값이 클수록 위험 ↓ (ρ=-0.64)
+dementia_care,0.04873,치매환자 가족,social,False,위험↑ 수준=2 / 위험↓ 수준=0
+dm,0.04654,당뇨병 진단 경험,phys,False,위험↑ 수준=1 / 위험↓ 수준=0
+hl_seek,0.04629,건강정보 찾기 어려움,care,True,위험↑ 수준=4 / 위험↓ 수준=2
+smoking_status,0.04295,흡연 상태,behav,True,위험↑ 수준=2 / 위험↓ 수준=0
+livelihood,0.04245,기초생활수급,econ,True,위험↑ 수준=1 / 위험↓ 수준=3
+urban_type,0.04147,동/읍·면,env,False,위험↑ 수준=1 / 위험↓ 수준=2
+hh_type,0.04042,세대유형,demo,False,위험↑ 수준=1 / 위험↓ 수준=4
+walk_days,0.04022,주간 걷기 일수,behav,True,값이 클수록 위험 ↓ (ρ=-0.74)
+osteo,0.03984,골다공증 진단,phys,False,위험↑ 수준=1 / 위험↓ 수준=0
+binge_freq,0.03729,폭음 빈도,behav,True,값이 클수록 위험 ↑ (ρ=+0.22)
+contact_family,0.03534,친척과 연락 빈도,social,True,위험↑ 수준=6 / 위험↓ 수준=2
+bmi,0.03448,체질량지수,phys,True,값이 클수록 위험 ↓ (ρ=-0.89)
+env_living,0.03240,동네 생활환경 만족,env,True,위험↑ 수준=2 / 위험↓ 수준=1
+env_nature,0.02925,동네 자연환경 만족,env,True,위험↑ 수준=2 / 위험↓ 수준=1
+ecig_current,0.02885,전자담배 현재 사용,behav,True,위험↑ 수준=1 / 위험↓ 수준=0
+weight_control,0.02426,체중조절 노력,behav,True,위험↑ 수준=3 / 위험↓ 수준=2
+strength_code,0.02378,근력운동 일수 코드,behav,True,값이 클수록 위험 ↓ (ρ=-0.56)
+injury,0.02108,연간 사고·중독 경험,phys,True,위험↑ 수준=1 / 위험↓ 수준=0
+env_transport,0.01990,동네 대중교통 만족,env,True,위험↑ 수준=2 / 위험↓ 수준=1
+housing,0.01894,주택유형,env,False,위험↑ 수준=2 / 위험↓ 수준=1
+brushing_lunch,0.01831,점심 후 칫솔질,behav,True,위험↑ 수준=3 / 위험↓ 수준=1
+env_medical,0.01743,동네 의료서비스 만족,env,True,위험↑ 수준=2 / 위험↓ 수준=1
+public_health_use,0.01555,보건기관 이용,care,True,위험↑ 수준=1 / 위험↓ 수준=0
+htn,0.01525,고혈압 진단 경험,phys,False,위험↑ 수준=1 / 위험↓ 수준=0
+hl_written,0.01120,글로 된 건강정보 이해,care,True,위험↑ 수준=4 / 위험↓ 수준=2
+emp_status,0.01092,종사상 지위,econ,True,위험↑ 수준=0 / 위험↓ 수준=2
+mod_days,0.01087,중강도 신체활동 일수,behav,True,값이 클수록 위험 ↓ (ρ=-0.52)
+neighbor_events,0.00888,이웃 경조사 참여,social,True,위험↑ 수준=2 / 위험↓ 수준=9
+vig_days,0.00863,고강도 신체활동 일수,behav,True,값이 클수록 위험 ↓ (ρ=-0.71)
+checkup,0.00618,최근 2년 건강검진,care,True,위험↑ 수준=0 / 위험↓ 수준=1
+educ,0.00554,교육수준 5분류,demo,False,위험↑ 수준=2 / 위험↓ 수준=1
+flu_vax,0.00315,연간 독감 예방접종,care,True,위험↑ 수준=1 / 위험↓ 수준=0

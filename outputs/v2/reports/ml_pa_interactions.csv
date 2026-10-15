@@ -1,0 +1,49 @@
+﻿partner,partner_label,partner_domain,interaction_strength
+occupation,직업분류,econ,0.01943
+age,만 나이,demo,0.01723
+drinking_freq,음주 빈도,behav,0.01424
+breakfast,아침식사 빈도,behav,0.01052
+binge_freq,폭음 빈도,behav,0.00843
+contact_neighbor,이웃과 연락 빈도,social,0.00810
+food_insecurity,가구 식품안정성,econ,0.00742
+chewing,저작불편,phys,0.00634
+hl_explain,의료진 설명 이해 어려움,care,0.00614
+log_income_equiv,log(1+균등화 가구 연소득),econ,0.00612
+bmi,체질량지수,phys,0.00525
+contact_friend,친구와 연락 빈도,social,0.00524
+urban_type,동/읍·면,env,0.00454
+smoking_status,흡연 상태,behav,0.00429
+oral_health,주관적 구강건강,phys,0.00425
+env_safety,동네 안전 만족,env,0.00393
+fall,연간 낙상 경험,phys,0.00386
+body_image,본인 인지 체형,phys,0.00370
+marital,혼인상태,demo,0.00366
+sex,성별,demo,0.00331
+livelihood,기초생활수급,econ,0.00330
+env_living,동네 생활환경 만족,env,0.00327
+hl_seek,건강정보 찾기 어려움,care,0.00265
+osteo,골다공증 진단,phys,0.00261
+hh_type,세대유형,demo,0.00246
+injury,연간 사고·중독 경험,phys,0.00231
+housing,주택유형,env,0.00231
+checkup,최근 2년 건강검진,care,0.00228
+unmet_medical,연간 미충족 의료,care,0.00221
+region,시도,env,0.00215
+dm,당뇨병 진단 경험,phys,0.00211
+weight_control,체중조절 노력,behav,0.00203
+contact_family,친척과 연락 빈도,social,0.00200
+neighbor_trust,이웃 간 신뢰,social,0.00195
+hl_written,글로 된 건강정보 이해,care,0.00192
+dementia_care,치매환자 가족,social,0.00191
+unmet_dental,연간 미충족 치과의료,care,0.00188
+env_transport,동네 대중교통 만족,env,0.00186
+env_nature,동네 자연환경 만족,env,0.00171
+htn,고혈압 진단 경험,phys,0.00113
+brushing_lunch,점심 후 칫솔질,behav,0.00098
+educ,교육수준 5분류,demo,0.00093
+neighbor_events,이웃 경조사 참여,social,0.00083
+emp_status,종사상 지위,econ,0.00060
+ecig_current,전자담배 현재 사용,behav,0.00053
+env_medical,동네 의료서비스 만족,env,0.00016
+flu_vax,연간 독감 예방접종,care,0.00007
+public_health_use,보건기관 이용,care,0.00000

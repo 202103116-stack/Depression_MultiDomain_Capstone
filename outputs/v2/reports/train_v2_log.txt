@@ -3,3 +3,167 @@ train 184,762 / test 46,528 / 시험 양성률 0.0390
 [full__logistic__cv                      ] AP 0.2765 AUC 0.8452 (2.4s)
 [full__lightgbm__cv                      ] AP 0.2759 AUC 0.8464 (4.3s)
 [full__random_forest__cv                 ] AP 0.2462 AUC 0.8357 (18.2s)
+[full__mlp__cv                           ] AP 0.2646 AUC 0.8432 (6.9s)
+[full__catboost__cv                      ] AP 0.2830 AUC 0.8462 (172.9s)
+[full+proximal__dummy__cv                ] AP 0.0390 AUC 0.5000 (0.0s)
+[full+proximal__logistic__cv             ] AP 0.4750 AUC 0.9300 (2.9s)
+[full+proximal__lightgbm__cv             ] AP 0.4830 AUC 0.9343 (4.6s)
+[full+proximal__random_forest__cv        ] AP 0.4500 AUC 0.9282 (19.2s)
+[full+proximal__mlp__cv                  ] AP 0.4698 AUC 0.9309 (9.4s)
+[full+proximal__catboost__cv             ] AP 0.4843 AUC 0.9340 (190.9s)
+[base__catboost                          ] AP 0.0864 AUC 0.6870 (53.0s)
+[base__lightgbm                          ] AP 0.0834 AUC 0.6812 (1.3s)
+[base__logistic                          ] AP 0.0831 AUC 0.6804 (0.4s)
+[base+econ__catboost                     ] AP 0.1479 AUC 0.7465 (79.5s)
+[base+econ__lightgbm                     ] AP 0.1451 AUC 0.7414 (2.8s)
+[base+econ__logistic                     ] AP 0.1439 AUC 0.7449 (1.0s)
+[base+phys__catboost                     ] AP 0.1765 AUC 0.7918 (100.3s)
+[base+phys__lightgbm                     ] AP 0.1731 AUC 0.7877 (2.1s)
+[base+phys__logistic                     ] AP 0.1736 AUC 0.7878 (0.8s)
+[base+behav__catboost                    ] AP 0.1290 AUC 0.7413 (65.4s)
+[base+behav__lightgbm                    ] AP 0.1289 AUC 0.7399 (2.1s)
+[base+behav__logistic                    ] AP 0.1181 AUC 0.7280 (0.8s)
+[base+social__catboost                   ] AP 0.1295 AUC 0.7398 (95.6s)
+[base+social__lightgbm                   ] AP 0.1288 AUC 0.7381 (2.3s)
+[base+social__logistic                   ] AP 0.1223 AUC 0.7364 (0.8s)
+[base+env__catboost                      ] AP 0.1087 AUC 0.7198 (77.0s)
+[base+env__lightgbm                      ] AP 0.1069 AUC 0.7178 (2.0s)
+[base+env__logistic                      ] AP 0.1076 AUC 0.7191 (0.9s)
+[base+care__catboost                     ] AP 0.1498 AUC 0.7548 (75.1s)
+[base+care__lightgbm                     ] AP 0.1491 AUC 0.7530 (2.1s)
+[base+care__logistic                     ] AP 0.1489 AUC 0.7521 (0.8s)
+[full__catboost                          ] AP 0.2830 AUC 0.8462 (166.4s)
+[full__lightgbm                          ] AP 0.2759 AUC 0.8464 (4.7s)
+[full__logistic                          ] AP 0.2765 AUC 0.8452 (2.4s)
+[full-demo__catboost                     ] AP 0.2729 AUC 0.8406 (185.1s)
+[full-demo__lightgbm                     ] AP 0.2661 AUC 0.8399 (4.9s)
+[full-demo__logistic                     ] AP 0.2692 AUC 0.8394 (2.5s)
+[full-econ__catboost                     ] AP 0.2649 AUC 0.8376 (166.2s)
+[full-econ__lightgbm                     ] AP 0.2621 AUC 0.8398 (4.7s)
+[full-econ__logistic                     ] AP 0.2548 AUC 0.8350 (2.3s)
+[full-phys__catboost                     ] AP 0.2472 AUC 0.8215 (156.1s)
+[full-phys__lightgbm                     ] AP 0.2369 AUC 0.8198 (4.2s)
+[full-phys__logistic                     ] AP 0.2403 AUC 0.8196 (2.2s)
+[full-behav__catboost                    ] AP 0.2630 AUC 0.8399 (162.0s)
+[full-behav__lightgbm                    ] AP 0.2601 AUC 0.8384 (3.9s)
+[full-behav__logistic                    ] AP 0.2644 AUC 0.8396 (2.2s)
+[full-social__catboost                   ] AP 0.2678 AUC 0.8419 (258.2s)
+[full-social__lightgbm                   ] AP 0.2648 AUC 0.8417 (6.9s)
+[full-social__logistic                   ] AP 0.2636 AUC 0.8394 (3.6s)
+[full-env__catboost                      ] AP 0.2739 AUC 0.8451 (310.3s)
+[full-env__lightgbm                      ] AP 0.2736 AUC 0.8448 (6.5s)
+[full-env__logistic                      ] AP 0.2692 AUC 0.8418 (3.4s)
+[full-care__catboost                     ] AP 0.2630 AUC 0.8365 (279.8s)
+[full-care__lightgbm                     ] AP 0.2567 AUC 0.8358 (4.2s)
+[full-care__logistic                     ] AP 0.2602 AUC 0.8349 (2.3s)
+[full+proximal__catboost                 ] AP 0.4843 AUC 0.9340 (218.6s)
+[full+proximal__lightgbm                 ] AP 0.4830 AUC 0.9343 (8.3s)
+[full+proximal__logistic                 ] AP 0.4750 AUC 0.9300 (5.0s)
+[base+proximal__catboost                 ] AP 0.4599 AUC 0.9279 (171.9s)
+[base+proximal__lightgbm                 ] AP 0.4588 AUC 0.9271 (2.5s)
+[base+proximal__logistic                 ] AP 0.4507 AUC 0.9214 (1.0s)
+[ΔAP] catboost 완료
+[ΔAP] lightgbm 완료
+[ΔAP] logistic 완료
+[age19-39_base__lightgbm                 ] AP 0.0624 AUC 0.5927 (1.0s)
+[age19-39_base+econ__lightgbm            ] AP 0.0785 AUC 0.6143 (0.8s)
+[age19-39_base+phys__lightgbm            ] AP 0.1147 AUC 0.7193 (1.0s)
+[age19-39_base+behav__lightgbm           ] AP 0.1137 AUC 0.6648 (0.7s)
+[age19-39_base+social__lightgbm          ] AP 0.0830 AUC 0.6598 (0.7s)
+[age19-39_base+env__lightgbm             ] AP 0.0789 AUC 0.6396 (0.7s)
+[age19-39_base+care__lightgbm            ] AP 0.1033 AUC 0.6711 (0.6s)
+[age40-64_base__lightgbm                 ] AP 0.0763 AUC 0.6789 (0.8s)
+[age40-64_base+econ__lightgbm            ] AP 0.1453 AUC 0.7379 (1.1s)
+[age40-64_base+phys__lightgbm            ] AP 0.1413 AUC 0.7681 (1.4s)
+[age40-64_base+behav__lightgbm           ] AP 0.1074 AUC 0.7212 (1.5s)
+[age40-64_base+social__lightgbm          ] AP 0.1172 AUC 0.7391 (1.4s)
+[age40-64_base+env__lightgbm             ] AP 0.0918 AUC 0.7113 (1.5s)
+[age40-64_base+care__lightgbm            ] AP 0.1147 AUC 0.7404 (1.0s)
+[age65+_base__lightgbm                   ] AP 0.0897 AUC 0.6703 (0.8s)
+[age65+_base+econ__lightgbm              ] AP 0.1452 AUC 0.7462 (0.8s)
+[age65+_base+phys__lightgbm              ] AP 0.1888 AUC 0.8007 (1.4s)
+[age65+_base+behav__lightgbm             ] AP 0.1375 AUC 0.7460 (1.3s)
+[age65+_base+social__lightgbm            ] AP 0.1375 AUC 0.7318 (1.3s)
+[age65+_base+env__lightgbm               ] AP 0.1171 AUC 0.7108 (1.4s)
+[age65+_base+care__lightgbm              ] AP 0.1744 AUC 0.7512 (1.3s)
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\v2\train_v2.py:235: UserWarning: Glyph 8722 (\N{MINUS SIGN}) missing from font(s) Malgun Gothic.
+  fig.tight_layout()
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\v2\train_v2.py:236: UserWarning: Glyph 8722 (\N{MINUS SIGN}) missing from font(s) Malgun Gothic.
+  fig.savefig(V2_FIG / "model_v2_02_domain_contribution.png")
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\v2\train_v2.py:284: UserWarning: Glyph 8722 (\N{MINUS SIGN}) missing from font(s) Malgun Gothic.
+  fig.tight_layout()
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\v2\train_v2.py:285: UserWarning: Glyph 8722 (\N{MINUS SIGN}) missing from font(s) Malgun Gothic.
+  fig.savefig(V2_FIG / "model_v2_04_age_groups.png")
+
+[알고리즘 비교]
+          set          algo  test_AP  test_ROC_AUC
+         full         dummy   0.0390        0.5000
+         full      logistic   0.2765        0.8452
+         full      lightgbm   0.2759        0.8464
+         full random_forest   0.2462        0.8357
+         full           mlp   0.2646        0.8432
+         full      catboost   0.2830        0.8462
+full+proximal         dummy   0.0390        0.5000
+full+proximal      logistic   0.4750        0.9300
+full+proximal      lightgbm   0.4830        0.9343
+full+proximal random_forest   0.4500        0.9282
+full+proximal           mlp   0.4698        0.9309
+full+proximal      catboost   0.4843        0.9340
+
+[영역 ΔAP — CatBoost]
+    kind   domain     algo    dAP    low   high   dAUC
+     add     econ catboost 0.0615 0.0495 0.0749 0.0595
+     add     phys catboost 0.0900 0.0774 0.1054 0.1048
+     add    behav catboost 0.0426 0.0325 0.0523 0.0543
+     add   social catboost 0.0430 0.0335 0.0547 0.0528
+     add      env catboost 0.0223 0.0146 0.0306 0.0328
+     add     care catboost 0.0634 0.0526 0.0760 0.0678
+    drop     demo catboost 0.0101 0.0040 0.0169 0.0056
+    drop     econ catboost 0.0181 0.0092 0.0266 0.0086
+    drop     phys catboost 0.0358 0.0265 0.0455 0.0247
+    drop    behav catboost 0.0200 0.0117 0.0278 0.0063
+    drop   social catboost 0.0151 0.0090 0.0211 0.0043
+    drop      env catboost 0.0091 0.0033 0.0150 0.0011
+    drop     care catboost 0.0200 0.0122 0.0274 0.0097
+proximal proximal catboost 0.2013 0.1814 0.2213 0.0878
+
+[SHAP 상위 15]
+                label domain  mean_abs_shap             direction
+                 저작불편   phys         0.2212 값이 클수록 위험 ↓ (ρ=-0.95)
+                   성별   demo         0.2210   위험↑ 수준=2 / 위험↓ 수준=1
+                 직업분류   econ         0.1834   위험↑ 수준=0 / 위험↓ 수준=8
+              아침식사 빈도  behav         0.1759 값이 클수록 위험 ↑ (ρ=+0.83)
+                 만 나이   demo         0.1750 값이 클수록 위험 ↓ (ρ=-0.86)
+             연간 낙상 경험   phys         0.1679   위험↑ 수준=1 / 위험↓ 수준=0
+            친구와 연락 빈도 social         0.1590  위험↑ 수준=NA / 위험↓ 수준=5
+             가구 식품안정성   econ         0.1508 값이 클수록 위험 ↑ (ρ=+0.79)
+             본인 인지 체형   phys         0.1498   위험↑ 수준=5 / 위험↓ 수준=3
+        의료진 설명 이해 어려움   care         0.1416 값이 클수록 위험 ↑ (ρ=+0.66)
+            이웃과 연락 빈도 social         0.1198  위험↑ 수준=1 / 위험↓ 수준=NA
+log(1+주간 신체활동량 MET-분)  behav         0.1111 값이 클수록 위험 ↓ (ρ=-0.75)
+              이웃 간 신뢰 social         0.1087   위험↑ 수준=2 / 위험↓ 수준=1
+             주관적 구강건강   phys         0.1033 값이 클수록 위험 ↑ (ρ=+0.94)
+             동네 안전 만족    env         0.0935   위험↑ 수준=2 / 위험↓ 수준=1
+
+[SHAP 영역 비중]
+domain  sum_abs_shap  share
+  demo         0.512  0.146
+  econ         0.460  0.131
+  phys         0.799  0.227
+ behav         0.576  0.164
+social         0.480  0.137
+   env         0.320  0.091
+  care         0.369  0.105
+
+[신체활동 상호작용 상위 10]
+         partner     partner_label partner_domain  interaction_strength
+      occupation              직업분류           econ                0.0194
+             age              만 나이           demo                0.0172
+   drinking_freq             음주 빈도          behav                0.0142
+       breakfast           아침식사 빈도          behav                0.0105
+      binge_freq             폭음 빈도          behav                0.0084
+contact_neighbor         이웃과 연락 빈도         social                0.0081
+ food_insecurity          가구 식품안정성           econ                0.0074
+         chewing              저작불편           phys                0.0063
+      hl_explain     의료진 설명 이해 어려움           care                0.0061
+log_income_equiv log(1+균등화 가구 연소득)           econ                0.0061

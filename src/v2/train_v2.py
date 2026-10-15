@@ -123,7 +123,8 @@ def shap_tables(model, num, cat, Xte, test) -> tuple[pd.DataFrame, pd.DataFrame,
             rho = pd.Series(x[ok].to_numpy()).corr(pd.Series(sv[ok.to_numpy(), j]), method="spearman")
             direction.append(f"값이 클수록 위험 {'↑' if rho > 0 else '↓'} (ρ={rho:+.2f})")
         else:
-            g = pd.Series(sv[:, j]).groupby(x.fillna("NA").to_numpy()).mean()
+            ok = x.notna().to_numpy()
+            g = pd.Series(sv[ok, j]).groupby(x[ok].to_numpy()).mean()  # 결측은 수준 비교에서 제외
             direction.append(f"위험↑ 수준={g.idxmax()} / 위험↓ 수준={g.idxmin()}")
     imp["direction"] = direction
     imp = imp.sort_values("mean_abs_shap", ascending=False)
@@ -213,7 +214,7 @@ def plots(results: pd.DataFrame, deltas: pd.DataFrame, imp, dom_age, age_add, in
     # 2) 영역 추가·제거 ΔAP (CatBoost CI + LightGBM·로지스틱 점)
     fig, axes = plt.subplots(1, 2, figsize=(15, 5.5))
     for ax, kind, title in [(axes[0], "add", "(a) 인구 블록에 더했을 때의 단독 정보량 (ΔAP vs base)"),
-                            (axes[1], "drop", "(b) 전체에서 뺐을 때의 고유 기여 (ΔAP full − 제거)")]:
+                            (axes[1], "drop", "(b) 전체에서 뺐을 때의 고유 기여 (ΔAP full - 제거)")]:
         d = deltas[deltas["kind"] == kind]
         doms = [x for x in (ADDABLE_DOMAINS if kind == "add" else MAIN_DOMAINS) if x in set(d["domain"])]
         y = np.arange(len(doms))
@@ -277,7 +278,7 @@ def plots(results: pd.DataFrame, deltas: pd.DataFrame, imp, dom_age, age_add, in
     ax.invert_yaxis()
     ax.axvline(0, color=INK_MUTED, lw=1)
     ax.legend(title="연령대")
-    ax.set_xlabel("ΔAP (인구 + 영역 − 인구, LightGBM)")
+    ax.set_xlabel("ΔAP (인구 + 영역 - 인구, LightGBM)")
     ax.set_title("(b) 연령대별 영역 단독 정보량", loc="left")
     ax.grid(axis="y", visible=False)
     fig.suptitle("연령대에 따라 우울 증상과 관련된 영역이 다른가", x=0.01, ha="left", fontsize=14, fontweight="bold")
@@ -316,6 +317,7 @@ def plots(results: pd.DataFrame, deltas: pd.DataFrame, imp, dom_age, age_add, in
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--quick", action="store_true")
+    ap.add_argument("--shap-only", action="store_true", help="저장된 결과 CSV를 쓰고 CatBoost 해석(SHAP 등)과 그림만 다시 만든다")
     args = ap.parse_args()
     df = load_v2_table()
     s = df[df["Y"].notna()]
@@ -328,6 +330,27 @@ def main():
     sets = feature_sets()
     n_boot = 50 if args.quick else 1000
     groups = test["household_key"].to_numpy()
+
+    if args.shap_only:
+        for sname in ("full", "full+proximal"):
+            R.run(sname, sets[sname], "catboost", keep=True)
+        model, num, cat, Xte = R.models["full"]
+        imp, dom, dom_age = shap_tables(model, num, cat, Xte, test)
+        perm = domain_permutation(model, Xte, R.yte, MAIN_DOMAINS)
+        inter = pa_interactions(model, Xte, cat, n=2000)
+        model_p, num_p, cat_p, Xte_p = R.models["full+proximal"]
+        imp_p, dom_p, _ = shap_tables(model_p, num_p, cat_p, Xte_p, test)
+        for name, t in [("ml_shap_features", imp), ("ml_shap_features_with_proximal", imp_p), ("ml_shap_domains", dom),
+                        ("ml_shap_domains_with_proximal", dom_p), ("ml_shap_domains_by_age", dom_age),
+                        ("ml_domain_permutation", perm), ("ml_pa_interactions", inter)]:
+            t.to_csv(V2_REPORT / f"{name}.csv", index=False, encoding="utf-8-sig", float_format="%.5f")
+        results = pd.read_csv(V2_REPORT / "ml_results.csv")
+        deltas = pd.read_csv(V2_REPORT / "ml_domain_deltas.csv")
+        age_add = pd.read_csv(V2_REPORT / "ml_age_domain_add.csv")
+        plots(results, deltas, imp, dom_age, age_add, inter, perm, R.yte.mean())
+        print(imp.head(25)[["label", "domain", "mean_abs_shap", "direction"]].round(4).to_string(index=False))
+        print(perm.round(4).to_string(index=False))
+        return
 
     rows, preds = [], {}
     # (1) 알고리즘 비교 (CV 포함)
