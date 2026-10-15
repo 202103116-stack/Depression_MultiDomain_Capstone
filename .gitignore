@@ -1,0 +1,13 @@
+# 원시자료·처리자료·개인 단위 예측 — 이용 규정상 공유 금지 (decision_log D-02)
+data/
+*.sas7bdat
+
+# 참고 원문(PDF/docx)은 로컬 보관
+docs/reference/
+
+# 환경
+.venv/
+__pycache__/
+*.pyc
+catboost_info/
+.ipynb_checkpoints/

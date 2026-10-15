@@ -1,0 +1,12 @@
+# Python 3.11 / Windows. 버전 고정 사유는 docs/decision_log.md D-01 참고
+# (Windows Smart App Control이 scikit-learn 1.9.x, pyarrow 26.x의 DLL을 차단함)
+pandas==3.0.6
+numpy==2.4.6
+scipy==1.17.1
+scikit-learn==1.6.1
+catboost==1.2.10
+lightgbm==4.7.0
+matplotlib==3.11.2
+seaborn==0.13.2
+python-docx
+pypdf
