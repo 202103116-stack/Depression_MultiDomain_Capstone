@@ -14,3 +14,4 @@ catboost_info/
 
 # 논문 생성용 node 패키지
 paper/node_modules/
+report_v3/node_modules/
