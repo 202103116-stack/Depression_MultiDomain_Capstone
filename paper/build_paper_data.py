@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT / "src" / "v2"))
 
 from common import DOMAINS, V2_FIG, V2_REPORT, load_v2_table  # noqa: E402
 from eda_v2 import LEVEL_LABELS, weighted_quintile  # noqa: E402
-from preprocess_v2 import FEATURES  # noqa: E402
+from preprocess_v2 import FEATURES, MOD_TYPE_LABELS  # noqa: E402
 from utils import INK, PALETTE, setup_matplotlib  # noqa: E402
 
 OUT = ROOT / "paper"
@@ -41,6 +41,8 @@ def table1(s: pd.DataFrame) -> list[dict]:
         {1: "1분위(하)", 2: "2분위", 3: "3분위", 4: "4분위", 5: "5분위(상)"})
     s["pa_guideline_l"] = s["pa_guideline"].map({1: "충족", 0: "미충족"})
     s["walk_l"] = s["walk_ok"].map({1: "예", 0: "아니오"})
+    s["tobacco_free_l"] = s["tobacco_free"].map({1: "예", 0: "아니오"})
+    s["social_connected_l"] = s["social_connected"].map({1: "예", 0: "아니오"})
     rows_spec = [
         ("age_grp", "연령", None), ("sex", "성별", LEVEL_LABELS["sex"]), ("educ", "교육수준", LEVEL_LABELS["educ"]),
         ("marital", "혼인상태", LEVEL_LABELS["marital"]), ("inc_q", "균등화 가구소득(가중 5분위)", None),
@@ -50,8 +52,10 @@ def table1(s: pd.DataFrame) -> list[dict]:
         ("unmet_medical", "연간 미충족 의료", LEVEL_LABELS["unmet_medical"]),
         ("pa_guideline_l", "신체활동 권고 충족(유산소+근력)", None),
         ("smoking_status", "흡연 상태", LEVEL_LABELS["smoking_status"]),
+        ("tobacco_free_l", "담배제품 현재 미사용", None),
         ("breakfast", "아침식사", LEVEL_LABELS["breakfast"]),
         ("contact_friend", "친구와 연락 빈도", LEVEL_LABELS["contact_friend"]),
+        ("social_connected_l", "사회적 연결(고립 지수 0~1)", None),
         ("neighbor_trust", "이웃 간 신뢰", LEVEL_LABELS["neighbor_trust"]),
         ("env_safety", "동네 안전 만족", LEVEL_LABELS["env_safety"]),
     ]
@@ -125,6 +129,10 @@ def main():
     vtest = pd.read_csv(rep / "reg_v2_variable_tests.csv")
     combo = pd.read_csv(rep / "reg_v2_pa_combo_summary.csv")
     count = pd.read_csv(rep / "reg_v2_lifestyle_count.csv")
+    count_sens = pd.read_csv(rep / "reg_v2_lifestyle_count_sens.csv")
+    count_summ = pd.read_csv(rep / "reg_v2_lifestyle_count_summary.csv")
+    ctx = pd.read_csv(rep / "reg_v2_context_combo_summary.csv")
+    opp = pd.read_csv(rep / "ml_operating_points.csv")
     crude = pd.read_csv(rep / "eda_v2_crude_effect_overview.csv")
 
     train, test = s[s["split"] == "train"], s[s["split"] == "test"]
@@ -172,7 +180,8 @@ def main():
 
     m = reg[reg["actionable"] & (reg["p"] < 0.05)].copy()
     m["dist"] = np.abs(np.log(m["OR"]))
-    or_mod = [{"name": x["name"], "level": x["level"], "ref": x["ref"], "domain": x["domain"], "or": r(x["OR"], 2),
+    or_mod = [{"name": x["name"], "level": x["level"], "ref": x["ref"], "domain": x["domain"], "mod_type": x["mod_type"],
+               "or": r(x["OR"], 2),
                "lo": r(x["OR_low"], 2), "hi": r(x["OR_high"], 2), "p": float(x["p"])}
               for _, x in m.sort_values("dist", ascending=False).head(20).iterrows()]
     or_pa = [{"name": x["name"], "level": x["level"], "ref": x["ref"], "or": r(x["OR"], 2), "lo": r(x["OR_low"], 2),
@@ -192,14 +201,38 @@ def main():
     combos = [{k: (r(v, 4) if isinstance(v, float) else v) for k, v in row.items()} for row in combo.to_dict("records")]
     counts = [{"k": x["healthy_factors"], "prev": r(x["adj_prev"] * 100, 1), "lo": r(x["low"] * 100, 1),
                "hi": r(x["high"] * 100, 1), "n": int(x["n"])} for _, x in count.iterrows()]
-    log_count = log.split("결합 검정 p=")[1].split("\n")[0].strip()
+    summ = {row["score"]: {"n_factors": int(row["n_factors"]), "wald_p": float(row["wald_p"]), "trend_or": r(row["trend_OR"], 2),
+                           "trend_lo": r(row["trend_low"], 2), "trend_hi": r(row["trend_high"], 2), "trend_p": float(row["trend_p"])}
+            for _, row in count_summ.iterrows()}
+    mant, expo = f"{summ['주 분석']['wald_p']:.1e}".split("e")
+    sup = str.maketrans("-0123456789", "⁻⁰¹²³⁴⁵⁶⁷⁸⁹")
+    log_count = f"{mant} × 10{str(int(expo)).translate(sup)}"
+    count_sens_rows = [{"score": x["score"], "k": x["healthy_factors"], "prev": r(x["adj_prev"] * 100, 1),
+                        "lo": r(x["low"] * 100, 1), "hi": r(x["high"] * 100, 1), "n": int(x["n"])}
+                       for _, x in count_sens.iterrows()]
+    ctx_combos = [{k: (r(v, 4) if isinstance(v, float) else v) for k, v in row.items()} for row in ctx.to_dict("records")]
+    op_points = [{"rule": x["rule"], "thr": r(x["threshold"], 3), "flag": r(x["flag_rate"] * 100, 1),
+                  "sens": r(x["sensitivity"] * 100, 1), "spec": r(x["specificity"] * 100, 1), "ppv": r(x["ppv"] * 100, 1),
+                  "npv": r(x["npv"] * 100, 1), "f1": r(x["f1"], 3),
+                  "per10k": {k: int(round(x[f"per10k_{k}"])) for k in ("flagged", "tp", "fn", "fp")}}
+                 for _, x in opp.iterrows()]
+    # 생활요인 충족률(가중) — 선정 대응표용
+    lf_cols = {"pa_guideline": "신체활동 권고 충족", "tobacco_free": "담배제품 미사용", "high_risk_drinking": "고위험음주 아님",
+               "breakfast": "아침식사 주 5회 이상", "social_connected": "사회적 연결", "sleep_weekday": "주중 수면 7~9시간"}
+    lf = {}
+    for col, nm in lf_cols.items():
+        x = s[col]
+        met = {"high_risk_drinking": x == 0, "breakfast": x == 1, "sleep_weekday": x.between(7, 9)}.get(col, x == 1)
+        mm = x.notna()
+        lf[nm] = r(np.average(met[mm], weights=s.loc[mm, "wt_p"]) * 100, 1)
     crude_top = [{"label": x["label"], "domain": x["domain"], "max": r(x["max_rate"], 1), "min": r(x["min_rate"], 1),
                   "range": r(x["range_pp"], 1)} for _, x in crude.head(20).iterrows()]
     inter_top = [{"label": x["partner_label"], "domain": x["partner_domain"], "s": r(x["interaction_strength"], 4)}
                  for _, x in inter.head(10).iterrows()]
 
     variables = [{"name": x["name"], "label": x["label"], "domain": x["domain"], "kind": x["kind"],
-                  "modifiable": bool(x["modifiable"]), "source": x["source"], "logic": x["logic"]}
+                  "modifiable": bool(x["modifiable"]), "mod_type": x["mod_type"],
+                  "mod_label": MOD_TYPE_LABELS[x["mod_type"]], "source": x["source"], "logic": x["logic"]}
                  for _, x in FEATURES.iterrows()]
     profile = pd.read_csv(rep / "dataset_profile_v2.csv")
     miss = dict(zip(profile["변수명"], profile["결측비율(%)"]))
@@ -218,7 +251,8 @@ def main():
 
     data = {"n": n, "algos": algos, "sets": sets, "subgroup": subgroup, "domains": dom, "domain_labels": DOMAINS, "shap_top": shap_top,
             "or_modifiable": or_mod, "or_other": or_pa, "or_all": or_all, "variable_tests": vt, "age": age, "combos": combos,
-            "counts": counts, "count_p": log_count, "crude_top": crude_top, "pa_interactions": inter_top,
+            "counts": counts, "count_p": log_count, "count_summary": summ, "count_sens": count_sens_rows,
+            "context_combos": ctx_combos, "operating_points": op_points, "lifestyle_prev": lf, "crude_top": crude_top, "pa_interactions": inter_top,
             "table1": table1(s), "variables": variables}
     (OUT / "paper_data.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 

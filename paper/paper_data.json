@@ -15,7 +15,7 @@
   "test_hh": 27338,
   "households": 136693,
   "reg": 227351,
-  "combo_min": 228496,
+  "combo_min": 228452,
   "combo_max": 228573,
   "n_features": 66,
   "n_main_features": 53,
@@ -1064,6 +1064,7 @@
    "level": "자주 부족",
    "ref": "충분·다양",
    "domain": "econ",
+   "mod_type": "B",
    "or": 3.24,
    "lo": 2.6,
    "hi": 4.03,
@@ -1074,6 +1075,7 @@
    "level": "매우 불편",
    "ref": "전혀 안 불편",
    "domain": "phys",
+   "mod_type": "B",
    "or": 2.79,
    "lo": 2.39,
    "hi": 3.26,
@@ -1084,6 +1086,7 @@
    "level": "매우 비만",
    "ref": "보통",
    "domain": "phys",
+   "mod_type": "B",
    "or": 2.36,
    "lo": 2.05,
    "hi": 2.71,
@@ -1094,6 +1097,7 @@
    "level": "있음",
    "ref": "없음",
    "domain": "care",
+   "mod_type": "B",
    "or": 2.15,
    "lo": 1.96,
    "hi": 2.37,
@@ -1104,6 +1108,7 @@
    "level": "가끔 부족",
    "ref": "충분·다양",
    "domain": "econ",
+   "mod_type": "B",
    "or": 2.1,
    "lo": 1.86,
    "hi": 2.37,
@@ -1114,6 +1119,7 @@
    "level": "매우 마름",
    "ref": "보통",
    "domain": "phys",
+   "mod_type": "B",
    "or": 2.06,
    "lo": 1.75,
    "hi": 2.42,
@@ -1124,6 +1130,7 @@
    "level": "불편",
    "ref": "전혀 안 불편",
    "domain": "phys",
+   "mod_type": "B",
    "or": 1.98,
    "lo": 1.76,
    "hi": 2.23,
@@ -1134,6 +1141,7 @@
    "level": "매우 어려움",
    "ref": "쉬움",
    "domain": "care",
+   "mod_type": "B",
    "or": 1.76,
    "lo": 1.51,
    "hi": 2.06,
@@ -1144,6 +1152,7 @@
    "level": "예",
    "ref": "아니오",
    "domain": "phys",
+   "mod_type": "B",
    "or": 1.72,
    "lo": 1.59,
    "hi": 1.87,
@@ -1154,6 +1163,7 @@
    "level": "매우 나쁨",
    "ref": "좋음",
    "domain": "phys",
+   "mod_type": "B",
    "or": 1.7,
    "lo": 1.45,
    "hi": 1.99,
@@ -1164,6 +1174,7 @@
    "level": "그저그럼",
    "ref": "전혀 안 불편",
    "domain": "phys",
+   "mod_type": "B",
    "or": 1.65,
    "lo": 1.48,
    "hi": 1.84,
@@ -1174,6 +1185,7 @@
    "level": "월 1회 미만",
    "ref": "주 1회",
    "domain": "social",
+   "mod_type": "A",
    "or": 1.59,
    "lo": 1.42,
    "hi": 1.78,
@@ -1184,6 +1196,7 @@
    "level": "현재흡연",
    "ref": "비흡연",
    "domain": "behav",
+   "mod_type": "A",
    "or": 1.45,
    "lo": 1.3,
    "hi": 1.62,
@@ -1194,6 +1207,7 @@
    "level": "증량",
    "ref": "유지",
    "domain": "behav",
+   "mod_type": "A",
    "or": 1.45,
    "lo": 1.26,
    "hi": 1.68,
@@ -1204,6 +1218,7 @@
    "level": "점심 안 먹음",
    "ref": "예",
    "domain": "behav",
+   "mod_type": "A",
    "or": 1.45,
    "lo": 1.24,
    "hi": 1.69,
@@ -1214,6 +1229,7 @@
    "level": "거의 안 함",
    "ref": "주5~7회",
    "domain": "behav",
+   "mod_type": "A",
    "or": 1.41,
    "lo": 1.3,
    "hi": 1.54,
@@ -1224,6 +1240,7 @@
    "level": "예",
    "ref": "아니오",
    "domain": "behav",
+   "mod_type": "A",
    "or": 1.4,
    "lo": 1.24,
    "hi": 1.58,
@@ -1234,6 +1251,7 @@
    "level": "나쁨",
    "ref": "좋음",
    "domain": "phys",
+   "mod_type": "B",
    "or": 1.4,
    "lo": 1.24,
    "hi": 1.57,
@@ -1244,6 +1262,7 @@
    "level": "아니오",
    "ref": "예",
    "domain": "env",
+   "mod_type": "B",
    "or": 1.38,
    "lo": 1.27,
    "hi": 1.5,
@@ -1254,6 +1273,7 @@
    "level": "약간 비만",
    "ref": "보통",
    "domain": "phys",
+   "mod_type": "B",
    "or": 1.36,
    "lo": 1.24,
    "hi": 1.49,
@@ -3284,62 +3304,26 @@
  },
  "combos": [
   {
-   "partner": "친구와 주 1회 이상 연락",
-   "domain": "social",
+   "partner": "담배제품 미사용",
+   "domain": "흡연",
    "proximal": false,
-   "n_domain": 228496,
-   "prev_both": 0.0245,
-   "prev_neither": 0.0455,
-   "joint_diff": -0.0211,
-   "joint_low": -0.0244,
-   "joint_high": -0.0177,
-   "pa_only_diff": -0.0115,
-   "f_only_diff": -0.0139,
-   "additive_interaction": 0.0043,
-   "add_low": -0.0007,
-   "add_high": 0.0092,
-   "add_p": 0.09,
-   "mult_interaction_p": 0.6276
-  },
-  {
-   "partner": "이웃을 신뢰함",
-   "domain": "social",
-   "proximal": false,
-   "n_domain": 228513,
-   "prev_both": 0.0215,
-   "prev_neither": 0.0497,
-   "joint_diff": -0.0282,
-   "joint_low": -0.0314,
-   "joint_high": -0.0251,
-   "pa_only_diff": -0.0092,
+   "n_domain": 228560,
+   "prev_both": 0.0264,
+   "prev_neither": 0.0541,
+   "joint_diff": -0.0277,
+   "joint_low": -0.0321,
+   "joint_high": -0.0232,
+   "pa_only_diff": -0.0121,
    "f_only_diff": -0.0186,
-   "additive_interaction": -0.0004,
-   "add_low": -0.0057,
-   "add_high": 0.0049,
-   "add_p": 0.8893,
-   "mult_interaction_p": 0.0655
-  },
-  {
-   "partner": "비흡연(현재 흡연 아님)",
-   "domain": "behav",
-   "proximal": false,
-   "n_domain": 228569,
-   "prev_both": 0.0274,
-   "prev_neither": 0.0521,
-   "joint_diff": -0.0247,
-   "joint_low": -0.0291,
-   "joint_high": -0.0203,
-   "pa_only_diff": -0.0124,
-   "f_only_diff": -0.0157,
-   "additive_interaction": 0.0033,
-   "add_low": -0.0042,
-   "add_high": 0.0109,
-   "add_p": 0.3855,
-   "mult_interaction_p": 0.9536
+   "additive_interaction": 0.003,
+   "add_low": -0.004,
+   "add_high": 0.01,
+   "add_p": 0.3954,
+   "mult_interaction_p": 0.7221
   },
   {
    "partner": "고위험음주 아님",
-   "domain": "behav",
+   "domain": "음주",
    "proximal": false,
    "n_domain": 228570,
    "prev_both": 0.0281,
@@ -3357,7 +3341,7 @@
   },
   {
    "partner": "아침식사 주 5회 이상",
-   "domain": "behav",
+   "domain": "식생활",
    "proximal": false,
    "n_domain": 228573,
    "prev_both": 0.0252,
@@ -3374,26 +3358,26 @@
    "mult_interaction_p": 0.9318
   },
   {
-   "partner": "동네가 안전하다고 느낌",
-   "domain": "env",
+   "partner": "사회적 연결",
+   "domain": "사회적 연결",
    "proximal": false,
-   "n_domain": 228556,
-   "prev_both": 0.0239,
-   "prev_neither": 0.0617,
-   "joint_diff": -0.0378,
-   "joint_low": -0.0419,
-   "joint_high": -0.0337,
-   "pa_only_diff": -0.0071,
-   "f_only_diff": -0.0272,
-   "additive_interaction": -0.0035,
-   "add_low": -0.0121,
-   "add_high": 0.005,
-   "add_p": 0.4176,
-   "mult_interaction_p": 0.0113
+   "n_domain": 228452,
+   "prev_both": 0.0246,
+   "prev_neither": 0.0534,
+   "joint_diff": -0.0288,
+   "joint_low": -0.0328,
+   "joint_high": -0.0249,
+   "pa_only_diff": -0.0107,
+   "f_only_diff": -0.0196,
+   "additive_interaction": 0.0015,
+   "add_low": -0.0047,
+   "add_high": 0.0077,
+   "add_p": 0.6299,
+   "mult_interaction_p": 0.3206
   },
   {
    "partner": "주중 수면 7~9시간",
-   "domain": "proximal",
+   "domain": "수면",
    "proximal": true,
    "n_domain": 228530,
    "prev_both": 0.0197,
@@ -3413,55 +3397,532 @@
  "counts": [
   {
    "k": "0개",
-   "prev": 13.9,
-   "lo": 10.0,
-   "hi": 17.8,
-   "n": 250
+   "prev": 8.7,
+   "lo": 7.2,
+   "hi": 10.3,
+   "n": 1196
   },
   {
    "k": "1개",
-   "prev": 10.0,
-   "lo": 8.7,
-   "hi": 11.2,
-   "n": 2080
+   "prev": 7.0,
+   "lo": 6.3,
+   "hi": 7.7,
+   "n": 8516
   },
   {
    "k": "2개",
-   "prev": 7.3,
-   "lo": 6.7,
-   "hi": 7.8,
-   "n": 8910
+   "prev": 5.3,
+   "lo": 5.0,
+   "hi": 5.7,
+   "n": 28138
   },
   {
    "k": "3개",
-   "prev": 5.7,
-   "lo": 5.4,
-   "hi": 6.0,
-   "n": 25942
+   "prev": 3.8,
+   "lo": 3.6,
+   "hi": 3.9,
+   "n": 70806
   },
   {
    "k": "4개",
-   "prev": 3.9,
-   "lo": 3.7,
-   "hi": 4.1,
-   "n": 54003
+   "prev": 2.7,
+   "lo": 2.6,
+   "hi": 2.9,
+   "n": 104579
   },
   {
    "k": "5개",
-   "prev": 2.8,
-   "lo": 2.6,
-   "hi": 2.9,
-   "n": 79227
-  },
-  {
-   "k": "6~7개",
-   "prev": 2.0,
+   "prev": 2.1,
    "lo": 1.8,
-   "hi": 2.2,
-   "n": 60878
+   "hi": 2.4,
+   "n": 17842
   }
  ],
- "count_p": "1.03e-190",
+ "count_p": "9.2 × 10⁻⁸⁶",
+ "count_summary": {
+  "주 분석": {
+   "n_factors": 5,
+   "wald_p": 9.209179999999999e-86,
+   "trend_or": 0.7,
+   "trend_lo": 0.68,
+   "trend_hi": 0.72,
+   "trend_p": 3.35087e-89
+  },
+  "신체활동 권고 제외": {
+   "n_factors": 4,
+   "wald_p": 1.4867999999999999e-80,
+   "trend_or": 0.68,
+   "trend_lo": 0.66,
+   "trend_hi": 0.71,
+   "trend_p": 1.74437e-84
+  },
+  "담배제품 미사용 제외": {
+   "n_factors": 4,
+   "wald_p": 2.4167500000000003e-72,
+   "trend_or": 0.69,
+   "trend_lo": 0.66,
+   "trend_hi": 0.72,
+   "trend_p": 2.23034e-75
+  },
+  "고위험음주 아님 제외": {
+   "n_factors": 4,
+   "wald_p": 6.57288e-86,
+   "trend_or": 0.67,
+   "trend_lo": 0.64,
+   "trend_hi": 0.7,
+   "trend_p": 1.58653e-83
+  },
+  "아침식사 주 5회 이상 제외": {
+   "n_factors": 4,
+   "wald_p": 5.258520000000001e-69,
+   "trend_or": 0.68,
+   "trend_lo": 0.65,
+   "trend_hi": 0.71,
+   "trend_p": 1.05184e-72
+  },
+  "사회적 연결 제외": {
+   "n_factors": 4,
+   "wald_p": 1.2948699999999998e-58,
+   "trend_or": 0.72,
+   "trend_lo": 0.7,
+   "trend_hi": 0.75,
+   "trend_p": 2.24467e-60
+  },
+  "수면 포함": {
+   "n_factors": 6,
+   "wald_p": 4.8063699999999997e-150,
+   "trend_or": 0.65,
+   "trend_lo": 0.63,
+   "trend_hi": 0.67,
+   "trend_p": 6.69723e-159
+  }
+ },
+ "count_sens": [
+  {
+   "score": "주 분석",
+   "k": "0개",
+   "prev": 8.7,
+   "lo": 7.2,
+   "hi": 10.3,
+   "n": 1196
+  },
+  {
+   "score": "주 분석",
+   "k": "1개",
+   "prev": 7.0,
+   "lo": 6.3,
+   "hi": 7.7,
+   "n": 8516
+  },
+  {
+   "score": "주 분석",
+   "k": "2개",
+   "prev": 5.3,
+   "lo": 5.0,
+   "hi": 5.7,
+   "n": 28138
+  },
+  {
+   "score": "주 분석",
+   "k": "3개",
+   "prev": 3.8,
+   "lo": 3.6,
+   "hi": 3.9,
+   "n": 70806
+  },
+  {
+   "score": "주 분석",
+   "k": "4개",
+   "prev": 2.7,
+   "lo": 2.6,
+   "hi": 2.9,
+   "n": 104579
+  },
+  {
+   "score": "주 분석",
+   "k": "5개",
+   "prev": 2.1,
+   "lo": 1.8,
+   "hi": 2.4,
+   "n": 17842
+  },
+  {
+   "score": "신체활동 권고 제외",
+   "k": "0개",
+   "prev": 8.4,
+   "lo": 7.0,
+   "hi": 9.8,
+   "n": 1493
+  },
+  {
+   "score": "신체활동 권고 제외",
+   "k": "1개",
+   "prev": 7.1,
+   "lo": 6.5,
+   "hi": 7.8,
+   "n": 10254
+  },
+  {
+   "score": "신체활동 권고 제외",
+   "k": "2개",
+   "prev": 5.2,
+   "lo": 4.9,
+   "hi": 5.5,
+   "n": 32608
+  },
+  {
+   "score": "신체활동 권고 제외",
+   "k": "3개",
+   "prev": 3.6,
+   "lo": 3.4,
+   "hi": 3.7,
+   "n": 78400
+  },
+  {
+   "score": "신체활동 권고 제외",
+   "k": "4개",
+   "prev": 2.6,
+   "lo": 2.5,
+   "hi": 2.8,
+   "n": 108335
+  },
+  {
+   "score": "담배제품 미사용 제외",
+   "k": "0개",
+   "prev": 7.7,
+   "lo": 6.6,
+   "hi": 8.8,
+   "n": 1967
+  },
+  {
+   "score": "담배제품 미사용 제외",
+   "k": "1개",
+   "prev": 5.7,
+   "lo": 5.3,
+   "hi": 6.0,
+   "n": 20126
+  },
+  {
+   "score": "담배제품 미사용 제외",
+   "k": "2개",
+   "prev": 4.0,
+   "lo": 3.8,
+   "hi": 4.2,
+   "n": 73078
+  },
+  {
+   "score": "담배제품 미사용 제외",
+   "k": "3개",
+   "prev": 3.0,
+   "lo": 2.8,
+   "hi": 3.1,
+   "n": 115617
+  },
+  {
+   "score": "담배제품 미사용 제외",
+   "k": "4개",
+   "prev": 2.0,
+   "lo": 1.7,
+   "hi": 2.3,
+   "n": 20308
+  },
+  {
+   "score": "고위험음주 아님 제외",
+   "k": "0개",
+   "prev": 8.5,
+   "lo": 7.5,
+   "hi": 9.4,
+   "n": 4603
+  },
+  {
+   "score": "고위험음주 아님 제외",
+   "k": "1개",
+   "prev": 5.6,
+   "lo": 5.3,
+   "hi": 6.0,
+   "n": 24595
+  },
+  {
+   "score": "고위험음주 아님 제외",
+   "k": "2개",
+   "prev": 3.8,
+   "lo": 3.7,
+   "hi": 4.0,
+   "n": 72989
+  },
+  {
+   "score": "고위험음주 아님 제외",
+   "k": "3개",
+   "prev": 2.8,
+   "lo": 2.7,
+   "hi": 2.9,
+   "n": 109726
+  },
+  {
+   "score": "고위험음주 아님 제외",
+   "k": "4개",
+   "prev": 2.1,
+   "lo": 1.8,
+   "hi": 2.4,
+   "n": 19167
+  },
+  {
+   "score": "아침식사 주 5회 이상 제외",
+   "k": "0개",
+   "prev": 7.7,
+   "lo": 6.5,
+   "hi": 8.9,
+   "n": 1957
+  },
+  {
+   "score": "아침식사 주 5회 이상 제외",
+   "k": "1개",
+   "prev": 6.1,
+   "lo": 5.6,
+   "hi": 6.6,
+   "n": 14593
+  },
+  {
+   "score": "아침식사 주 5회 이상 제외",
+   "k": "2개",
+   "prev": 4.7,
+   "lo": 4.5,
+   "hi": 4.9,
+   "n": 52703
+  },
+  {
+   "score": "아침식사 주 5회 이상 제외",
+   "k": "3개",
+   "prev": 3.1,
+   "lo": 3.0,
+   "hi": 3.2,
+   "n": 136862
+  },
+  {
+   "score": "아침식사 주 5회 이상 제외",
+   "k": "4개",
+   "prev": 2.2,
+   "lo": 2.0,
+   "hi": 2.5,
+   "n": 24962
+  },
+  {
+   "score": "사회적 연결 제외",
+   "k": "0개",
+   "prev": 6.3,
+   "lo": 5.5,
+   "hi": 7.1,
+   "n": 4479
+  },
+  {
+   "score": "사회적 연결 제외",
+   "k": "1개",
+   "prev": 5.8,
+   "lo": 5.4,
+   "hi": 6.2,
+   "n": 20793
+  },
+  {
+   "score": "사회적 연결 제외",
+   "k": "2개",
+   "prev": 4.1,
+   "lo": 4.0,
+   "hi": 4.3,
+   "n": 65512
+  },
+  {
+   "score": "사회적 연결 제외",
+   "k": "3개",
+   "prev": 3.1,
+   "lo": 2.9,
+   "hi": 3.2,
+   "n": 119433
+  },
+  {
+   "score": "사회적 연결 제외",
+   "k": "4개",
+   "prev": 2.5,
+   "lo": 2.1,
+   "hi": 2.8,
+   "n": 21030
+  },
+  {
+   "score": "수면 포함",
+   "k": "0~1개",
+   "prev": 9.3,
+   "lo": 8.4,
+   "hi": 10.1,
+   "n": 5869
+  },
+  {
+   "score": "수면 포함",
+   "k": "2개",
+   "prev": 6.4,
+   "lo": 6.0,
+   "hi": 6.8,
+   "n": 18447
+  },
+  {
+   "score": "수면 포함",
+   "k": "3개",
+   "prev": 4.4,
+   "lo": 4.2,
+   "hi": 4.6,
+   "n": 49409
+  },
+  {
+   "score": "수면 포함",
+   "k": "4개",
+   "prev": 3.1,
+   "lo": 2.9,
+   "hi": 3.2,
+   "n": 87717
+  },
+  {
+   "score": "수면 포함",
+   "k": "5개",
+   "prev": 2.0,
+   "lo": 1.8,
+   "hi": 2.1,
+   "n": 60230
+  },
+  {
+   "score": "수면 포함",
+   "k": "6개",
+   "prev": 1.5,
+   "lo": 1.1,
+   "hi": 1.9,
+   "n": 9355
+  }
+ ],
+ "context_combos": [
+  {
+   "partner": "이웃을 신뢰함",
+   "domain": "사회 맥락",
+   "proximal": false,
+   "n_domain": 228513,
+   "prev_both": 0.0215,
+   "prev_neither": 0.0497,
+   "joint_diff": -0.0282,
+   "joint_low": -0.0314,
+   "joint_high": -0.0251,
+   "pa_only_diff": -0.0092,
+   "f_only_diff": -0.0186,
+   "additive_interaction": -0.0004,
+   "add_low": -0.0057,
+   "add_high": 0.0049,
+   "add_p": 0.8893,
+   "mult_interaction_p": 0.0655
+  },
+  {
+   "partner": "동네가 안전하다고 느낌",
+   "domain": "환경 맥락",
+   "proximal": false,
+   "n_domain": 228556,
+   "prev_both": 0.0239,
+   "prev_neither": 0.0617,
+   "joint_diff": -0.0378,
+   "joint_low": -0.0419,
+   "joint_high": -0.0337,
+   "pa_only_diff": -0.0071,
+   "f_only_diff": -0.0272,
+   "additive_interaction": -0.0035,
+   "add_low": -0.0121,
+   "add_high": 0.005,
+   "add_p": 0.4176,
+   "mult_interaction_p": 0.0113
+  }
+ ],
+ "operating_points": [
+  {
+   "rule": "Youden(민감도+특이도 최대)",
+   "thr": 0.035,
+   "flag": 24.7,
+   "sens": 76.4,
+   "spec": 77.4,
+   "ppv": 12.0,
+   "npv": 98.8,
+   "f1": 0.208,
+   "per10k": {
+    "flagged": 2473,
+    "tp": 298,
+    "fn": 92,
+    "fp": 2175
+   }
+  },
+  {
+   "rule": "민감도 80%",
+   "thr": 0.029,
+   "flag": 29.1,
+   "sens": 80.1,
+   "spec": 72.9,
+   "ppv": 10.7,
+   "npv": 98.9,
+   "f1": 0.189,
+   "per10k": {
+    "flagged": 2914,
+    "tp": 312,
+    "fn": 78,
+    "fp": 2602
+   }
+  },
+  {
+   "rule": "상위 10%",
+   "thr": 0.085,
+   "flag": 10.0,
+   "sens": 53.2,
+   "spec": 91.7,
+   "ppv": 20.7,
+   "npv": 98.0,
+   "f1": 0.298,
+   "per10k": {
+    "flagged": 1001,
+    "tp": 207,
+    "fn": 182,
+    "fp": 793
+   }
+  },
+  {
+   "rule": "F1 최대",
+   "thr": 0.156,
+   "flag": 4.7,
+   "sens": 36.5,
+   "spec": 96.6,
+   "ppv": 30.5,
+   "npv": 97.4,
+   "f1": 0.332,
+   "per10k": {
+    "flagged": 467,
+    "tp": 142,
+    "fn": 247,
+    "fp": 325
+   }
+  },
+  {
+   "rule": "상위 18.4%(Han & Park 판정 비율)",
+   "thr": 0.047,
+   "flag": 18.4,
+   "sens": 68.7,
+   "spec": 83.6,
+   "ppv": 14.5,
+   "npv": 98.5,
+   "f1": 0.24,
+   "per10k": {
+    "flagged": 1839,
+    "tp": 268,
+    "fn": 122,
+    "fp": 1572
+   }
+  }
+ ],
+ "lifestyle_prev": {
+  "신체활동 권고 충족": 21.7,
+  "담배제품 미사용": 80.2,
+  "고위험음주 아님": 89.4,
+  "아침식사 주 5회 이상": 56.9,
+  "사회적 연결": 79.2,
+  "주중 수면 7~9시간": 49.3
+ },
  "crude_top": [
   {
    "label": "EQ-5D 운동능력",
@@ -4225,6 +4686,33 @@
   },
   {
    "type": "header",
+   "name": "담배제품 현재 미사용",
+   "missing": 22
+  },
+  {
+   "type": "level",
+   "level": "아니오",
+   "all_n": 40693,
+   "all_pct": 19.8,
+   "y0_n": 38789,
+   "y0_pct": 19.6,
+   "y1_n": 1904,
+   "y1_pct": 26.3,
+   "prev_w": 4.99
+  },
+  {
+   "type": "level",
+   "level": "예",
+   "all_n": 190575,
+   "all_pct": 80.2,
+   "y0_n": 183776,
+   "y0_pct": 80.4,
+   "y1_n": 6799,
+   "y1_pct": 73.7,
+   "prev_w": 3.45
+  },
+  {
+   "type": "header",
    "name": "아침식사",
    "missing": 1
   },
@@ -4345,6 +4833,33 @@
   },
   {
    "type": "header",
+   "name": "사회적 연결(고립 지수 0~1)",
+   "missing": 175
+  },
+  {
+   "type": "level",
+   "level": "아니오",
+   "all_n": 40154,
+   "all_pct": 20.8,
+   "y0_n": 37210,
+   "y0_pct": 20.1,
+   "y1_n": 2944,
+   "y1_pct": 37.7,
+   "prev_w": 6.81
+  },
+  {
+   "type": "level",
+   "level": "예",
+   "all_n": 190961,
+   "all_pct": 79.2,
+   "y0_n": 185218,
+   "y0_pct": 79.9,
+   "y1_n": 5743,
+   "y1_pct": 62.3,
+   "prev_w": 2.95
+  },
+  {
+   "type": "header",
    "name": "이웃 간 신뢰",
    "missing": 67
   },
@@ -4427,6 +4942,8 @@
    "domain": "demo",
    "kind": "num",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "age",
    "logic": "원본",
    "missing_pct": 0.0
@@ -4437,6 +4954,8 @@
    "domain": "demo",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "sex",
    "logic": "1=남, 2=여",
    "missing_pct": 0.0
@@ -4447,6 +4966,8 @@
    "domain": "demo",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "sob_01z1, sob_02z1",
    "logic": "지침서 educ SAS 로직(1차와 동일)",
    "missing_pct": 0.05
@@ -4457,6 +4978,8 @@
    "domain": "demo",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "sod_02z3",
    "logic": "1=배우자 동거 … 5=미혼",
    "missing_pct": 0.01
@@ -4467,6 +4990,8 @@
    "domain": "demo",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "fma_19z3",
    "logic": "7분류",
    "missing_pct": 0.0
@@ -4477,6 +5002,8 @@
    "domain": "econ",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "fma_12/13/14z1, fma_24z2, mbhld_co",
    "logic": "1차 2단계 소득 산출 ÷ √가구원수, log1p",
    "missing_pct": 0.19
@@ -4487,6 +5014,8 @@
    "domain": "econ",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "fma_04z1",
    "logic": "1=현재 수급, 2=과거 수급, 3=아님",
    "missing_pct": 0.0
@@ -4497,6 +5026,8 @@
    "domain": "econ",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "nue_01z1",
    "logic": "1=양·종류 충분, 2=양 충분·종류 부족, 3=가끔 부족, 4=자주 부족(클수록 불안정)",
    "missing_pct": 0.01
@@ -4507,6 +5038,8 @@
    "domain": "econ",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "soa_06z2",
    "logic": "1~10 직업군, 0=비경제활동(원래 비해당 88)",
    "missing_pct": 0.01
@@ -4517,6 +5050,8 @@
    "domain": "econ",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "soa_07z1",
    "logic": "1=고용주·자영업, 2=임금근로, 3=무급가족, 0=비경제활동(88)",
    "missing_pct": 0.01
@@ -4527,6 +5062,8 @@
    "domain": "phys",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "oba_02z1, oba_03z1",
    "logic": "1차와 동일(지침서 범위 규칙)",
    "missing_pct": 0.86
@@ -4537,6 +5074,8 @@
    "domain": "phys",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "oba_01z1",
    "logic": "1=매우 마름 … 5=매우 비만",
    "missing_pct": 0.0
@@ -4547,6 +5086,8 @@
    "domain": "phys",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "hya_04z1",
    "logic": "1=예, 0=아니오",
    "missing_pct": 0.01
@@ -4557,6 +5098,8 @@
    "domain": "phys",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "dia_04z1",
    "logic": "1=예, 0=아니오",
    "missing_pct": 0.01
@@ -4567,6 +5110,8 @@
    "domain": "phys",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "osa_04z1",
    "logic": "1=예, 0=아니오",
    "missing_pct": 0.07
@@ -4577,6 +5122,8 @@
    "domain": "phys",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "ora_01z1",
    "logic": "1=매우 좋음 … 5=매우 나쁨",
    "missing_pct": 0.0
@@ -4587,6 +5134,8 @@
    "domain": "phys",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "orb_01z1",
    "logic": "1=매우 불편 … 5=전혀 불편하지 않음",
    "missing_pct": 0.0
@@ -4597,6 +5146,8 @@
    "domain": "phys",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "irb_01z1",
    "logic": "1=예, 0=아니오",
    "missing_pct": 0.0
@@ -4607,6 +5158,8 @@
    "domain": "phys",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "ira_01z1",
    "logic": "1=예, 0=아니오",
    "missing_pct": 0.0
@@ -4617,6 +5170,8 @@
    "domain": "behav",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "phb_01z1",
    "logic": "0~7(1차와 동일)",
    "missing_pct": 0.0
@@ -4627,6 +5182,8 @@
    "domain": "behav",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "pha_19z1",
    "logic": "1=안 함, 2=1일 … 6=5일 이상",
    "missing_pct": 0.0
@@ -4637,6 +5194,8 @@
    "domain": "behav",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "pha_04z1",
    "logic": "0~7",
    "missing_pct": 0.0
@@ -4647,6 +5206,8 @@
    "domain": "behav",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "pha_07z1",
    "logic": "0~7",
    "missing_pct": 0.0
@@ -4657,6 +5218,8 @@
    "domain": "behav",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "pha_04~09z1, phb_01~03z1",
    "logic": "8×고강도 + 4×중강도 + 3.3×걷기(일수×1일 분, 1일 최대 180분, IPAQ 규칙), log1p",
    "missing_pct": 0.02
@@ -4667,6 +5230,8 @@
    "domain": "behav",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "smf_01z1, sma_01z1, sma_03z2",
    "logic": "0=비흡연(평생 5갑 미만 포함), 1=과거흡연, 2=현재흡연(지침서 sm_a0100)",
    "missing_pct": 0.01
@@ -4677,6 +5242,8 @@
    "domain": "behav",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "sma_36/37z1, sma_08z1, sma_11z2",
    "logic": "궐련형 현재 사용(sm_a2700) 또는 액상형 최근 1달 사용(sm_a1000) = 1",
    "missing_pct": 0.01
@@ -4687,6 +5254,8 @@
    "domain": "behav",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "dra_01z1, drb_01z3",
    "logic": "0=최근 1년 안 마심(평생 비음주 포함), 1=월1회 미만 … 5=주4회 이상",
    "missing_pct": 0.0
@@ -4697,6 +5266,8 @@
    "domain": "behav",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "drb_04z1(남), drb_05z1(여)",
    "logic": "0=최근 1년 음주 안 함, 1=폭음 전혀 없음 … 5=거의 매일 (남 7잔·여 5잔 기준)",
    "missing_pct": 0.01
@@ -4707,6 +5278,8 @@
    "domain": "behav",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "nua_01z2",
    "logic": "1=주5~7회 … 4=거의 안 함",
    "missing_pct": 0.0
@@ -4717,6 +5290,8 @@
    "domain": "behav",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "obb_01z1",
    "logic": "1=감량, 2=유지, 3=증량, 4=노력 안 함",
    "missing_pct": 0.0
@@ -4727,6 +5302,8 @@
    "domain": "behav",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "ord_01d2",
    "logic": "1=예, 2=아니오, 3=점심 안 먹음",
    "missing_pct": 0.01
@@ -4737,6 +5314,8 @@
    "domain": "social",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "enb_01z1",
    "logic": "1=월1회 미만 … 6=주4회 이상(1차와 동일)",
    "missing_pct": 0.01
@@ -4747,6 +5326,8 @@
    "domain": "social",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "enb_02z1",
    "logic": "1~6",
    "missing_pct": 0.3
@@ -4757,6 +5338,8 @@
    "domain": "social",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "enb_03z1",
    "logic": "1~6",
    "missing_pct": 0.05
@@ -4767,6 +5350,8 @@
    "domain": "social",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "ena_01a1",
    "logic": "1=예, 2=아니오, 9=모름(별도 범주)",
    "missing_pct": 0.03
@@ -4777,6 +5362,8 @@
    "domain": "social",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "ena_01b1",
    "logic": "1=예, 2=아니오, 9=모름",
    "missing_pct": 0.02
@@ -4787,6 +5374,8 @@
    "domain": "social",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "fma_27z1, fma_26z1",
    "logic": "0=해당 없음, 1=치매환자 가족(비동거), 2=치매환자와 동거",
    "missing_pct": 0.02
@@ -4797,6 +5386,8 @@
    "domain": "env",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "ena_01c1",
    "logic": "1=예, 2=아니오, 9=모름",
    "missing_pct": 0.01
@@ -4807,6 +5398,8 @@
    "domain": "env",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "ena_01d1",
    "logic": "1=예, 2=아니오, 9=모름",
    "missing_pct": 0.01
@@ -4817,6 +5410,8 @@
    "domain": "env",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "ena_01e1",
    "logic": "1=예, 2=아니오, 9=모름",
    "missing_pct": 0.01
@@ -4827,6 +5422,8 @@
    "domain": "env",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "ena_01f1",
    "logic": "1=예, 2=아니오, 9=모름",
    "missing_pct": 0.01
@@ -4837,6 +5434,8 @@
    "domain": "env",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "ena_01g1",
    "logic": "1=예, 2=아니오, 9=모름",
    "missing_pct": 0.01
@@ -4847,6 +5446,8 @@
    "domain": "env",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "DONG_TY_CODE",
    "logic": "1=동, 2=읍·면",
    "missing_pct": 0.0
@@ -4857,6 +5458,8 @@
    "domain": "env",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "HOUSE_TY_CODE",
    "logic": "1=일반주택, 2=아파트",
    "missing_pct": 0.0
@@ -4867,6 +5470,8 @@
    "domain": "env",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "CTPRVN_CODE",
    "logic": "17개 시도 코드",
    "missing_pct": 0.0
@@ -4877,6 +5482,8 @@
    "domain": "care",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "sra_01z3",
    "logic": "1=있음, 2=없음, 3=진료 필요 없었음",
    "missing_pct": 0.0
@@ -4887,6 +5494,8 @@
    "domain": "care",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "ore_02z2",
    "logic": "1=있음, 2=없음, 3=필요 없었음",
    "missing_pct": 0.0
@@ -4897,6 +5506,8 @@
    "domain": "care",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "scb_01z1",
    "logic": "1=예, 0=아니오",
    "missing_pct": 0.02
@@ -4907,6 +5518,8 @@
    "domain": "care",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "sca_01z1",
    "logic": "1=예, 0=아니오",
    "missing_pct": 0.06
@@ -4917,6 +5530,8 @@
    "domain": "care",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "hma_01z3",
    "logic": "1=예, 0=아니오",
    "missing_pct": 0.01
@@ -4927,6 +5542,8 @@
    "domain": "care",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "hia_01z1",
    "logic": "1=아주 쉽다 … 4=매우 어렵다",
    "missing_pct": 0.04
@@ -4937,6 +5554,8 @@
    "domain": "care",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "hia_02z1",
    "logic": "1~4 쉬움→어려움, 5=주의를 기울이지 않음",
    "missing_pct": 0.04
@@ -4947,6 +5566,8 @@
    "domain": "care",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "hia_03z1",
    "logic": "1~4 쉬움→어려움, 5=찾지 않음",
    "missing_pct": 0.05
@@ -4957,6 +5578,8 @@
    "domain": "proximal",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "mta_01z1",
    "logic": "1=대단히 많이 … 4=거의 느끼지 않음",
    "missing_pct": 0.01
@@ -4967,6 +5590,8 @@
    "domain": "proximal",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "mtc_17z1",
    "logic": "시간(1~24), 77/99 결측",
    "missing_pct": 0.02
@@ -4977,6 +5602,8 @@
    "domain": "proximal",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "mtc_18z1",
    "logic": "시간(1~24)",
    "missing_pct": 0.07
@@ -4987,6 +5614,8 @@
    "domain": "proximal",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "qoa_01z1",
    "logic": "1=매우 좋음 … 5=매우 나쁨",
    "missing_pct": 0.0
@@ -4997,6 +5626,8 @@
    "domain": "proximal",
    "kind": "num",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "qoc_01z1",
    "logic": "1=문제 없음 … 3=심함",
    "missing_pct": 0.0
@@ -5007,6 +5638,8 @@
    "domain": "proximal",
    "kind": "num",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "qoc_02z1",
    "logic": "1~3",
    "missing_pct": 0.0
@@ -5017,6 +5650,8 @@
    "domain": "proximal",
    "kind": "num",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "qoc_03z1",
    "logic": "1~3",
    "missing_pct": 0.0
@@ -5027,6 +5662,8 @@
    "domain": "proximal",
    "kind": "num",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "qoc_04z1",
    "logic": "1~3",
    "missing_pct": 0.0
@@ -5037,6 +5674,8 @@
    "domain": "proximal",
    "kind": "num",
    "modifiable": true,
+   "mod_type": "B",
+   "mod_label": "서비스·정책·환경",
    "source": "qoc_07z1",
    "logic": "0~10",
    "missing_pct": 0.07
@@ -5047,6 +5686,8 @@
    "domain": "proximal",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "qoa_02z1",
    "logic": "1=예, 0=아니오",
    "missing_pct": 0.0
@@ -5057,6 +5698,8 @@
    "domain": "proximal",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "mtg_01z1",
    "logic": "1=이용 안 함, 2=전혀 없음 … 6=거의 매일",
    "missing_pct": 0.01
@@ -5067,6 +5710,8 @@
    "domain": "proximal",
    "kind": "cat",
    "modifiable": true,
+   "mod_type": "A",
+   "mod_label": "개인 행동",
    "source": "mti_01z1",
    "logic": "1=도박 안 함, 2=전혀 없음 … 6=거의 매일",
    "missing_pct": 0.0
@@ -5077,6 +5722,8 @@
    "domain": "proximal",
    "kind": "cat",
    "modifiable": false,
+   "mod_type": "C",
+   "mod_label": "바꿀 수 없음",
    "source": "mtj_05z2",
    "logic": "1=예, 0=아니오, 8=비해당(40세 미만에게는 묻지 않음)",
    "missing_pct": 0.01
