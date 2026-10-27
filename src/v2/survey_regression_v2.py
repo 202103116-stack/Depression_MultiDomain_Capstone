@@ -48,16 +48,16 @@ def recode(d: pd.DataFrame) -> pd.DataFrame:
     return r
 
 
-SPEC = [  # (회귀 열, 기준범주, 영역, 한글명)
+SPEC = [  # (회귀 열, 기준범주, 영역, 한글명) — 기준범주는 건강·바람직한 상태(위험 쪽 OR > 1)
     ("age_grp", "40대", "demo", "연령"), ("sex", "남", "demo", "성별"), ("educ", "대졸+", "demo", "교육수준"),
     ("marital", "배우자 동거", "demo", "혼인상태"), ("hh_type", "부부", "demo", "세대유형"),
     ("inc_q", "3분위", "econ", "균등화 소득"), ("livelihood", "아님", "econ", "기초생활수급"),
     ("food_insecurity", "충분·다양", "econ", "식품안정성"), ("occupation", "사무", "econ", "직업"),
     ("bmi_grp", "18.5-23", "phys", "BMI"), ("body_image", "보통", "phys", "인지 체형"), ("htn", "아니오", "phys", "고혈압"),
-    ("dm", "아니오", "phys", "당뇨병"), ("osteo", "아니오", "phys", "골다공증"), ("oral_health", "보통", "phys", "구강건강"),
+    ("dm", "아니오", "phys", "당뇨병"), ("osteo", "아니오", "phys", "골다공증"), ("oral_health", "좋음", "phys", "구강건강"),
     ("chewing", "전혀 안 불편", "phys", "저작불편"), ("fall", "아니오", "phys", "낙상"), ("injury", "아니오", "phys", "사고·중독"),
-    ("walk_ok", "아니오", "behav", "걷기 실천"), ("aerobic_ok", "아니오", "behav", "중강도 이상 신체활동"),
-    ("strength_ok", "아니오", "behav", "근력운동 주2일+"), ("smoking_status", "비흡연", "behav", "흡연"),
+    ("walk_ok", "예", "behav", "걷기 실천"), ("aerobic_ok", "예", "behav", "중강도 이상 신체활동"),
+    ("strength_ok", "예", "behav", "근력운동 주2일+"), ("smoking_status", "비흡연", "behav", "흡연"),
     ("ecig_current", "아니오", "behav", "전자담배"), ("drinking", "월1회 이하", "behav", "음주 빈도"),
     ("high_risk_drinking", "아니오", "behav", "고위험음주"), ("breakfast", "주5~7회", "behav", "아침식사"),
     ("weight_control", "유지", "behav", "체중조절"), ("brushing_lunch", "예", "behav", "점심 후 칫솔질"),
@@ -75,6 +75,12 @@ SPEC = [  # (회귀 열, 기준범주, 영역, 한글명)
 MODIFIABLE = dict(zip(FEATURES["name"], FEATURES["modifiable"]))
 MODIFIABLE.update({"age_grp": False, "inc_q": True, "bmi_grp": True, "drinking": True, "walk_ok": True,
                    "aerobic_ok": True, "strength_ok": True, "high_risk_drinking": True})
+
+
+def actionable(t: pd.DataFrame) -> pd.Series:
+    """제언 대상 수준: 수정 가능 변수 중 행동으로 바꿀 수 없는 수준(모름, 필요 없었음, 직업군)은 뺀다."""
+    not_action = t["level"].isin(["모름", "필요 없었음"]) | ((t["var"] == "occupation") & (t["level"] != "비경제활동"))
+    return (t["modifiable"] == True) & ~not_action  # noqa: E712
 
 
 def design(r: pd.DataFrame, spec) -> tuple[pd.DataFrame, list[dict]]:
@@ -187,9 +193,9 @@ def lifestyle_count(d, r, in_sample):
 # ---------------------------------------------------------------------------
 def plot_forest(tab: pd.DataFrame):
     plt = setup_matplotlib()
-    t = tab[(tab["modifiable"] == True) & (tab["p"] < 0.05)].copy()  # noqa: E712
+    t = tab[tab["actionable"] & (tab["p"] < 0.05)].copy()
     t["dist"] = np.abs(np.log(t["OR"]))
-    t = t.sort_values("dist", ascending=False).head(30).sort_values("OR")
+    t = t.sort_values("dist", ascending=False).head(30).iloc[::-1]  # 1에서 먼 수준이 위로
     fig, ax = plt.subplots(figsize=(11, 10))
     y = np.arange(len(t))
     for yi, (_, row) in enumerate(t.iterrows()):
@@ -263,6 +269,7 @@ def main():
     mdl = fit(X, d, in_sample)
     t = mdl.table().merge(pd.DataFrame(info), on="term", how="left")
     t = t[t["term"] != "const"]
+    t["actionable"] = actionable(t)
     var_tests = []
     for var, ref, dom, name in SPEC:
         terms = [x["term"] for x in info if x["var"] == var]
@@ -288,7 +295,7 @@ def main():
     print("\n[변수별 결합 검정 p<0.001, F 상위 25]")
     print(var_tests.sort_values("F", ascending=False).head(25).round(4).to_string(index=False))
     print("\n[바꿀 수 있는 요인 OR (p<0.05) 상위 20, |log OR| 순]")
-    m = t[(t["modifiable"] == True) & (t["p"] < 0.05)].copy()  # noqa: E712
+    m = t[t["actionable"] & (t["p"] < 0.05)].copy()
     m["dist"] = np.abs(np.log(m["OR"]))
     print(m.sort_values("dist", ascending=False).head(20)[["name", "level", "ref", "OR", "OR_low", "OR_high", "p"]]
           .round(3).to_string(index=False))

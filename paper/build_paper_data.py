@@ -170,7 +170,7 @@ def main():
     shap_top = [{"feature": x["feature"], "label": x["label"], "domain": x["domain"], "modifiable": bool(x["modifiable"]),
                  "shap": r(x["mean_abs_shap"]), "direction": x["direction"]} for _, x in shap.head(25).iterrows()]
 
-    m = reg[(reg["modifiable"] == True) & (reg["p"] < 0.05)].copy()  # noqa: E712
+    m = reg[reg["actionable"] & (reg["p"] < 0.05)].copy()
     m["dist"] = np.abs(np.log(m["OR"]))
     or_mod = [{"name": x["name"], "level": x["level"], "ref": x["ref"], "domain": x["domain"], "or": r(x["OR"], 2),
                "lo": r(x["OR_low"], 2), "hi": r(x["OR_high"], 2), "p": float(x["p"])}
