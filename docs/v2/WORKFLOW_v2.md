@@ -212,6 +212,6 @@
 
 ## 9. 중간 프로포절 발표자료 — 완료 (2026-10-27)
 - 구성: `docs/v2/proposal_outline.md`(본문 13장 + 부록 4장, 10분 내외).
-- 산출: `presentation/proposal_v2.pptx` ← `node presentation/build_proposal.js`(수치는 `paper/paper_data.json`에서 읽음, 차트는 PowerPoint 기본 차트). `presentation/apply_theme.js`는 pptx 스킬의 테마 적용 모듈 사본.
+- 산출: `presentation/proposal_v2.pptx` ← `node presentation/build_proposal.js`(수치는 `paper/paper_data.json`에서 읽음, 차트는 PowerPoint 기본 차트). 디자인은 4주차 14조 미션D 발표자료의 체계(장 표시 알약·둥근 카드·파스텔 강조·맑은 고딕, 같은 팔레트)를 따른다(사용자 요청). `presentation/apply_theme.js`는 pptx 스킬의 테마 적용 모듈 사본.
 - 점검: 스키마 검증 통과, PowerPoint로 전 장을 PNG로 내보내 글자 넘침·정렬 확인.
 - 저자가 채울 항목: 표지의 `[팀명 · 발표자]`.
