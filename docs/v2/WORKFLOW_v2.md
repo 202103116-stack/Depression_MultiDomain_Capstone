@@ -210,8 +210,9 @@
 - **논문**: `paper/manuscript_v2.1.docx`(42쪽, 표 8 + 부록 S1~S6, 참고문헌 24편), `paper/strobe_tripod_checklist_v2.1.docx`. v2 초안(`manuscript_v2.docx`)은 그대로 보존.
 - **다시 만들 때**: `preprocess_v2.py` → `survey_regression_v2.py > outputs/v2/reports/regression_v2_log.txt` → `performance_v2.py` → `describe_v2.py` → 7절의 원고 파이프라인 1~5.
 
-## 9. 중간 프로포절 발표자료 — 완료 (2026-10-27)
-- 구성: `docs/v2/proposal_outline.md`(본문 13장 + 부록 4장, 10분 내외).
-- 산출: `presentation/proposal_v2.pptx` ← `node presentation/build_proposal.js`(수치는 `paper/paper_data.json`에서 읽음, 차트는 PowerPoint 기본 차트). 디자인은 4주차 14조 미션D 발표자료의 체계(장 표시 알약·둥근 카드·파스텔 강조·맑은 고딕, 같은 팔레트)를 따른다(사용자 요청). `presentation/apply_theme.js`는 pptx 스킬의 테마 적용 모듈 사본.
+## 9. 중간 프로포절 발표자료 — 완료 (2026-10-27, 같은 날 재구성)
+- 구성: `docs/v2/proposal_outline.md`. 연구 질문 RQ1~RQ4를 뼈대로 한 본문 16장 + 부록 4장. 결과 장마다 왼쪽 위에 답하는 질문, 오른쪽 위에 방법(머신러닝/조사설계 회귀)을 표시한다.
+- 디자인: `presentation/design/DESIGN.md`. 4주차 14조 미션D 발표자료에서는 시각 요소(짙은 남색 표지, 파스텔 태그, 둥근 패널, 큰 숫자, "읽는 법" 막대)만 가져오고 장 구성은 가져오지 않았다(사용자 요청). 참고한 스킬: frontend-design, hallmark, ui-ux-pro-max, slides·design-system(`~/.claude/skills`), Apple DESIGN.md(`presentation/design/reference/`, getdesign.md).
+- 산출: `presentation/proposal_v2.pptx` ← `python -X utf8 presentation/make_figures.py && node presentation/build_proposal.js`. 수치는 `paper/paper_data.json`에서 읽는다. 막대 차트는 PowerPoint 기본 차트, 신뢰구간·히트맵·조합·점수·두 렌즈 비교는 발표용으로 다시 그린 그림(`presentation/figures/`). `presentation/apply_theme.js`는 pptx 스킬의 테마 적용 모듈 사본.
 - 점검: 스키마 검증 통과, PowerPoint로 전 장을 PNG로 내보내 글자 넘침·정렬 확인.
 - 저자가 채울 항목: 표지의 `[팀명 · 발표자]`.

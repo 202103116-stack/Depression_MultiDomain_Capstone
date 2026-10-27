@@ -23,3 +23,9 @@ report_v3/node_modules/
 
 # 발표자료 생성용 node 패키지
 presentation/node_modules/
+
+# 발표 디자인 참고 자료(제3자 작성 DESIGN.md, 저장소에 포함하지 않음)
+presentation/design/reference/
+
+# PowerPoint 잠금 파일
+~$*
