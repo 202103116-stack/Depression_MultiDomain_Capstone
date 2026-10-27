@@ -72,15 +72,16 @@ SPEC = [  # (회귀 열, 기준범주, 영역, 한글명) — 기준범주는 �
     ("hl_explain", "쉬움", "care", "의료진 설명 이해"), ("hl_written", "쉬움", "care", "건강정보 글 이해"),
     ("hl_seek", "쉬움", "care", "건강정보 찾기"),
 ]
-MODIFIABLE = dict(zip(FEATURES["name"], FEATURES["modifiable"]))
-MODIFIABLE.update({"age_grp": False, "inc_q": True, "bmi_grp": True, "drinking": True, "walk_ok": True,
-                   "aerobic_ok": True, "strength_ok": True, "high_risk_drinking": True})
+# 수정 유형(A 개인 행동 / B 서비스·정책·환경 / C 바꿀 수 없음) — preprocess_v2.MOD_TYPE, 회귀용 재코딩 열 보충
+MOD_TYPE = dict(zip(FEATURES["name"], FEATURES["mod_type"]))
+MOD_TYPE.update({"age_grp": "C", "inc_q": "B", "bmi_grp": "B", "drinking": "A", "walk_ok": "A",
+                 "aerobic_ok": "A", "strength_ok": "A", "high_risk_drinking": "A"})
 
 
 def actionable(t: pd.DataFrame) -> pd.Series:
     """제언 대상 수준: 수정 가능 변수 중 행동으로 바꿀 수 없는 수준(모름, 필요 없었음, 직업군)은 뺀다."""
     not_action = t["level"].isin(["모름", "필요 없었음"]) | ((t["var"] == "occupation") & (t["level"] != "비경제활동"))
-    return (t["modifiable"] == True) & ~not_action  # noqa: E712
+    return t["mod_type"].isin(["A", "B"]) & ~not_action
 
 
 def design(r: pd.DataFrame, spec) -> tuple[pd.DataFrame, list[dict]]:
@@ -94,7 +95,7 @@ def design(r: pd.DataFrame, spec) -> tuple[pd.DataFrame, list[dict]]:
             col = f"{var}={lv}"
             cols[col] = (x == lv).astype(float).where(x.notna())
             info.append({"term": col, "var": var, "level": lv, "ref": ref, "domain": dom, "name": name,
-                         "modifiable": MODIFIABLE.get(var)})
+                         "mod_type": MOD_TYPE.get(var), "modifiable": MOD_TYPE.get(var) in ("A", "B")})
     return pd.DataFrame(cols, index=r.index), info
 
 
@@ -106,23 +107,34 @@ def fit(X, d, domain_mask) -> SurveyLogit:
 # ---------------------------------------------------------------------------
 # (2) 신체활동 × 생활요인 조합
 # ---------------------------------------------------------------------------
-PARTNERS = [  # (이름, 영역, 충족 정의, 증상근접 여부)
-    ("친구와 주 1회 이상 연락", "social", lambda d: (d["contact_friend"] >= 4).astype(float).where(d["contact_friend"].notna()), False),
-    ("이웃을 신뢰함", "social", lambda d: (d["neighbor_trust"] == 1).astype(float).where(d["neighbor_trust"].notna()), False),
-    ("비흡연(현재 흡연 아님)", "behav", lambda d: (d["smoking_status"] != 2).astype(float).where(d["smoking_status"].notna()), False),
-    ("고위험음주 아님", "behav", lambda d: (d["high_risk_drinking"] == 0).astype(float).where(d["high_risk_drinking"].notna()), False),
-    ("아침식사 주 5회 이상", "behav", lambda d: (d["breakfast"] == 1).astype(float).where(d["breakfast"].notna()), False),
-    ("동네가 안전하다고 느낌", "env", lambda d: (d["env_safety"] == 1).astype(float).where(d["env_safety"].notna()), False),
-    ("주중 수면 7~9시간", "proximal", lambda d: d["sleep_weekday"].between(7, 9).astype(float).where(d["sleep_weekday"].notna()), True),
+def _yes(col, val=1):
+    return lambda d: (d[col] == val).astype(float).where(d[col].notna())
+
+
+# 생활요인 선정 규칙(decision_log D-38): ① 개인 행동(수정 유형 A) ② Zhao et al.(2023)의 우울 관련 건강 생활 영역
+# ③ 지침서 지표·공중보건 권고로 충족 기준이 정해짐 ④ 영역당 대표 문항 1개 ⑤ 증상근접은 민감도로만.
+# 신체활동은 기준축(pa_guideline), 좌식행동은 2025 조사에 문항이 없다.
+PARTNERS = [  # (이름, Zhao 영역, 충족 정의, 증상근접 여부)
+    ("담배제품 미사용", "흡연", _yes("tobacco_free"), False),
+    ("고위험음주 아님", "음주", _yes("high_risk_drinking", 0), False),
+    ("아침식사 주 5회 이상", "식생활", _yes("breakfast"), False),
+    ("사회적 연결", "사회적 연결", _yes("social_connected"), False),
+    ("주중 수면 7~9시간", "수면", lambda d: d["sleep_weekday"].between(7, 9).astype(float).where(d["sleep_weekday"].notna()), True),
 ]
+# 생활습관이 아닌 사회·환경 맥락 요인 — 조합 분석은 부록에만 보고
+CONTEXT_PARTNERS = [
+    ("이웃을 신뢰함", "사회 맥락", _yes("neighbor_trust"), False),
+    ("동네가 안전하다고 느낌", "환경 맥락", _yes("env_safety"), False),
+]
+MIN_CELL = 1000  # 개수 점수 칸의 최소 인원 — 미만이면 이웃 칸과 합친다
 COMBO_ADJUST = [s for s in SPEC if s[2] in ("demo", "econ", "phys")]  # 조합 분석의 조정변수: 인구·경제·신체건강
 
 
-def combo_analysis(d: pd.DataFrame, r: pd.DataFrame, in_sample: np.ndarray, pa_col="pa_guideline"):
+def combo_analysis(d: pd.DataFrame, r: pd.DataFrame, in_sample: np.ndarray, pa_col="pa_guideline", partners=PARTNERS):
     Xadj, _ = design(r, COMBO_ADJUST)
     pa = d[pa_col]
     rows, cells = [], []
-    for name, dom, fn, proximal in PARTNERS:
+    for name, dom, fn, proximal in partners:
         f = fn(d)
         X = Xadj.copy()
         X["PA"], X["F"] = pa, f
@@ -157,35 +169,71 @@ def combo_analysis(d: pd.DataFrame, r: pd.DataFrame, in_sample: np.ndarray, pa_c
     return pd.DataFrame(rows), pd.DataFrame(cells)
 
 
-def lifestyle_count(d, r, in_sample):
-    """신체활동 권고 + 수정 가능한 생활요인(증상근접 제외 6개) 충족 개수별 조정 유병률."""
-    parts = [fn(d) for name, dom, fn, prox in PARTNERS if not prox]
-    stack = pd.concat([d["pa_guideline"]] + parts, axis=1)
+def count_bins(count: pd.Series, in_sample: np.ndarray) -> list[tuple[int, int]]:
+    """양 끝 칸이 MIN_CELL명 미만이면 안쪽 칸과 합친다. 반환: [(하한, 상한), ...]."""
+    vals = sorted(int(v) for v in count.dropna().unique())
+    bins = [[v, v] for v in vals]
+    n = lambda b: int((count.between(b[0], b[1]) & in_sample).sum())
+    while len(bins) > 2 and n(bins[0]) < MIN_CELL:
+        lo = bins.pop(0)[0]
+        bins[0][0] = lo
+    while len(bins) > 2 and n(bins[-1]) < MIN_CELL:
+        hi = bins.pop()[1]
+        bins[-1][1] = hi
+    assert all(n(b) >= MIN_CELL for b in bins), "개수 칸 최소 인원 미달"
+    return [tuple(b) for b in bins]
+
+
+def count_score(d, r, in_sample, factors: list[pd.Series], label: str):
+    """비가중 합산 점수(충족한 요인 수 — 순서 개념 없음)별 조정 유병률, 결합 검정, 1개 증가당 OR."""
+    stack = pd.concat(factors, axis=1)
     count = stack.sum(axis=1).where(stack.notna().all(axis=1))
-    grp = count.clip(upper=6).map(lambda k: f"{int(k)}개" if k < 6 else "6~7개")
+    bins = count_bins(count, in_sample)
+    names = [f"{lo}개" if lo == hi else f"{lo}~{hi}개" for lo, hi in bins]
+    grp = pd.Series(np.nan, index=count.index, dtype=object)
+    for (lo, hi), nm in zip(bins, names):
+        grp[count.between(lo, hi)] = nm
     Xadj, _ = design(r, COMBO_ADJUST)
-    levels = sorted(grp.dropna().unique())
-    ref = levels[0]
     X = Xadj.copy()
-    for lv in levels[1:]:
-        X[f"cnt={lv}"] = (grp == lv).astype(float).where(grp.notna())
+    for nm in names[1:]:
+        X[f"cnt={nm}"] = (grp == nm).astype(float).where(grp.notna())
     mdl = fit(X, d, in_sample)
-    terms = [f"cnt={lv}" for lv in levels[1:]]
+    terms = [f"cnt={nm}" for nm in names[1:]]
     cf = {}
-    for lv in levels:
+    for nm in names:
         Xc = mdl.X.copy()
         for t in terms:
             Xc[:, mdl.names.index(t)] = 0.0
-        if lv != ref:
-            Xc[:, mdl.names.index(f"cnt={lv}")] = 1.0
-        cf[lv] = Xc
+        if nm != names[0]:
+            Xc[:, mdl.names.index(f"cnt={nm}")] = 1.0
+        cf[nm] = Xc
     mg = mdl.margins(cf)
+    # 1개 증가당 OR(선형 추세) — 같은 조정변수, 점수를 연속형으로
+    Xt = Xadj.copy()
+    Xt["cnt"] = count
+    trend = fit(Xt, d, in_sample).table().set_index("term").loc["cnt"]
     rows = []
-    for lv in levels:
-        e, lo, hi, _ = mdl.contrast(*mg[lv])
-        rows.append({"healthy_factors": lv, "adj_prev": e, "low": lo, "high": hi,
-                     "n": int(((grp == lv) & in_sample).sum())})
-    return pd.DataFrame(rows), mdl.wald(terms)
+    for nm in names:
+        e, lo, hi, _ = mdl.contrast(*mg[nm])
+        rows.append({"score": label, "healthy_factors": nm, "adj_prev": e, "low": lo, "high": hi,
+                     "n": int(((grp == nm) & in_sample).sum())})
+    summary = {"score": label, "n_factors": len(factors), "wald_p": mdl.wald(terms)["p"],
+               "trend_OR": trend["OR"], "trend_low": trend["OR_low"], "trend_high": trend["OR_high"], "trend_p": trend["p"]}
+    return pd.DataFrame(rows), summary
+
+
+def lifestyle_count(d, r, in_sample):
+    """주 점수(신체활동 권고 + 증상근접이 아닌 생활요인 4개)와 민감도(하나씩 빼기, 수면 포함)."""
+    main = [("신체활동 권고", d["pa_guideline"])] + [(n, fn(d)) for n, _, fn, prox in PARTNERS if not prox]
+    sleep = [(n, fn(d)) for n, _, fn, prox in PARTNERS if prox]
+    tab, summ = count_score(d, r, in_sample, [s for _, s in main], "주 분석")
+    tabs, summs = [tab], [summ]
+    for i, (drop, _) in enumerate(main):
+        t, s = count_score(d, r, in_sample, [s for j, (_, s) in enumerate(main) if j != i], f"{drop} 제외")
+        tabs.append(t), summs.append(s)
+    t, s = count_score(d, r, in_sample, [s for _, s in main + sleep], "수면 포함")
+    tabs.append(t), summs.append(s)
+    return pd.concat(tabs, ignore_index=True), pd.DataFrame(summs)
 
 
 # ---------------------------------------------------------------------------
@@ -201,7 +249,10 @@ def plot_forest(tab: pd.DataFrame):
     for yi, (_, row) in enumerate(t.iterrows()):
         c = DOMAIN_COLORS[row["domain"]]
         ax.plot([row["OR_low"], row["OR_high"]], [yi, yi], color=c, lw=2)
-        ax.plot(row["OR"], yi, "o", color=c, ms=7)
+        if row["mod_type"] == "A":  # 개인 행동 = 채운 원, 서비스·정책·환경 = 빈 사각형
+            ax.plot(row["OR"], yi, "o", color=c, ms=7)
+        else:
+            ax.plot(row["OR"], yi, "s", mfc="white", mec=c, mew=1.8, ms=7)
         ax.text(max(row["OR_high"], 1) * 1.03, yi, f"{row['OR']:.2f} [{row['OR_low']:.2f}, {row['OR_high']:.2f}]",
                 va="center", fontsize=7.5, color=INK)
     ax.axvline(1, color=INK_MUTED, ls="--", lw=1)
@@ -210,8 +261,11 @@ def plot_forest(tab: pd.DataFrame):
     ax.xaxis.set_minor_formatter(NullFormatter())
     ticks = [0.5, 0.7, 1, 1.5, 2, 3, 5]
     ax.set_xticks(ticks, [str(x) for x in ticks])
-    handles = [plt.Line2D([], [], color=DOMAIN_COLORS[d], marker="o", lw=2) for d in MAIN_DOMAINS if d != "demo"]
-    ax.legend(handles, [DOMAINS[d] for d in MAIN_DOMAINS if d != "demo"], loc="lower right", fontsize=8)
+    handles = [plt.Line2D([], [], color=DOMAIN_COLORS[d], lw=2) for d in MAIN_DOMAINS if d != "demo"]
+    handles += [plt.Line2D([], [], color=INK, marker="o", ls="none", ms=7),
+                plt.Line2D([], [], color=INK, marker="s", mfc="white", mew=1.8, ls="none", ms=7)]
+    ax.legend(handles, [DOMAINS[d] for d in MAIN_DOMAINS if d != "demo"] + ["A 개인 행동", "B 서비스·정책·환경"],
+              loc="lower right", fontsize=8)
     ax.set_xlabel("조정 오즈비 (95% CI, 로그축) — 7개 영역 동시 조정, 조사설계 반영")
     ax.grid(axis="y", visible=False)
     ax.set_title("바꿀 수 있는 요인 중 우울 증상과 연관이 큰 30개 수준 (p<0.05, |log OR| 순)", loc="left",
@@ -221,8 +275,9 @@ def plot_forest(tab: pd.DataFrame):
     plt.close(fig)
 
 
-def plot_combos(summary: pd.DataFrame, cells: pd.DataFrame, count: pd.DataFrame):
+def plot_combos(summary: pd.DataFrame, cells: pd.DataFrame, count_all: pd.DataFrame):
     plt = setup_matplotlib()
+    count = count_all[count_all["score"] == "주 분석"].reset_index(drop=True)
     fig, axes = plt.subplots(1, 2, figsize=(16, 6.5), gridspec_kw={"width_ratios": [1.4, 1]})
     ax = axes[0]
     order = summary.sort_values("prev_both")["partner"].tolist()
@@ -245,9 +300,17 @@ def plot_combos(summary: pd.DataFrame, cells: pd.DataFrame, count: pd.DataFrame)
                 yerr=[(count["adj_prev"] - count["low"]) * 100, (count["high"] - count["adj_prev"]) * 100],
                 fmt="none", ecolor="#333", capsize=3)
     for i, (v, n) in enumerate(zip(count["adj_prev"] * 100, count["n"])):
-        ax.text(i, v + 0.15, f"{v:.1f}%\n(n={n:,})", ha="center", fontsize=7.5)
+        ax.text(i + 0.32, v, f"{v:.1f}%\n(n={n:,})", ha="left", va="center", fontsize=7.5)
+    # 하나씩 빼기 민감도: 요인 1개를 뺀 4점 척도 — 같은 개수 축에 회색 선으로
+    for sc, g in count_all[count_all["score"].str.endswith("제외")].groupby("score", sort=False):
+        xs = [list(count["healthy_factors"]).index(h) if h in set(count["healthy_factors"]) else None
+              for h in g["healthy_factors"]]
+        pts = [(x, v) for x, v in zip(xs, g["adj_prev"] * 100) if x is not None]
+        ax.plot(*zip(*pts), color=INK_MUTED, lw=0.9, alpha=0.7, marker=".", ms=4)
+    ax.plot([], [], color=INK_MUTED, lw=0.9, marker=".", label="요인 1개씩 뺀 점수(민감도)")
+    ax.legend(loc="upper right", fontsize=8)
     ax.set_xticks(range(len(count)), count["healthy_factors"])
-    ax.set_xlabel("충족한 건강 생활요인 개수 (신체활동 권고 + 6개 생활요인)")
+    ax.set_xlabel("충족한 건강 생활요인 수 (신체활동 권고 + 생활요인 4개, 비가중 합산)")
     ax.set_ylabel("조정 유병률(%)")
     ax.grid(axis="x", visible=False)
     ax.set_title("(b) 건강 생활요인 개수별 조정 유병률", loc="left")
@@ -280,7 +343,9 @@ def main():
 
     # (2) 조합 분석
     summary, cells = combo_analysis(d, r, in_sample)
-    count, count_test = lifestyle_count(d, r, in_sample)
+    ctx_summary, ctx_cells = combo_analysis(d, r, in_sample, partners=CONTEXT_PARTNERS)
+    count_all, count_summary = lifestyle_count(d, r, in_sample)
+    count = count_all[count_all["score"] == "주 분석"]
 
     V2_REPORT.mkdir(parents=True, exist_ok=True)
     t.to_csv(V2_REPORT / "reg_v2_full_or.csv", index=False, encoding="utf-8-sig", float_format="%.5f")
@@ -288,9 +353,13 @@ def main():
     summary.to_csv(V2_REPORT / "reg_v2_pa_combo_summary.csv", index=False, encoding="utf-8-sig", float_format="%.5f")
     cells.to_csv(V2_REPORT / "reg_v2_pa_combo_cells.csv", index=False, encoding="utf-8-sig", float_format="%.5f")
     count.to_csv(V2_REPORT / "reg_v2_lifestyle_count.csv", index=False, encoding="utf-8-sig", float_format="%.5f")
+    count_all.to_csv(V2_REPORT / "reg_v2_lifestyle_count_sens.csv", index=False, encoding="utf-8-sig", float_format="%.5f")
+    count_summary.to_csv(V2_REPORT / "reg_v2_lifestyle_count_summary.csv", index=False, encoding="utf-8-sig",
+                         float_format="%.6g")
+    ctx_summary.to_csv(V2_REPORT / "reg_v2_context_combo_summary.csv", index=False, encoding="utf-8-sig", float_format="%.5f")
     V2_FIG.mkdir(parents=True, exist_ok=True)
     plot_forest(t)
-    plot_combos(summary, cells, count)
+    plot_combos(summary, cells, count_all)
 
     print("\n[변수별 결합 검정 p<0.001, F 상위 25]")
     print(var_tests.sort_values("F", ascending=False).head(25).round(4).to_string(index=False))
@@ -302,8 +371,12 @@ def main():
     print("\n[신체활동 × 생활요인 조합]")
     print(summary[["partner", "prev_both", "prev_neither", "joint_diff", "joint_low", "joint_high",
                    "additive_interaction", "add_p", "mult_interaction_p"]].round(4).to_string(index=False))
-    print("\n[건강 생활요인 개수]", f"결합 검정 p={count_test['p']:.2e}")
-    print(count.round(4).to_string(index=False))
+    print("\n[건강 생활요인 개수 — 요약]")
+    print(count_summary.to_string(index=False))
+    print(count_all.round(4).to_string(index=False))
+    print("\n[맥락 요인 조합]")
+    print(ctx_summary[["partner", "prev_both", "prev_neither", "joint_diff", "add_p", "mult_interaction_p"]]
+          .round(4).to_string(index=False))
 
 
 if __name__ == "__main__":

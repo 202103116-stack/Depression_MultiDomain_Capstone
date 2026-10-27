@@ -12,7 +12,7 @@ import pandas as pd
 
 import common  # noqa: F401
 from common import DOMAINS, V2_DOCS, V2_REPORT, load_v2_table
-from preprocess_v2 import VARIABLE_META_V2
+from preprocess_v2 import MOD_TYPE_LABELS, VARIABLE_META_V2
 
 ROLE_LABELS = {"id": "식별자", "design": "조사설계", "outcome": "결과변수", "meta": "메타", **DOMAINS}
 
@@ -47,6 +47,7 @@ def main():
             "변수명": m["name"], "한글설명": m["label"], "영역": ROLE_LABELS.get(m["domain"], m["domain"]),
             "모형투입": {"num": "수치형", "cat": "범주형"}.get(m["kind"], "미투입"),
             "수정가능": "" if pd.isna(m["modifiable"]) else ("예" if m["modifiable"] else "아니오"),
+            "수정유형": "" if pd.isna(m["mod_type"]) else f"{m['mod_type']} {MOD_TYPE_LABELS[m['mod_type']]}",
             "원본변수": m["source"], "파생로직": m["logic"], "값_분포": summarize(m["name"], m["kind"], col),
             "결측수": int(col.isna().sum()), "결측비율(%)": round(col.isna().mean() * 100, 2),
         })
@@ -56,7 +57,9 @@ def main():
 
     feats = VARIABLE_META_V2[VARIABLE_META_V2["kind"].notna()]
     dom = (feats.groupby("domain", sort=False)
-           .agg(변수수=("name", "size"), 수정가능=("modifiable", lambda x: int((x == True).sum())))
+           .agg(변수수=("name", "size"), A_개인행동=("mod_type", lambda x: int((x == "A").sum())),
+                B_서비스정책환경=("mod_type", lambda x: int((x == "B").sum())),
+                C_바꿀수없음=("mod_type", lambda x: int((x == "C").sum())))
            .rename(index=DOMAINS).reset_index().rename(columns={"domain": "영역"}))
     w_prev = np.average(s["Y"], weights=s["wt_p"])
 

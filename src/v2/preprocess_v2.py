@@ -91,6 +91,8 @@ meta("binge_freq", "폭음 빈도", "behav", "num", True, "drb_04z1(남), drb_05
      "0=최근 1년 음주 안 함, 1=폭음 전혀 없음 … 5=거의 매일 (남 7잔·여 5잔 기준)")
 meta("high_risk_drinking", "고위험음주", "behav", None, True, "dra_01z1, drb_01z3, drb_03z1",
      "지침서 dr_a0500: 주 2회 이상 & 1회 남 7잔·여 5잔 이상")
+meta("tobacco_free", "담배제품 현재 미사용", "behav", None, True, "smoking_status, ecig_current",
+     "궐련 현재흡연(sm_a0100)도 전자담배 현재 사용도 아님 = 1 (지침서 '담배제품 현재 사용률'의 반대) — 생활요인 분석용")
 meta("breakfast", "아침식사 빈도", "behav", "num", True, "nua_01z2", "1=주5~7회 … 4=거의 안 함")
 meta("weight_control", "체중조절 노력", "behav", "cat", True, "obb_01z1", "1=감량, 2=유지, 3=증량, 4=노력 안 함")
 meta("brushing_lunch", "점심 후 칫솔질", "behav", "cat", True, "ord_01d2", "1=예, 2=아니오, 3=점심 안 먹음")
@@ -99,6 +101,10 @@ meta("contact_family", "친척과 연락 빈도", "social", "cat", True, "enb_01
 meta("contact_neighbor", "이웃과 연락 빈도", "social", "cat", True, "enb_02z1", "1~6")
 meta("contact_friend", "친구와 연락 빈도", "social", "cat", True, "enb_03z1", "1~6")
 meta("friend_weekly", "친구와 주 1회 이상 연락", "social", None, True, "enb_03z1", "1차와 동일 — 조합 분석용")
+meta("social_isolation", "사회적 고립 지수(0~3)", "social", None, True, "fma_19z3, enb_01z1, enb_03z1, ena_01b1",
+     "1인 가구 + 친척·친구 모두 월 1회 이하 연락 + 이웃 경조사 불참(Zhao et al., 2023의 고립 지수 대응)")
+meta("social_connected", "사회적 연결(고립 지수 0~1)", "social", None, True, "social_isolation",
+     "고립 지수 0~1 = 1 (Zhao et al., 2023의 frequent social connection) — 생활요인 분석용")
 meta("neighbor_trust", "이웃 간 신뢰", "social", "cat", True, "ena_01a1", "1=예, 2=아니오, 9=모름(별도 범주)")
 meta("neighbor_events", "이웃 경조사 참여", "social", "cat", True, "ena_01b1", "1=예, 2=아니오, 9=모름")
 meta("dementia_care", "치매환자 가족", "social", "cat", False, "fma_27z1, fma_26z1",
@@ -140,7 +146,31 @@ meta("cognitive_decline", "인지장애(기억력 감소) 경험", "proximal", "
 # 메타
 meta("split", "학습/시험 구분", "meta", None, None, "household_key", "1차 분할을 가구 단위로 그대로 승계")
 
+# 수정 유형(decision_log D-37): A=개인 행동, B=서비스·정책·환경으로 개선 가능한 현재 상태,
+# C=고정 속성·과거 진단·거주 구조. 근거는 제6차 국민건강증진종합계획(HP2030)의 분야·중점과제 대응.
+MOD_TYPE = {
+    **dict.fromkeys(["age", "sex", "educ", "marital", "hh_type", "htn", "dm", "osteo", "dementia_care",
+                     "urban_type", "housing", "region", "eq_mobility", "eq_selfcare", "eq_usual", "eq_pain",
+                     "bedridden", "cognitive_decline"], "C"),
+    **dict.fromkeys(["log_income_equiv", "livelihood", "food_insecurity", "occupation", "emp_status", "bmi",
+                     "body_image", "oral_health", "chewing", "fall", "injury", "neighbor_trust", "env_safety",
+                     "env_nature", "env_living", "env_transport", "env_medical", "unmet_medical", "unmet_dental",
+                     "hl_explain", "hl_written", "hl_seek", "stress", "self_rated_health", "happiness"], "B"),
+    **dict.fromkeys(["walk_days", "strength_code", "vig_days", "mod_days", "log_met_min", "walk_ok", "strength_ok",
+                     "aerobic_ok", "pa_guideline", "activity_combo", "smoking_status", "ecig_current", "tobacco_free",
+                     "drinking_freq", "binge_freq", "high_risk_drinking", "breakfast", "weight_control",
+                     "brushing_lunch", "contact_family", "contact_neighbor", "contact_friend", "friend_weekly",
+                     "social_isolation", "social_connected", "neighbor_events", "checkup", "flu_vax",
+                     "public_health_use", "sleep_weekday", "sleep_weekend", "internet_interf", "gambling_interf"], "A"),
+}
+MOD_TYPE_LABELS = {"A": "개인 행동", "B": "서비스·정책·환경", "C": "바꿀 수 없음"}
+
 VARIABLE_META_V2 = pd.DataFrame(M)
+VARIABLE_META_V2["mod_type"] = VARIABLE_META_V2["name"].map(MOD_TYPE)
+_has_flag = VARIABLE_META_V2["modifiable"].notna()
+assert VARIABLE_META_V2.loc[_has_flag, "mod_type"].notna().all(), "수정 유형이 빠진 변수가 있음"
+assert (VARIABLE_META_V2.loc[_has_flag, "modifiable"] == (VARIABLE_META_V2.loc[_has_flag, "mod_type"] != "C")).all(), \
+    "수정가능 표시와 수정 유형이 어긋남"
 FEATURES = VARIABLE_META_V2[VARIABLE_META_V2["kind"].notna()]
 
 
@@ -359,11 +389,30 @@ def validate_v2(df: pd.DataFrame) -> None:
     # 공식 지표 파생 결과 범위 점검
     assert set(s["smoking_status"].dropna().unique()) <= {0, 1, 2}
     assert set(s["high_risk_drinking"].dropna().unique()) <= {0, 1}
+    assert set(s["tobacco_free"].dropna().unique()) <= {0, 1}
+    assert set(s["social_isolation"].dropna().unique()) <= {0, 1, 2, 3}
+    assert ((s["tobacco_free"] == 0) == ((s["smoking_status"] == 2) | (s["ecig_current"] == 1)))[s["tobacco_free"].notna()].all()
     assert s["occupation"].notna().mean() > 0.999 and (s["occupation"] == 0).sum() == (s["emp_status"] == 0).sum()
     # 모든 모형 투입 변수 결측률 5% 미만
     feats = list(FEATURES["name"])
     miss = s[feats].isna().mean()
     assert (miss < 0.05).all(), f"결측률 5% 초과: {miss[miss >= 0.05].to_dict()}"
+
+
+def build_lifestyle(df: pd.DataFrame) -> pd.DataFrame:
+    """생활요인 분석용 파생(decision_log D-38): 담배제품 미사용, 사회적 고립 지수(Zhao et al., 2023 대응)."""
+    tobacco = ((df["smoking_status"] != 2) & (df["ecig_current"] == 0)).astype(float)
+    tobacco = tobacco.where(df["smoking_status"].notna() & df["ecig_current"].notna())
+    # 연락 빈도 1=월1회 미만, 2=월1회 → "월 1회 이하"는 친척·친구 모두 2 이하
+    contact = df[["contact_family", "contact_friend"]]
+    items = pd.DataFrame({
+        "alone": (df["hh_type"] == 1).astype(float).where(df["hh_type"].notna()),
+        "infrequent": (contact.max(axis=1) <= 2).astype(float).where(contact.notna().all(axis=1)),
+        "no_activity": (df["neighbor_events"] != 1).astype(float).where(df["neighbor_events"].notna()),
+    })
+    iso = items.sum(axis=1).where(items.notna().all(axis=1))
+    return pd.DataFrame({"tobacco_free": tobacco, "social_isolation": iso,
+                         "social_connected": (iso <= 1).astype(float).where(iso.notna())})
 
 
 def build_v2_table(raw: pd.DataFrame) -> pd.DataFrame:
@@ -372,6 +421,7 @@ def build_v2_table(raw: pd.DataFrame) -> pd.DataFrame:
         build_identifiers(raw), build_outcome(raw), act, build_contact(raw), build_controls(raw),
         build_physical_activity(raw, act), build_smoking(raw), build_drinking(raw), build_new_domains(raw),
     ], axis=1)
+    df = pd.concat([df, build_lifestyle(df)], axis=1)
     df["split"] = inherit_split(df)
     return df[list(VARIABLE_META_V2["name"])]
 
