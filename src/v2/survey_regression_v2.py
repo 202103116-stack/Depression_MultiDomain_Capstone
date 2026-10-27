@@ -111,14 +111,15 @@ def _yes(col, val=1):
     return lambda d: (d[col] == val).astype(float).where(d[col].notna())
 
 
-# 생활요인 선정 규칙(decision_log D-38): ① 개인 행동(수정 유형 A) ② Zhao et al.(2023)의 우울 관련 건강 생활 영역
-# ③ 지침서 지표·공중보건 권고로 충족 기준이 정해짐 ④ 영역당 대표 문항 1개 ⑤ 증상근접은 민감도로만.
-# 신체활동은 기준축(pa_guideline), 좌식행동은 2025 조사에 문항이 없다.
+# 생활요인 선정 규칙(decision_log D-38): ① 개인 행동(수정 유형 A) ② 생활 영역 — Zhao et al.(2023)의 우울 관련 7개 영역과
+# HP2030 건강생활 실천 5개 분야(금연·절주·영양·신체활동·구강건강)의 합집합 8개 ③ 지침서 지표·공중보건 권고로 충족 기준이 정해짐
+# ④ 영역당 대표 문항 1개 ⑤ 증상근접은 민감도로만. 신체활동은 기준축(pa_guideline), 좌식행동은 2025 조사에 문항이 없다.
 PARTNERS = [  # (이름, Zhao 영역, 충족 정의, 증상근접 여부)
     ("담배제품 미사용", "흡연", _yes("tobacco_free"), False),
     ("고위험음주 아님", "음주", _yes("high_risk_drinking", 0), False),
     ("아침식사 주 5회 이상", "식생활", _yes("breakfast"), False),
     ("사회적 연결", "사회적 연결", _yes("social_connected"), False),
+    ("저녁 후·잠자기 전 칫솔질", "구강건강", _yes("brush_evening_ok"), False),
     ("주중 수면 7~9시간", "수면", lambda d: d["sleep_weekday"].between(7, 9).astype(float).where(d["sleep_weekday"].notna()), True),
 ]
 # 생활습관이 아닌 사회·환경 맥락 요인 — 조합 분석은 부록에만 보고
@@ -223,7 +224,7 @@ def count_score(d, r, in_sample, factors: list[pd.Series], label: str):
 
 
 def lifestyle_count(d, r, in_sample):
-    """주 점수(신체활동 권고 + 증상근접이 아닌 생활요인 4개)와 민감도(하나씩 빼기, 수면 포함)."""
+    """주 점수(신체활동 권고 + 증상근접이 아닌 생활요인 5개)와 민감도(하나씩 빼기, 수면 포함)."""
     main = [("신체활동 권고", d["pa_guideline"])] + [(n, fn(d)) for n, _, fn, prox in PARTNERS if not prox]
     sleep = [(n, fn(d)) for n, _, fn, prox in PARTNERS if prox]
     tab, summ = count_score(d, r, in_sample, [s for _, s in main], "주 분석")
@@ -301,7 +302,7 @@ def plot_combos(summary: pd.DataFrame, cells: pd.DataFrame, count_all: pd.DataFr
                 fmt="none", ecolor="#333", capsize=3)
     for i, (v, n) in enumerate(zip(count["adj_prev"] * 100, count["n"])):
         ax.text(i + 0.32, v, f"{v:.1f}%\n(n={n:,})", ha="left", va="center", fontsize=7.5)
-    # 하나씩 빼기 민감도: 요인 1개를 뺀 4점 척도 — 같은 개수 축에 회색 선으로
+    # 하나씩 빼기 민감도: 요인 1개를 뺀 점수 — 같은 개수 축에 회색 선으로
     for sc, g in count_all[count_all["score"].str.endswith("제외")].groupby("score", sort=False):
         xs = [list(count["healthy_factors"]).index(h) if h in set(count["healthy_factors"]) else None
               for h in g["healthy_factors"]]
@@ -310,7 +311,7 @@ def plot_combos(summary: pd.DataFrame, cells: pd.DataFrame, count_all: pd.DataFr
     ax.plot([], [], color=INK_MUTED, lw=0.9, marker=".", label="요인 1개씩 뺀 점수(민감도)")
     ax.legend(loc="upper right", fontsize=8)
     ax.set_xticks(range(len(count)), count["healthy_factors"])
-    ax.set_xlabel("충족한 건강 생활요인 수 (신체활동 권고 + 생활요인 4개, 비가중 합산)")
+    ax.set_xlabel("충족한 건강 생활요인 수 (신체활동 권고 + 생활요인 5개, 비가중 합산)")
     ax.set_ylabel("조정 유병률(%)")
     ax.grid(axis="x", visible=False)
     ax.set_title("(b) 건강 생활요인 개수별 조정 유병률", loc="left")

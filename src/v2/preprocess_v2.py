@@ -96,6 +96,10 @@ meta("tobacco_free", "담배제품 현재 미사용", "behav", None, True, "smok
 meta("breakfast", "아침식사 빈도", "behav", "num", True, "nua_01z2", "1=주5~7회 … 4=거의 안 함")
 meta("weight_control", "체중조절 노력", "behav", "cat", True, "obb_01z1", "1=감량, 2=유지, 3=증량, 4=노력 안 함")
 meta("brushing_lunch", "점심 후 칫솔질", "behav", "cat", True, "ord_01d2", "1=예, 2=아니오, 3=점심 안 먹음")
+meta("brushing_evening", "저녁 후·잠자기 전 칫솔질", "behav", None, True, "ord_01f3",
+     "1=예, 2=아니오, 3=어제 저녁식사 또는 잠을 자지 않음 — 생활요인 분석용")
+meta("brush_evening_ok", "저녁 후·잠자기 전 칫솔질 실천", "behav", None, True, "brushing_evening",
+     "1=예 → 1, 2=아니오 → 0, 3(해당 없음)은 결측 (지침서 '저녁식사 후 또는 잠자기 전 칫솔질 실천율')")
 # 사회관계
 meta("contact_family", "친척과 연락 빈도", "social", "cat", True, "enb_01z1", "1=월1회 미만 … 6=주4회 이상(1차와 동일)")
 meta("contact_neighbor", "이웃과 연락 빈도", "social", "cat", True, "enb_02z1", "1~6")
@@ -159,7 +163,7 @@ MOD_TYPE = {
     **dict.fromkeys(["walk_days", "strength_code", "vig_days", "mod_days", "log_met_min", "walk_ok", "strength_ok",
                      "aerobic_ok", "pa_guideline", "activity_combo", "smoking_status", "ecig_current", "tobacco_free",
                      "drinking_freq", "binge_freq", "high_risk_drinking", "breakfast", "weight_control",
-                     "brushing_lunch", "contact_family", "contact_neighbor", "contact_friend", "friend_weekly",
+                     "brushing_lunch", "brushing_evening", "brush_evening_ok", "contact_family", "contact_neighbor", "contact_friend", "friend_weekly",
                      "social_isolation", "social_connected", "neighbor_events", "checkup", "flu_vax",
                      "public_health_use", "sleep_weekday", "sleep_weekend", "internet_interf", "gambling_interf"], "A"),
 }
@@ -300,6 +304,7 @@ def build_new_domains(raw: pd.DataFrame) -> pd.DataFrame:
         "breakfast": _valid(raw["nua_01z2"], range(1, 5)),
         "weight_control": _valid(raw["obb_01z1"], range(1, 5)),
         "brushing_lunch": _valid(raw["ord_01d2"], [1, 2, 3]),
+        "brushing_evening": _valid(raw["ord_01f3"], [1, 2, 3]),
         # 사회관계
         "neighbor_trust": _yn9(raw["ena_01a1"]),
         "neighbor_events": _yn9(raw["ena_01b1"]),
@@ -391,6 +396,8 @@ def validate_v2(df: pd.DataFrame) -> None:
     assert set(s["high_risk_drinking"].dropna().unique()) <= {0, 1}
     assert set(s["tobacco_free"].dropna().unique()) <= {0, 1}
     assert set(s["social_isolation"].dropna().unique()) <= {0, 1, 2, 3}
+    assert set(s["brush_evening_ok"].dropna().unique()) <= {0, 1}
+    assert s.loc[s["brushing_evening"] == 3, "brush_evening_ok"].isna().all()
     assert ((s["tobacco_free"] == 0) == ((s["smoking_status"] == 2) | (s["ecig_current"] == 1)))[s["tobacco_free"].notna()].all()
     assert s["occupation"].notna().mean() > 0.999 and (s["occupation"] == 0).sum() == (s["emp_status"] == 0).sum()
     # 모든 모형 투입 변수 결측률 5% 미만
@@ -400,7 +407,7 @@ def validate_v2(df: pd.DataFrame) -> None:
 
 
 def build_lifestyle(df: pd.DataFrame) -> pd.DataFrame:
-    """생활요인 분석용 파생(decision_log D-38): 담배제품 미사용, 사회적 고립 지수(Zhao et al., 2023 대응)."""
+    """생활요인 분석용 파생(decision_log D-38): 담배제품 미사용, 사회적 고립 지수(Zhao et al., 2023 대응), 저녁 칫솔질."""
     tobacco = ((df["smoking_status"] != 2) & (df["ecig_current"] == 0)).astype(float)
     tobacco = tobacco.where(df["smoking_status"].notna() & df["ecig_current"].notna())
     # 연락 빈도 1=월1회 미만, 2=월1회 → "월 1회 이하"는 친척·친구 모두 2 이하
@@ -411,8 +418,9 @@ def build_lifestyle(df: pd.DataFrame) -> pd.DataFrame:
         "no_activity": (df["neighbor_events"] != 1).astype(float).where(df["neighbor_events"].notna()),
     })
     iso = items.sum(axis=1).where(items.notna().all(axis=1))
+    brush = df["brushing_evening"].map({1: 1.0, 2: 0.0})  # 3=저녁식사·잠을 하지 않음은 해당 없음(결측)
     return pd.DataFrame({"tobacco_free": tobacco, "social_isolation": iso,
-                         "social_connected": (iso <= 1).astype(float).where(iso.notna())})
+                         "social_connected": (iso <= 1).astype(float).where(iso.notna()), "brush_evening_ok": brush})
 
 
 def build_v2_table(raw: pd.DataFrame) -> pd.DataFrame:

@@ -218,7 +218,8 @@ def main():
                  for _, x in opp.iterrows()]
     # 생활요인 충족률(가중) — 선정 대응표용
     lf_cols = {"pa_guideline": "신체활동 권고 충족", "tobacco_free": "담배제품 미사용", "high_risk_drinking": "고위험음주 아님",
-               "breakfast": "아침식사 주 5회 이상", "social_connected": "사회적 연결", "sleep_weekday": "주중 수면 7~9시간"}
+               "breakfast": "아침식사 주 5회 이상", "social_connected": "사회적 연결", "brush_evening_ok": "저녁 후·잠자기 전 칫솔질",
+               "sleep_weekday": "주중 수면 7~9시간"}
     lf = {}
     for col, nm in lf_cols.items():
         x = s[col]
