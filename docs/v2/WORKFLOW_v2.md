@@ -202,3 +202,15 @@
   - 하위집단 AP: 남 0.262 / 여 0.294 / 19~39세 0.224 / 40~64세 0.257 / 65세 이상 0.324
 - **저자가 채울 항목(노란 표시)**: 저자명·학과, 제출일, 연구비, 이해상충, 생성형 AI 활용 고지, 교신저자, IRB 심의면제 정보, 코드 공개 방식
 - **다시 만들 때**: 분석이 바뀌면 1→2→3→4→5 순서로 다시 실행한다.
+
+## 8. v2 보완과 논문 v2.1 — 완료 (2026-10-27)
+- **사용자 지적 4가지 반영**: 바꿀 수 있는 요인 기준(D-37), 생활요인 선정 규칙(D-38), 개수 점수 정의·민감도(D-39), 선행연구 대비 개선점과 운영점(D-40).
+- **분석**: `preprocess_v2.py`(수정 유형, 담배제품 미사용·사회적 고립 지수 파생), `survey_regression_v2.py`(생활요인·맥락 요인 분리, 점수 민감도), `performance_v2.py`(운영점).
+- **논문**: `paper/manuscript_v2.1.docx`(42쪽, 표 8 + 부록 S1~S6, 참고문헌 24편), `paper/strobe_tripod_checklist_v2.1.docx`. v2 초안(`manuscript_v2.docx`)은 그대로 보존.
+- **다시 만들 때**: `preprocess_v2.py` → `survey_regression_v2.py > outputs/v2/reports/regression_v2_log.txt` → `performance_v2.py` → `describe_v2.py` → 7절의 원고 파이프라인 1~5.
+
+## 9. 중간 프로포절 발표자료 — 완료 (2026-10-27)
+- 구성: `docs/v2/proposal_outline.md`(본문 13장 + 부록 4장, 10분 내외).
+- 산출: `presentation/proposal_v2.pptx` ← `node presentation/build_proposal.js`(수치는 `paper/paper_data.json`에서 읽음, 차트는 PowerPoint 기본 차트). `presentation/apply_theme.js`는 pptx 스킬의 테마 적용 모듈 사본.
+- 점검: 스키마 검증 통과, PowerPoint로 전 장을 PNG로 내보내 글자 넘침·정렬 확인.
+- 저자가 채울 항목: 표지의 `[팀명 · 발표자]`.

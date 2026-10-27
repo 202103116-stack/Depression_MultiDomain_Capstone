@@ -20,3 +20,6 @@ paper/_render/
 
 # v3 브랜치의 node 패키지(브랜치 전환 시 남음)
 report_v3/node_modules/
+
+# 발표자료 생성용 node 패키지
+presentation/node_modules/
