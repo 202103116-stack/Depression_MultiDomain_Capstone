@@ -1,0 +1,464 @@
+{
+  "PHQ_CUTOFF": 10,
+  "audit": {
+    "rows": 231615,
+    "columns": 86,
+    "only_Y_changed_between_thresholds": true,
+    "target_missing": 325,
+    "PHQ5_events": 37030,
+    "PHQ10_events": 8704,
+    "PHQ5_weighted_percent": 16.260148545732473,
+    "PHQ10_weighted_percent": 3.7569423133117064,
+    "n_features_primary": 53,
+    "household_leakage": false,
+    "n_train": 184762,
+    "n_test": 46528
+  },
+  "score6_main": {
+    "adjustment": "신체건강추가",
+    "n_model": 228226,
+    "joint_p": 3.1897061465287603e-109,
+    "trend_OR": 0.6916680064116119,
+    "trend_low": 0.6704299603344321,
+    "trend_high": 0.7135788365644784,
+    "trend_p": 5.9489886121097286e-117
+  },
+  "score6_legacy_reproduction": {
+    "score": "주 분석",
+    "n_factors": 6,
+    "wald_p": 1.80213e-96,
+    "trend_OR": 0.700341,
+    "trend_low": 0.677753,
+    "trend_high": 0.723683,
+    "trend_p": 2.49046e-99,
+    "n_model": 228199
+  },
+  "ML_performance": [
+    {
+      "model": "full__dummy",
+      "AP": 0.03896578404401651,
+      "ROC_AUC": 0.5,
+      "Brier": 0.03745023779220803,
+      "precision@top5%": 0.033949290932531156,
+      "recall@top5%": 0.043574186431329286,
+      "precision@top10%": 0.03546099290780142,
+      "recall@top10%": 0.09100937672366244,
+      "AP_low": 0.037177033673991694,
+      "AP_high": 0.040833613968013695,
+      "AUC_low": 0.5,
+      "AUC_high": 0.5
+    },
+    {
+      "model": "full__logistic",
+      "AP": 0.2764665977776109,
+      "ROC_AUC": 0.8451794749106294,
+      "Brier": 0.03233182349162813,
+      "precision@top5%": 0.29007305543618395,
+      "recall@top5%": 0.3723110865968009,
+      "precision@top10%": 0.2048140984311197,
+      "recall@top10%": 0.5256480970766685,
+      "AP_low": 0.25474287412037544,
+      "AP_high": 0.29954255661145274,
+      "AUC_low": 0.8363122053745091,
+      "AUC_high": 0.854125800612094
+    },
+    {
+      "model": "full__lightgbm",
+      "AP": 0.2758865464975572,
+      "ROC_AUC": 0.8463887886133536,
+      "Brier": 0.03231166456044464,
+      "precision@top5%": 0.293940696175333,
+      "recall@top5%": 0.3772752344180916,
+      "precision@top10%": 0.20696324951644102,
+      "recall@top10%": 0.5311638168781025,
+      "AP_low": 0.2538555608672865,
+      "AP_high": 0.29985238946325515,
+      "AUC_low": 0.8372171948836145,
+      "AUC_high": 0.8554026515661323
+    },
+    {
+      "model": "full+proximal",
+      "AP": 0.4829818052939506,
+      "ROC_AUC": 0.9342832114576975,
+      "Brier": 0.026573432673562037,
+      "precision@top5%": 0.4284486463257413,
+      "recall@top5%": 0.5499172642029785,
+      "precision@top10%": 0.28841607565011823,
+      "recall@top10%": 0.7402095973524545,
+      "AP_low": 0.45891130992708024,
+      "AP_high": 0.5068636300142297,
+      "AUC_low": 0.9293548574864811,
+      "AUC_high": 0.9393928644638548
+    }
+  ],
+  "ML_domain_algorithm": "LightGBM",
+  "ML_domain_deltas": [
+    {
+      "kind": "add",
+      "domain": "econ",
+      "algo": "lightgbm",
+      "dAP": 0.06166979818846191,
+      "low": 0.04933421946806501,
+      "high": 0.07497848431323972
+    },
+    {
+      "kind": "add",
+      "domain": "phys",
+      "algo": "lightgbm",
+      "dAP": 0.08964979898593167,
+      "low": 0.07698324282481157,
+      "high": 0.10417242221082941
+    },
+    {
+      "kind": "add",
+      "domain": "behav",
+      "algo": "lightgbm",
+      "dAP": 0.045517457619914714,
+      "low": 0.03552838787264748,
+      "high": 0.05597462618531895
+    },
+    {
+      "kind": "add",
+      "domain": "social",
+      "algo": "lightgbm",
+      "dAP": 0.045400515910791805,
+      "low": 0.03550288874413547,
+      "high": 0.05668943074180332
+    },
+    {
+      "kind": "add",
+      "domain": "env",
+      "algo": "lightgbm",
+      "dAP": 0.023470942304611553,
+      "low": 0.01634944553342893,
+      "high": 0.031775319414735576
+    },
+    {
+      "kind": "add",
+      "domain": "care",
+      "algo": "lightgbm",
+      "dAP": 0.06569685050493632,
+      "low": 0.05474961634086984,
+      "high": 0.07870087411563398
+    },
+    {
+      "kind": "drop",
+      "domain": "demo",
+      "algo": "lightgbm",
+      "dAP": 0.009748097726077265,
+      "low": 0.004127543041170994,
+      "high": 0.016513595556452862
+    },
+    {
+      "kind": "drop",
+      "domain": "econ",
+      "algo": "lightgbm",
+      "dAP": 0.013771421663387517,
+      "low": 0.004802723550656746,
+      "high": 0.023134919636678273
+    },
+    {
+      "kind": "drop",
+      "domain": "phys",
+      "algo": "lightgbm",
+      "dAP": 0.03901445843252191,
+      "low": 0.029531721461739217,
+      "high": 0.04975336660167409
+    },
+    {
+      "kind": "drop",
+      "domain": "behav",
+      "algo": "lightgbm",
+      "dAP": 0.015806455619649662,
+      "low": 0.007828865473914173,
+      "high": 0.02482011770654733
+    },
+    {
+      "kind": "drop",
+      "domain": "social",
+      "algo": "lightgbm",
+      "dAP": 0.011060693187143755,
+      "low": 0.004439186062619676,
+      "high": 0.01821804188605678
+    },
+    {
+      "kind": "drop",
+      "domain": "env",
+      "algo": "lightgbm",
+      "dAP": 0.0022539241003557975,
+      "low": -0.004964229779981596,
+      "high": 0.00965535050689554
+    },
+    {
+      "kind": "drop",
+      "domain": "care",
+      "algo": "lightgbm",
+      "dAP": 0.01922882948097726,
+      "low": 0.011968770400563274,
+      "high": 0.0270632670209034
+    }
+  ],
+  "economic_score6": [
+    {
+      "adjustment": "인구보정",
+      "n": 230294,
+      "interaction_p": 6.982361186027913e-05,
+      "interaction_df": 16,
+      "trend_OR": 0.618776680706481,
+      "trend_low": 0.600436513316627,
+      "trend_high": 0.6376770434416011
+    },
+    {
+      "adjustment": "신체건강추가",
+      "n": 228226,
+      "interaction_p": 0.025776399390620427,
+      "interaction_df": 16,
+      "trend_OR": 0.6916680064116119,
+      "trend_low": 0.6704299603344321,
+      "trend_high": 0.7135788365644783
+    }
+  ],
+  "reversal_comparisons": [
+    {
+      "adjustment": "인구보정",
+      "K": "0~2",
+      "reference": "5분위K0~2",
+      "difference": 0.12100817962057839,
+      "low": 0.09809612885326743,
+      "high": 0.14392023038788934,
+      "p_unadjusted": 4.858050868598251e-25,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 3.400635608018775e-24,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "인구보정",
+      "K": "0~2",
+      "reference": "5분위평균",
+      "difference": 0.15675602793051888,
+      "low": 0.13808536841222263,
+      "high": 0.17542668744881512,
+      "p_unadjusted": 2.20079944963836e-60,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 2.20079944963836e-59,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "인구보정",
+      "K": "3",
+      "reference": "5분위K0~2",
+      "difference": 0.0434653283636246,
+      "low": 0.026770020756304153,
+      "high": 0.06016063597094505,
+      "p_unadjusted": 3.378733225027778e-07,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 1.689366612513889e-06,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "인구보정",
+      "K": "3",
+      "reference": "5분위평균",
+      "difference": 0.07921317667356509,
+      "low": 0.06973082656691805,
+      "high": 0.08869552678021213,
+      "p_unadjusted": 8.391012212124767e-60,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 7.55191099091229e-59,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "인구보정",
+      "K": "4",
+      "reference": "5분위K0~2",
+      "difference": 0.0020782538788728933,
+      "low": -0.012774650931477177,
+      "high": 0.016931158689222965,
+      "p_unadjusted": 0.7838863293446049,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 0.7838863293446049,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "인구보정",
+      "K": "4",
+      "reference": "5분위평균",
+      "difference": 0.03782610218881338,
+      "low": 0.0323883343036545,
+      "high": 0.04326387007397226,
+      "p_unadjusted": 4.140529910358758e-42,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 3.312423928287006e-41,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "인구보정",
+      "K": "5",
+      "reference": "5분위K0~2",
+      "difference": -0.02609098809970442,
+      "low": -0.04055163775582544,
+      "high": -0.011630338443583401,
+      "p_unadjusted": 0.00040644510665545217,
+      "exploratory_reversal": true,
+      "p_holm_reversal": 0.0012193353199663566,
+      "reversal_after_holm": true
+    },
+    {
+      "adjustment": "인구보정",
+      "K": "5",
+      "reference": "5분위평균",
+      "difference": 0.009656860210236064,
+      "low": 0.005654710190307396,
+      "high": 0.013659010230164734,
+      "p_unadjusted": 2.2680452077086603e-06,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 9.072180830834641e-06,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "인구보정",
+      "K": "6",
+      "reference": "5분위K0~2",
+      "difference": -0.04105994055493919,
+      "low": -0.056024103143050605,
+      "high": -0.026095777966827768,
+      "p_unadjusted": 7.618736308498116e-08,
+      "exploratory_reversal": true,
+      "p_holm_reversal": 4.5712417850988696e-07,
+      "reversal_after_holm": true
+    },
+    {
+      "adjustment": "인구보정",
+      "K": "6",
+      "reference": "5분위평균",
+      "difference": -0.005312092244998703,
+      "low": -0.011483119175826912,
+      "high": 0.0008589346858295056,
+      "p_unadjusted": 0.09156785165258859,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 0.18313570330517717,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "신체건강추가",
+      "K": "0~2",
+      "reference": "5분위K0~2",
+      "difference": 0.06251019248851503,
+      "low": 0.04464239168031282,
+      "high": 0.08037799329671723,
+      "p_unadjusted": 7.254522678379518e-12,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 5.078165874865663e-11,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "신체건강추가",
+      "K": "0~2",
+      "reference": "5분위평균",
+      "difference": 0.08953011359306126,
+      "low": 0.07578401176244354,
+      "high": 0.10327621542367899,
+      "p_unadjusted": 3.742046284408931e-37,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 3.367841655968038e-36,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "신체건강추가",
+      "K": "3",
+      "reference": "5분위K0~2",
+      "difference": 0.022970380052198494,
+      "low": 0.008967078889899104,
+      "high": 0.036973681214497886,
+      "p_unadjusted": 0.0013056781572383595,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 0.005222712628953438,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "신체건강추가",
+      "K": "3",
+      "reference": "5분위평균",
+      "difference": 0.04999030115674473,
+      "low": 0.042459824138702404,
+      "high": 0.057520778174787054,
+      "p_unadjusted": 1.5990113888403618e-38,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 1.5990113888403617e-37,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "신체건강추가",
+      "K": "4",
+      "reference": "5분위K0~2",
+      "difference": 0.0009032419142656276,
+      "low": -0.011922488275174645,
+      "high": 0.0137289721037059,
+      "p_unadjusted": 0.8902114287022428,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 0.9588824660554678,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "신체건강추가",
+      "K": "4",
+      "reference": "5분위평균",
+      "difference": 0.02792316301881186,
+      "low": 0.023034696131351153,
+      "high": 0.032811629906272566,
+      "p_unadjusted": 5.376393793189832e-29,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 4.301115034551866e-28,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "신체건강추가",
+      "K": "5",
+      "reference": "5분위K0~2",
+      "difference": -0.01979701361690922,
+      "low": -0.032418341303188956,
+      "high": -0.007175685930629486,
+      "p_unadjusted": 0.002111942932940664,
+      "exploratory_reversal": true,
+      "p_holm_reversal": 0.006335828798821991,
+      "reversal_after_holm": true
+    },
+    {
+      "adjustment": "신체건강추가",
+      "K": "5",
+      "reference": "5분위평균",
+      "difference": 0.007222907487637011,
+      "low": 0.003228825667007983,
+      "high": 0.01121698930826604,
+      "p_unadjusted": 0.0003941815171101275,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 0.0019709075855506375,
+      "reversal_after_holm": false
+    },
+    {
+      "adjustment": "신체건강추가",
+      "K": "6",
+      "reference": "5분위K0~2",
+      "difference": -0.02958873410613848,
+      "low": -0.043334621393785605,
+      "high": -0.015842846818491352,
+      "p_unadjusted": 2.4641567381019023e-05,
+      "exploratory_reversal": true,
+      "p_holm_reversal": 0.00014784940428611414,
+      "reversal_after_holm": true
+    },
+    {
+      "adjustment": "신체건강추가",
+      "K": "6",
+      "reference": "5분위평균",
+      "difference": -0.002568813001592247,
+      "low": -0.009688464429122148,
+      "high": 0.004550838425937655,
+      "p_unadjusted": 0.4794412330277339,
+      "exploratory_reversal": false,
+      "p_holm_reversal": 0.9588824660554678,
+      "reversal_after_holm": false
+    }
+  ],
+  "scope": "Full-sample LightGBM domain reanalysis; LR comparator, completed full CatBoost benchmark if available; not full six-algorithm replication"
+}

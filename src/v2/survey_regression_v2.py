@@ -217,8 +217,9 @@ def count_score(d, r, in_sample, factors: list[pd.Series], label: str):
     for nm in names:
         e, lo, hi, _ = mdl.contrast(*mg[nm])
         rows.append({"score": label, "healthy_factors": nm, "adj_prev": e, "low": lo, "high": hi,
-                     "n": int(((grp == nm) & in_sample).sum())})
-    summary = {"score": label, "n_factors": len(factors), "wald_p": mdl.wald(terms)["p"],
+                     "n": int(((grp == nm) & in_sample).sum()),
+                     "n_model": int(((grp == nm) & mdl.domain).sum())})
+    summary = {"score": label, "n_factors": len(factors), "n_model": int(mdl.domain.sum()), "wald_p": mdl.wald(terms)["p"],
                "trend_OR": trend["OR"], "trend_low": trend["OR_low"], "trend_high": trend["OR_high"], "trend_p": trend["p"]}
     return pd.DataFrame(rows), summary
 

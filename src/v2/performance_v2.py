@@ -5,6 +5,7 @@
       outputs/v2/reports/ml_operating_points.csv (임계값별 민감도·특이도·정밀도, decision_log D-40)
 """
 from __future__ import annotations
+import argparse
 
 import numpy as np
 import pandas as pd
@@ -82,6 +83,10 @@ def operating_points(y, p, groups, seed=SEED) -> pd.DataFrame:
 
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--primary-only',action='store_true')
+    args=parser.parse_args()
+    algos=['catboost','logistic','dummy'] if args.primary_only else ALGOS
     df = load_v2_table()
     test = df[(df["Y"].notna()) & (df["split"] == "test")].reset_index(drop=True)
     y = test["Y"].astype(int).to_numpy()
@@ -89,7 +94,7 @@ def main():
 
     rows = []
     for s in ["full", "full+proximal"]:
-        for a in ALGOS:
+        for a in algos:
             p = pd.read_csv(V2_RUNS / f"{s}__{a}__cv_pred.csv")["p"].to_numpy()
             assert len(p) == len(y), "예측 길이와 시험셋 크기가 다름"
             (ap_lo, ap_hi), (auc_lo, auc_hi) = group_boot_ci(y, p, groups)

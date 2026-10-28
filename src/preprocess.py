@@ -12,6 +12,7 @@ import pandas as pd
 from sklearn.model_selection import GroupShuffleSplit
 
 from utils import ANALYSIS_TABLE, COMBO_LABELS, PROCESSED_DIR, SEED, UPPERCASE_COLS, load_raw
+from analysis_config import PHQ_CUTOFF, EXPECTED_OUTCOME_COUNTS, OUTCOME_LABEL
 
 PHQ_ITEMS = [f"mtb_07{c}1" for c in "abcdefghi"]
 
@@ -30,7 +31,7 @@ VARIABLE_META = [
     ("kstrata", "층화 변수", "kstrata", "원본 그대로", "조사설계"),
     ("wt_p", "개인 가중치", "wt_p", "원본 그대로. 모집단 수준 기술통계에만 사용", "조사설계"),
     ("phq9_total", "PHQ-9 총점", "mtb_07a1~mtb_07i1", "각 문항 1~4 → 0~3점 변환 후 합산. 9문항 모두 유효할 때만 산출", "결과(보조)"),
-    ("Y", "우울 증상 기준 충족(PHQ-9 ≥ 10)", "phq9_total", "총점 ≥10 → 1, <10 → 0, 총점 결측 → 결측", "결과변수"),
+    ("Y", OUTCOME_LABEL, "phq9_total", f"총점 ≥{PHQ_CUTOFF} → 1, 미만 → 0, 총점 결측 → 결측", "결과변수"),
     ("walk_days", "주간 걷기 일수", "phb_01z1", "0~7 유효, 77/99 → 결측", "핵심 X(구성)"),
     ("walk_min", "1일 걷기 시간(분)", "phb_02z1, phb_03z1",
      "시간(0~24)×60 + 분(0~59). 88(비해당=걷기 0일)·77·99 → 결측", "핵심 X(구성)"),
@@ -94,7 +95,7 @@ def build_identifiers(raw: pd.DataFrame) -> pd.DataFrame:
 def build_outcome(raw: pd.DataFrame) -> pd.DataFrame:
     scores = raw[PHQ_ITEMS].where(raw[PHQ_ITEMS].isin([1, 2, 3, 4])) - 1
     total = scores.sum(axis=1, min_count=len(PHQ_ITEMS))  # 하나라도 결측이면 NaN
-    y = (total >= 10).astype(float).where(total.notna())
+    y = (total >= PHQ_CUTOFF).astype(float).where(total.notna())
     return pd.DataFrame({"phq9_total": total, "Y": y})
 
 
@@ -231,8 +232,11 @@ def validate_raw(raw: pd.DataFrame) -> None:
 
 def validate_derived(df: pd.DataFrame) -> None:
     """섹션 3·4·7: 파생변수 검증 수치."""
-    assert (df["Y"] == 1).sum() == 8704, "PHQ-9 양성 카운트 불일치"
-    assert (df["Y"] == 0).sum() == 222586, "PHQ-9 음성 카운트 불일치"
+    pos, neg = EXPECTED_OUTCOME_COUNTS
+    assert (df["Y"] == 1).sum() == pos, "PHQ-9 양성 카운트 불일치"
+    assert (df["Y"] == 0).sum() == neg, "PHQ-9 음성 카운트 불일치"
+    valid = df['phq9_total'].notna()
+    assert df.loc[valid, 'Y'].eq(df.loc[valid, 'phq9_total'].ge(PHQ_CUTOFF)).all()
     assert df["Y"].isna().sum() == 325, "PHQ-9 결측 카운트 불일치"
     assert df["household_key"].nunique() == 136845, "가구 복합키 고유성 불일치"
 
@@ -243,7 +247,8 @@ def validate_derived(df: pd.DataFrame) -> None:
     for code, (n, n_pos) in expected.items():
         grp = sample[sample["activity_combo"] == code]
         assert len(grp) == n, f"활동조합 {COMBO_LABELS[code]} N 불일치: {len(grp)} != {n}"
-        assert (grp["Y"] == 1).sum() == n_pos, f"활동조합 {COMBO_LABELS[code]} Y=1 불일치"
+        if PHQ_CUTOFF == 10:
+            assert (grp["Y"] == 1).sum() == n_pos, f"활동조합 {COMBO_LABELS[code]} Y=1 불일치"
 
     # Y 유효 & 활동조합 결측 19명 = 걷기 판정 불가(일수 77/99 또는 5일 이상인데 시간 77/99)
     assert (df["Y"].notna() & df["activity_combo"].isna()).sum() == 19

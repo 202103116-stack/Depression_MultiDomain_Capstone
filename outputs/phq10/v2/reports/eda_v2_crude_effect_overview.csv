@@ -1,0 +1,67 @@
+﻿variable,label,domain,max_rate,min_rate,range_pp
+eq_mobility,EQ-5D 운동능력,proximal,41.7869,2.7042,39.0827
+eq_usual,EQ-5D 일상활동,proximal,38.6458,2.7478,35.8980
+eq_selfcare,EQ-5D 자기관리,proximal,35.3999,3.1557,32.2442
+happiness,행복감 지수,proximal,30.5661,0.6345,29.9316
+stress,주관적 스트레스,proximal,30.2720,0.8863,29.3856
+eq_pain,EQ-5D 통증·불편,proximal,30.5326,1.9578,28.5748
+self_rated_health,주관적 건강수준,proximal,28.9604,0.8477,28.1127
+food_insecurity,가구 식품안정성,econ,29.8488,2.5441,27.3047
+chewing,저작불편,phys,21.4993,2.1614,19.3380
+oral_health,주관적 구강건강,phys,16.4042,1.8241,14.5802
+hl_explain,의료진 설명 이해 어려움,care,17.2023,2.6250,14.5773
+bedridden,최근 1달 침상와병,proximal,17.0065,2.9143,14.0922
+livelihood,기초생활수급,econ,15.1696,3.2405,11.9291
+unmet_medical,연간 미충족 의료,care,14.0299,2.1475,11.8824
+hl_written,글로 된 건강정보 이해,care,12.9877,2.5346,10.4531
+hl_seek,건강정보 찾기 어려움,care,12.7786,2.7428,10.0358
+body_image,본인 인지 체형,phys,12.2849,2.6785,9.6064
+internet_interf,인터넷·게임·스마트폰 일상 지장,proximal,12.3852,2.9918,9.3934
+cognitive_decline,인지장애(기억력 감소) 경험,proximal,10.7225,1.9605,8.7620
+educ,교육수준 5분류,demo,11.4370,2.7099,8.7272
+sleep_weekend,주말 하루 수면시간,proximal,9.7702,2.2020,7.5682
+sleep_weekday,주중 하루 수면시간,proximal,8.5456,2.0274,6.5182
+unmet_dental,연간 미충족 치과의료,care,9.0819,2.9548,6.1271
+age,만 나이,demo,8.6539,2.9036,5.7504
+marital,혼인상태,demo,8.2032,2.6390,5.5641
+fall,연간 낙상 경험,phys,8.5035,2.9493,5.5542
+log_income_equiv,log(1+균등화 가구 연소득),econ,7.6517,2.2390,5.4128
+occupation,직업분류,econ,5.9585,0.5878,5.3707
+brushing_lunch,점심 후 칫솔질,behav,8.6011,3.2914,5.3096
+contact_friend,친구와 연락 빈도,social,7.6466,2.6009,5.0457
+env_safety,동네 안전 만족,env,8.1709,3.1273,5.0436
+injury,연간 사고·중독 경험,phys,8.1998,3.3673,4.8325
+log_met_min,log(1+주간 신체활동량 MET-분),behav,7.1283,2.4150,4.7132
+walk_days,주간 걷기 일수,behav,7.4031,2.7879,4.6152
+hh_type,세대유형,demo,6.9792,2.5694,4.4098
+osteo,골다공증 진단,phys,7.6608,3.4341,4.2266
+bmi,체질량지수,phys,6.9495,2.9065,4.0430
+env_living,동네 생활환경 만족,env,7.2649,3.3158,3.9491
+dementia_care,치매환자 가족,social,7.3416,3.5937,3.7479
+emp_status,종사상 지위,econ,5.9585,2.4318,3.5267
+weight_control,체중조절 노력,behav,6.0509,2.5296,3.5213
+binge_freq,폭음 빈도,behav,6.3405,2.8444,3.4961
+contact_family,친척과 연락 빈도,social,6.1892,2.8877,3.3015
+neighbor_trust,이웃 간 신뢰,social,5.8287,2.6883,3.1404
+env_nature,동네 자연환경 만족,env,6.3984,3.2754,3.1230
+gambling_interf,도박으로 인한 일상 지장,proximal,6.1068,3.1415,2.9653
+drinking_freq,음주 빈도,behav,5.3001,2.5939,2.7062
+checkup,최근 2년 건강검진,care,5.7803,3.1779,2.6024
+dm,당뇨병 진단 경험,phys,6.0522,3.4668,2.5854
+strength_code,근력운동 일수 코드,behav,4.4410,1.9150,2.5260
+mod_days,중강도 신체활동 일수,behav,4.5698,2.2803,2.2895
+env_medical,동네 의료서비스 만족,env,5.5204,3.3505,2.1698
+region,시도,env,4.5785,2.4415,2.1370
+vig_days,고강도 신체활동 일수,behav,4.3247,2.1955,2.1292
+contact_neighbor,이웃과 연락 빈도,social,4.4675,2.5629,1.9046
+sex,성별,demo,4.6520,2.8436,1.8084
+ecig_current,전자담배 현재 사용,behav,5.3947,3.6236,1.7711
+smoking_status,흡연 상태,behav,5.0565,3.3050,1.7515
+breakfast,아침식사 빈도,behav,4.8148,3.2476,1.5672
+env_transport,동네 대중교통 만족,env,4.9240,3.3884,1.5357
+housing,주택유형,env,4.6916,3.2308,1.4607
+htn,고혈압 진단 경험,phys,4.7419,3.4305,1.3114
+neighbor_events,이웃 경조사 참여,social,4.1561,2.8447,1.3114
+public_health_use,보건기관 이용,care,4.3738,3.6085,0.7653
+flu_vax,연간 독감 예방접종,care,3.8962,3.6163,0.2799
+urban_type,동/읍·면,env,3.7891,3.7497,0.0394

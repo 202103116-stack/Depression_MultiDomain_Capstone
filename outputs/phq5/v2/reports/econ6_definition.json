@@ -1,0 +1,42 @@
+{
+  "PHQ_CUTOFF": 5,
+  "factors": 6,
+  "K_categories": [
+    "0~2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "income_quintiles": 5,
+  "primary_comparison": [
+    1,
+    5
+  ],
+  "adjustments": {
+    "인구보정": [
+      "age_grp",
+      "sex",
+      "educ",
+      "marital"
+    ],
+    "신체건강추가": [
+      "age_grp",
+      "sex",
+      "educ",
+      "marital",
+      "bmi_grp",
+      "body_image",
+      "htn",
+      "dm",
+      "osteo",
+      "oral_health",
+      "chewing",
+      "fall",
+      "injury"
+    ]
+  },
+  "inference": "pointwise 95% CI; Holm p adjustment over 2 references x 5 K reversal tests within each adjustment; no causal claim",
+  "standardization": "common complete-case C distribution, design weighted",
+  "reference_mean": "income5 weighted K distribution over common C population"
+}

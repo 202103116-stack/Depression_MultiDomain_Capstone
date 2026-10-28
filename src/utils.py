@@ -2,16 +2,20 @@
 from __future__ import annotations
 
 from pathlib import Path
+import os
+import ast
 
 import pandas as pd
+from analysis_config import ANALYSIS_ID
 
 ROOT = Path(__file__).resolve().parents[1]
-RAW_PATH = ROOT / "data" / "raw" / "chs25_all.sas7bdat"
-PROCESSED_DIR = ROOT / "data" / "processed"
+os.environ.setdefault('MPLCONFIGDIR', str(ROOT / 'data' / 'mplconfig'))
+RAW_PATH = Path(os.environ.get('CHS_RAW_PATH', str(ROOT / 'data' / 'raw' / 'chs25_all.sas7bdat')))
+PROCESSED_DIR = ROOT / "data" / "processed" / ANALYSIS_ID
 ANALYSIS_TABLE = PROCESSED_DIR / "analysis_table.csv"
 DOCS_DIR = ROOT / "docs"
-FIG_DIR = ROOT / "outputs" / "figures"
-REPORT_DIR = ROOT / "outputs" / "reports"
+FIG_DIR = ROOT / "outputs" / ANALYSIS_ID / "figures"
+REPORT_DIR = ROOT / "outputs" / ANALYSIS_ID / "reports"
 
 SEED = 42
 
@@ -45,7 +49,27 @@ GRID = "#e4e3df"
 
 
 def load_raw() -> pd.DataFrame:
-    """원시자료 로딩. 인코딩은 반드시 cp949."""
+    """Read local SAS, or a verified 201-column CSV export without changing raw values."""
+    if RAW_PATH.suffix.lower() == '.csv':
+        raw = pd.read_csv(RAW_PATH, encoding='utf-8-sig')
+        if raw.shape[1] != 201:
+            raise ValueError('Use the original 201-column CSV, not an augmented target export.')
+        # This CSV exported SAS character cells as Python byte literals (b'...').
+        # Decode only those literals, retain character IDs/leading zeroes, and
+        # cast SAS numeric columns to float. Never convert IDs to numbers.
+        for col in raw:
+            if pd.api.types.is_numeric_dtype(raw[col]):
+                raw[col] = raw[col].astype(float)
+            else:
+                def decode(v):
+                    if isinstance(v, str) and v.startswith(('b\"', "b'")):
+                        value = ast.literal_eval(v)
+                        if not isinstance(value, bytes):
+                            raise ValueError(f'Unexpected character encoding in {col}')
+                        return value.decode('cp949')
+                    return v
+                raw[col] = raw[col].map(decode)
+        return raw
     return pd.read_sas(RAW_PATH, format="sas7bdat", encoding="cp949")
 
 

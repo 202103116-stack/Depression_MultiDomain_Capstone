@@ -1,0 +1,54 @@
+﻿feature,mean_abs_shap,label,domain
+chewing,0.23715161209295077,저작불편,phys
+sex,0.21627082818245721,성별,demo
+age,0.18751555982691978,만 나이,demo
+breakfast,0.155512742662494,아침식사 빈도,behav
+fall,0.15458913869189606,연간 낙상 경험,phys
+emp_status,0.14727800371000632,종사상 지위,econ
+contact_friend,0.14389611770962682,친구와 연락 빈도,social
+log_income_equiv,0.13967247867651136,log(1+균등화 가구 연소득),econ
+body_image,0.13794586951104582,본인 인지 체형,phys
+hl_explain,0.1379247693791663,의료진 설명 이해 어려움,care
+log_met_min,0.12983835986026496,log(1+주간 신체활동량 MET-분),behav
+oral_health,0.11612523241326679,주관적 구강건강,phys
+neighbor_trust,0.11583043200697056,이웃 간 신뢰,social
+region,0.10026865751311403,시도,env
+contact_neighbor,0.08957344393396464,이웃과 연락 빈도,social
+env_safety,0.08526256809537268,동네 안전 만족,env
+marital,0.08407946523312071,혼인상태,demo
+unmet_medical,0.07112284455787135,연간 미충족 의료,care
+bmi,0.07069137088344987,체질량지수,phys
+unmet_dental,0.07034305211228346,연간 미충족 치과의료,care
+hl_seek,0.0665452310920564,건강정보 찾기 어려움,care
+drinking_freq,0.06596726548291398,음주 빈도,behav
+smoking_status,0.060798275500632944,흡연 상태,behav
+dementia_care,0.054518741074226267,치매환자 가족,social
+contact_family,0.05322349721183555,친척과 연락 빈도,social
+dm,0.05259719727064657,당뇨병 진단 경험,phys
+occupation,0.04897699266897509,직업분류,econ
+urban_type,0.048952417027644565,동/읍·면,env
+osteo,0.04786356703153628,골다공증 진단,phys
+hh_type,0.04367771678956278,세대유형,demo
+strength_code,0.042197813247097246,근력운동 일수 코드,behav
+binge_freq,0.040510277914851935,폭음 빈도,behav
+food_insecurity,0.040285505754075954,가구 식품안정성,econ
+livelihood,0.039268183024593825,기초생활수급,econ
+weight_control,0.03668821109317845,체중조절 노력,behav
+env_nature,0.03584259630096246,동네 자연환경 만족,env
+env_living,0.0323497881095782,동네 생활환경 만족,env
+env_medical,0.030828156883940572,동네 의료서비스 만족,env
+brushing_lunch,0.02922721705611798,점심 후 칫솔질,behav
+ecig_current,0.02742643890433616,전자담배 현재 사용,behav
+htn,0.02616431461182327,고혈압 진단 경험,phys
+env_transport,0.025887406652045735,동네 대중교통 만족,env
+walk_days,0.02565004599287551,주간 걷기 일수,behav
+public_health_use,0.023718319300581492,보건기관 이용,care
+injury,0.02145999176165352,연간 사고·중독 경험,phys
+hl_written,0.020011718927372753,글로 된 건강정보 이해,care
+housing,0.018086560117874403,주택유형,env
+educ,0.014482085072197361,교육수준 5분류,demo
+mod_days,0.013761069941495624,중강도 신체활동 일수,behav
+neighbor_events,0.012712831961359456,이웃 경조사 참여,social
+vig_days,0.005987020305567715,고강도 신체활동 일수,behav
+flu_vax,0.00519325552967014,연간 독감 예방접종,care
+checkup,0.0049013997868336346,최근 2년 건강검진,care

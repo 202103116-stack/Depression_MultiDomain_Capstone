@@ -1,0 +1,3 @@
+﻿partner,domain,proximal,n_domain,prev_both,prev_neither,joint_diff,joint_low,joint_high,pa_only_diff,f_only_diff,additive_interaction,add_low,add_high,add_p,mult_interaction_p
+이웃을 신뢰함,사회 맥락,False,228513,0.02148,0.04972,-0.02824,-0.03142,-0.02506,-0.00922,-0.01865,-0.00037,-0.00566,0.00491,0.88951,0.06557
+동네가 안전하다고 느낌,환경 맥락,False,228556,0.02392,0.06172,-0.03779,-0.04186,-0.03373,-0.00710,-0.02717,-0.00353,-0.01209,0.00502,0.41833,0.01138

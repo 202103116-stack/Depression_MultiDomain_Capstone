@@ -3,6 +3,7 @@
 결측 대치·인코딩은 모두 sklearn Pipeline 안에서 학습 데이터에만 적합된다(누수 방지).
 """
 from __future__ import annotations
+import os
 
 import numpy as np
 import pandas as pd
@@ -137,7 +138,8 @@ def build_model(algo: str, num: list[str], cat: list[str]):
         return Pipeline([("pre", tree_preprocessor(num, cat)),
                          ("clf", LGBMClassifier(n_estimators=500, learning_rate=0.03, num_leaves=31,
                                                 min_child_samples=100, subsample=0.8, subsample_freq=1,
-                                                colsample_bytree=0.8, random_state=SEED, verbose=-1))])
+                                                colsample_bytree=0.8, random_state=SEED, verbose=-1,
+                                                n_jobs=int(os.environ.get('ML_THREADS','4'))))])
     if algo == "mlp":
         return Pipeline([("pre", linear_preprocessor(num, cat)),
                          ("clf", MLPClassifier(hidden_layer_sizes=(64, 32), alpha=1e-3, batch_size=512,

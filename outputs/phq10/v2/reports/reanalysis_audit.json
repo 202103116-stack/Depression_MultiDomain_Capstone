@@ -1,0 +1,14 @@
+{
+  "rows": 231615,
+  "columns": 86,
+  "only_Y_changed_between_thresholds": true,
+  "target_missing": 325,
+  "PHQ5_events": 37030,
+  "PHQ10_events": 8704,
+  "PHQ5_weighted_percent": 16.260148545732473,
+  "PHQ10_weighted_percent": 3.7569423133117064,
+  "n_features_primary": 53,
+  "household_leakage": false,
+  "n_train": 184762,
+  "n_test": 46528
+}

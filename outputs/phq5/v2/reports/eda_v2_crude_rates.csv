@@ -1,0 +1,281 @@
+﻿variable,label,domain,level,N,rate_w
+age,만 나이,demo,19-29,19509.0000,15.1862
+age,만 나이,demo,30대,24207.0000,17.1878
+age,만 나이,demo,40대,31354.0000,15.5137
+age,만 나이,demo,50대,42607.0000,13.5981
+age,만 나이,demo,60대,53354.0000,14.4249
+age,만 나이,demo,70대,38107.0000,18.6470
+age,만 나이,demo,80+,22152.0000,30.1238
+sex,성별,demo,남,106662.0000,13.0544
+sex,성별,demo,여,124628.0000,19.4020
+educ,교육수준 5분류,demo,무학,15823.0000,35.5947
+educ,교육수준 5분류,demo,초졸,30366.0000,23.6699
+educ,교육수준 5분류,demo,중졸,24471.0000,19.0419
+educ,교육수준 5분류,demo,고졸,76153.0000,15.8761
+educ,교육수준 5분류,demo,대졸+,84365.0000,13.7520
+marital,혼인상태,demo,배우자 동거,145148.0000,13.7819
+marital,혼인상태,demo,별거,7178.0000,16.2078
+marital,혼인상태,demo,사별,27672.0000,27.0373
+marital,혼인상태,demo,이혼,13306.0000,25.5076
+marital,혼인상태,demo,미혼,37960.0000,17.2027
+hh_type,세대유형,demo,1인,45096.0000,23.8161
+hh_type,세대유형,demo,부부,79215.0000,14.4195
+hh_type,세대유형,demo,기타1세대,3676.0000,19.9897
+hh_type,세대유형,demo,부부+자녀,68841.0000,13.3531
+hh_type,세대유형,demo,한부모+자녀,13413.0000,20.2811
+hh_type,세대유형,demo,기타2세대,11522.0000,18.5227
+hh_type,세대유형,demo,3세대,9527.0000,16.5987
+log_income_equiv,log(1+균등화 가구 연소득),econ,1분위(하),69570.0000,25.2179
+log_income_equiv,log(1+균등화 가구 연소득),econ,2분위,47844.0000,16.3389
+log_income_equiv,log(1+균등화 가구 연소득),econ,3분위,41017.0000,14.2540
+log_income_equiv,log(1+균등화 가구 연소득),econ,4분위,37537.0000,13.1574
+log_income_equiv,log(1+균등화 가구 연소득),econ,5분위(상),34883.0000,12.2671
+livelihood,기초생활수급,econ,현재 수급,11291.0000,38.3736
+livelihood,기초생활수급,econ,과거 수급,921.0000,27.9000
+livelihood,기초생활수급,econ,아님,219069.0000,15.2478
+food_insecurity,가구 식품안정성,econ,충분·다양,162555.0000,13.4368
+food_insecurity,가구 식품안정성,econ,충분·단조,59318.0000,21.9286
+food_insecurity,가구 식품안정성,econ,가끔 부족,7961.0000,40.1960
+food_insecurity,가구 식품안정성,econ,자주 부족,1443.0000,53.4020
+occupation,직업분류,econ,비경제활동,81847.0000,21.1696
+occupation,직업분류,econ,관리자,3314.0000,10.3531
+occupation,직업분류,econ,전문가,23864.0000,13.1467
+occupation,직업분류,econ,사무,22522.0000,14.1577
+occupation,직업분류,econ,서비스,19788.0000,15.4380
+occupation,직업분류,econ,판매,10843.0000,15.1344
+occupation,직업분류,econ,농림어업,20703.0000,12.1978
+occupation,직업분류,econ,기능원,10490.0000,11.4976
+occupation,직업분류,econ,기계조작,11012.0000,11.6849
+occupation,직업분류,econ,단순노무,26236.0000,15.2915
+occupation,직업분류,econ,군인,649.0000,5.3446
+emp_status,종사상 지위,econ,비경제활동,81847.0000,21.1696
+emp_status,종사상 지위,econ,고용주·자영,40917.0000,13.3317
+emp_status,종사상 지위,econ,임금근로,101357.0000,13.7944
+emp_status,종사상 지위,econ,무급가족,7143.0000,13.7796
+bmi,체질량지수,phys,<18.5,9175.0000,23.4112
+bmi,체질량지수,phys,18.5-23,90525.0000,16.3816
+bmi,체질량지수,phys,23-25,56847.0000,14.3447
+bmi,체질량지수,phys,25-30,62110.0000,15.5016
+bmi,체질량지수,phys,30+,10649.0000,21.5213
+body_image,본인 인지 체형,phys,매우 마름,6712.0000,34.3665
+body_image,본인 인지 체형,phys,약간 마름,30532.0000,18.4773
+body_image,본인 인지 체형,phys,보통,102965.0000,13.0430
+body_image,본인 인지 체형,phys,약간 비만,76956.0000,16.4832
+body_image,본인 인지 체형,phys,매우 비만,14114.0000,25.7619
+htn,고혈압 진단 경험,phys,예,75718.0000,19.2759
+htn,고혈압 진단 경험,phys,아니오,155560.0000,15.2605
+dm,당뇨병 진단 경험,phys,예,34230.0000,22.4239
+dm,당뇨병 진단 경험,phys,아니오,197039.0000,15.4806
+osteo,골다공증 진단,phys,예,27040.0000,27.4805
+osteo,골다공증 진단,phys,아니오,204095.0000,15.3327
+oral_health,주관적 구강건강,phys,매우 좋음,10965.0000,9.5585
+oral_health,주관적 구강건강,phys,좋음,58223.0000,10.2243
+oral_health,주관적 구강건강,phys,보통,96621.0000,15.1550
+oral_health,주관적 구강건강,phys,나쁨,54444.0000,24.8861
+oral_health,주관적 구강건강,phys,매우 나쁨,11037.0000,41.1866
+chewing,저작불편,phys,매우 불편,7701.0000,49.0930
+chewing,저작불편,phys,불편,31698.0000,30.1271
+chewing,저작불편,phys,그저그럼,31117.0000,21.5926
+chewing,저작불편,phys,별로 안 불편,71432.0000,14.2631
+chewing,저작불편,phys,전혀 안 불편,89335.0000,11.4229
+fall,연간 낙상 경험,phys,예,33375.0000,28.2780
+fall,연간 낙상 경험,phys,아니오,197904.0000,14.2123
+injury,연간 사고·중독 경험,phys,예,19963.0000,27.1286
+injury,연간 사고·중독 경험,phys,아니오,211323.0000,15.3077
+walk_days,주간 걷기 일수,behav,0일,34971.0000,22.5503
+walk_days,주간 걷기 일수,behav,1-2일,24698.0000,18.4385
+walk_days,주간 걷기 일수,behav,3-4일,40158.0000,16.5024
+walk_days,주간 걷기 일수,behav,5-6일,47461.0000,14.3269
+walk_days,주간 걷기 일수,behav,7일,83992.0000,14.9668
+strength_code,근력운동 일수 코드,behav,안 함,169077.0000,18.2766
+strength_code,근력운동 일수 코드,behav,1일,7818.0000,13.1874
+strength_code,근력운동 일수 코드,behav,2일,12261.0000,12.8091
+strength_code,근력운동 일수 코드,behav,3일,15171.0000,12.0819
+strength_code,근력운동 일수 코드,behav,4일,6188.0000,12.1427
+strength_code,근력운동 일수 코드,behav,5일+,20775.0000,10.9302
+vig_days,고강도 신체활동 일수,behav,0일,173643.0000,17.7312
+vig_days,고강도 신체활동 일수,behav,1-2일,24351.0000,13.8967
+vig_days,고강도 신체활동 일수,behav,3-4일,18018.0000,12.6457
+vig_days,고강도 신체활동 일수,behav,5-6일,10545.0000,11.5910
+vig_days,고강도 신체활동 일수,behav,7일,4733.0000,12.1400
+mod_days,중강도 신체활동 일수,behav,0일,142788.0000,18.0285
+mod_days,중강도 신체활동 일수,behav,1-2일,28982.0000,14.5293
+mod_days,중강도 신체활동 일수,behav,3-4일,27158.0000,13.0521
+mod_days,중강도 신체활동 일수,behav,5-6일,19337.0000,12.6717
+mod_days,중강도 신체활동 일수,behav,7일,13020.0000,14.8946
+log_met_min,log(1+주간 신체활동량 MET-분),behav,1분위(하),55164.0000,23.1667
+log_met_min,log(1+주간 신체활동량 MET-분),behav,2분위,46311.0000,17.0731
+log_met_min,log(1+주간 신체활동량 MET-분),behav,3분위,43663.0000,14.9786
+log_met_min,log(1+주간 신체활동량 MET-분),behav,4분위,40953.0000,12.8985
+log_met_min,log(1+주간 신체활동량 MET-분),behav,5분위(상),45160.0000,13.1898
+smoking_status,흡연 상태,behav,비흡연,145640.0000,16.2077
+smoking_status,흡연 상태,behav,과거흡연,50711.0000,14.9643
+smoking_status,흡연 상태,behav,현재흡연,34927.0000,18.2243
+ecig_current,전자담배 현재 사용,behav,예,11874.0000,20.0453
+ecig_current,전자담배 현재 사용,behav,아니오,219404.0000,15.9529
+drinking_freq,음주 빈도,behav,안 마심,85935.0000,19.5999
+drinking_freq,음주 빈도,behav,월1회 미만,36923.0000,16.6693
+drinking_freq,음주 빈도,behav,월1회,25089.0000,13.7816
+drinking_freq,음주 빈도,behav,월2~4회,42026.0000,13.4121
+drinking_freq,음주 빈도,behav,주2~3회,28399.0000,14.2184
+drinking_freq,음주 빈도,behav,주4회+,12914.0000,19.4070
+binge_freq,폭음 빈도,behav,음주 안 함,85935.0000,19.5999
+binge_freq,폭음 빈도,behav,폭음 없음,57934.0000,14.5208
+binge_freq,폭음 빈도,behav,월1회 미만,29404.0000,14.6613
+binge_freq,폭음 빈도,behav,월1회,26540.0000,14.1963
+binge_freq,폭음 빈도,behav,주1회,24887.0000,15.1470
+binge_freq,폭음 빈도,behav,거의 매일,6578.0000,21.4143
+breakfast,아침식사 빈도,behav,주5~7회,154445.0000,15.0330
+breakfast,아침식사 빈도,behav,주3~4회,17015.0000,17.2419
+breakfast,아침식사 빈도,behav,주1~2회,15805.0000,18.0424
+breakfast,아침식사 빈도,behav,거의 안 함,44024.0000,18.0544
+weight_control,체중조절 노력,behav,감량,90768.0000,16.4686
+weight_control,체중조절 노력,behav,유지,45750.0000,12.6817
+weight_control,체중조절 노력,behav,증량,12884.0000,21.9361
+weight_control,체중조절 노력,behav,노력 안 함,81884.0000,17.5641
+brushing_lunch,점심 후 칫솔질,behav,예,150204.0000,14.8990
+brushing_lunch,점심 후 칫솔질,behav,아니오,76912.0000,18.6253
+brushing_lunch,점심 후 칫솔질,behav,점심 안 먹음,4153.0000,27.3425
+contact_family,친척과 연락 빈도,social,월 1회 미만,31164.0000,21.1740
+contact_family,친척과 연락 빈도,social,월 1회,28053.0000,14.7285
+contact_family,친척과 연락 빈도,social,월 2~3회,30903.0000,14.9671
+contact_family,친척과 연락 빈도,social,주 1회,30180.0000,15.2356
+contact_family,친척과 연락 빈도,social,주 2~3회,38890.0000,14.5350
+contact_family,친척과 연락 빈도,social,주 4회 이상,72073.0000,16.2663
+contact_neighbor,이웃과 연락 빈도,social,월 1회 미만,86112.0000,17.8095
+contact_neighbor,이웃과 연락 빈도,social,월 1회,15628.0000,13.8897
+contact_neighbor,이웃과 연락 빈도,social,월 2~3회,14766.0000,13.8431
+contact_neighbor,이웃과 연락 빈도,social,주 1회,18509.0000,14.2814
+contact_neighbor,이웃과 연락 빈도,social,주 2~3회,30688.0000,14.5519
+contact_neighbor,이웃과 연락 빈도,social,주 4회 이상,64882.0000,15.4842
+contact_friend,친구와 연락 빈도,social,월 1회 미만,48977.0000,25.2520
+contact_friend,친구와 연락 빈도,social,월 1회,32155.0000,15.3776
+contact_friend,친구와 연락 빈도,social,월 2~3회,32151.0000,13.6716
+contact_friend,친구와 연락 빈도,social,주 1회,25893.0000,13.3244
+contact_friend,친구와 연락 빈도,social,주 2~3회,38638.0000,13.3232
+contact_friend,친구와 연락 빈도,social,주 4회 이상,53357.0000,14.6885
+neighbor_trust,이웃 간 신뢰,social,예,159341.0000,13.4616
+neighbor_trust,이웃 간 신뢰,social,아니오,63852.0000,21.5570
+neighbor_trust,이웃 간 신뢰,social,모름,8030.0000,16.4326
+neighbor_events,이웃 경조사 참여,social,예,107128.0000,13.9615
+neighbor_events,이웃 경조사 참여,social,아니오,119339.0000,17.2690
+neighbor_events,이웃 경조사 참여,social,모름,4787.0000,15.9219
+dementia_care,치매환자 가족,social,해당 없음,204586.0000,15.8022
+dementia_care,치매환자 가족,social,가족(비동거),22964.0000,18.6908
+dementia_care,치매환자 가족,social,동거,3701.0000,25.0971
+env_safety,동네 안전 만족,env,예,205763.0000,14.8101
+env_safety,동네 안전 만족,env,아니오,23754.0000,26.4448
+env_safety,동네 안전 만족,env,모름,1751.0000,20.3806
+env_nature,동네 자연환경 만족,env,예,201250.0000,14.9792
+env_nature,동네 자연환경 만족,env,아니오,29314.0000,23.3989
+env_nature,동네 자연환경 만족,env,모름,710.0000,17.8161
+env_living,동네 생활환경 만족,env,예,205761.0000,15.1500
+env_living,동네 생활환경 만족,env,아니오,25002.0000,25.2070
+env_living,동네 생활환경 만족,env,모름,507.0000,18.8021
+env_transport,동네 대중교통 만족,env,예,164825.0000,15.1489
+env_transport,동네 대중교통 만족,env,아니오,62846.0000,19.7927
+env_transport,동네 대중교통 만족,env,모름,3603.0000,17.4571
+env_medical,동네 의료서비스 만족,env,예,174360.0000,15.0965
+env_medical,동네 의료서비스 만족,env,아니오,55413.0000,21.2522
+env_medical,동네 의료서비스 만족,env,모름,1503.0000,18.9179
+urban_type,동/읍·면,env,동,131585.0000,16.3821
+urban_type,동/읍·면,env,읍·면,99705.0000,15.7205
+housing,주택유형,env,일반주택,120588.0000,18.2147
+housing,주택유형,env,아파트,110702.0000,15.1598
+region,시도,env,서울,22879.0000,16.9195
+region,시도,env,부산,14496.0000,15.5110
+region,시도,env,대구,8165.0000,15.7297
+region,시도,env,인천,8965.0000,19.4309
+region,시도,env,광주,4566.0000,10.3703
+region,시도,env,대전,4573.0000,14.0649
+region,시도,env,울산,4551.0000,16.1315
+region,시도,env,세종,917.0000,13.2891
+region,시도,env,경기,43540.0000,17.6225
+region,시도,env,강원,15798.0000,17.0476
+region,시도,env,충북,12403.0000,13.3649
+region,시도,env,충남,14342.0000,18.1198
+region,시도,env,전북,12405.0000,14.3087
+region,시도,env,전남,19484.0000,15.5392
+region,시도,env,경북,21241.0000,16.3356
+region,시도,env,경남,17939.0000,12.6662
+region,시도,env,제주,5026.0000,12.3195
+unmet_medical,연간 미충족 의료,care,있음,10351.0000,39.5561
+unmet_medical,연간 미충족 의료,care,없음,204458.0000,15.4123
+unmet_medical,연간 미충족 의료,care,필요 없었음,16477.0000,12.5790
+unmet_dental,연간 미충족 치과의료,care,있음,26117.0000,29.6718
+unmet_dental,연간 미충족 치과의료,care,없음,169982.0000,14.6712
+unmet_dental,연간 미충족 치과의료,care,필요 없었음,35184.0000,14.3543
+checkup,최근 2년 건강검진,care,예,182664.0000,15.0690
+checkup,최근 2년 건강검진,care,아니오,48580.0000,20.4259
+flu_vax,연간 독감 예방접종,care,예,135733.0000,16.7457
+flu_vax,연간 독감 예방접종,care,아니오,95423.0000,15.7772
+public_health_use,보건기관 이용,care,예,67336.0000,18.3529
+public_health_use,보건기관 이용,care,아니오,163939.0000,15.7567
+hl_explain,의료진 설명 이해 어려움,care,아주 쉬움,55281.0000,12.2119
+hl_explain,의료진 설명 이해 어려움,care,쉬움,131148.0000,15.0748
+hl_explain,의료진 설명 이해 어려움,care,다소 어려움,38539.0000,26.0209
+hl_explain,의료진 설명 이해 어려움,care,매우 어려움,6220.0000,42.0443
+hl_written,글로 된 건강정보 이해,care,아주 쉬움,47439.0000,11.8155
+hl_written,글로 된 건강정보 이해,care,쉬움,104171.0000,14.4246
+hl_written,글로 된 건강정보 이해,care,다소 어려움,31515.0000,22.5611
+hl_written,글로 된 건강정보 이해,care,매우 어려움,6974.0000,35.7838
+hl_written,글로 된 건강정보 이해,care,관심 없음,41098.0000,23.3487
+hl_seek,건강정보 찾기 어려움,care,아주 쉬움,52618.0000,12.6492
+hl_seek,건강정보 찾기 어려움,care,쉬움,98863.0000,14.1443
+hl_seek,건강정보 찾기 어려움,care,다소 어려움,36471.0000,22.3955
+hl_seek,건강정보 찾기 어려움,care,매우 어려움,9844.0000,36.2514
+hl_seek,건강정보 찾기 어려움,care,찾지 않음,33381.0000,22.2398
+stress,주관적 스트레스,proximal,대단히 많이,6655.0000,63.1138
+stress,주관적 스트레스,proximal,많이,39855.0000,35.4085
+stress,주관적 스트레스,proximal,조금,120558.0000,10.9665
+stress,주관적 스트레스,proximal,거의 없음,64201.0000,6.3164
+sleep_weekday,주중 하루 수면시간,proximal,≤5시간,45546.0000,30.5174
+sleep_weekday,주중 하루 수면시간,proximal,6시간,68359.0000,14.7993
+sleep_weekday,주중 하루 수면시간,proximal,7시간,69681.0000,10.7545
+sleep_weekday,주중 하루 수면시간,proximal,8시간,39814.0000,12.4476
+sleep_weekday,주중 하루 수면시간,proximal,≥9시간,7838.0000,23.8715
+sleep_weekend,주말 하루 수면시간,proximal,≤5시간,35497.0000,33.4098
+sleep_weekend,주말 하루 수면시간,proximal,6시간,49408.0000,16.1099
+sleep_weekend,주말 하루 수면시간,proximal,7시간,62216.0000,11.6182
+sleep_weekend,주말 하루 수면시간,proximal,8시간,56509.0000,12.2372
+sleep_weekend,주말 하루 수면시간,proximal,≥9시간,27494.0000,17.5009
+self_rated_health,주관적 건강수준,proximal,매우 좋음,13242.0000,5.2008
+self_rated_health,주관적 건강수준,proximal,좋음,76125.0000,7.9862
+self_rated_health,주관적 건강수준,proximal,보통,97568.0000,17.2399
+self_rated_health,주관적 건강수준,proximal,나쁨,36383.0000,37.6923
+self_rated_health,주관적 건강수준,proximal,매우 나쁨,7968.0000,59.7761
+eq_mobility,EQ-5D 운동능력,proximal,문제 없음,196813.0000,13.8338
+eq_mobility,EQ-5D 운동능력,proximal,다소,33447.0000,38.7120
+eq_mobility,EQ-5D 운동능력,proximal,심함,1028.0000,67.2977
+eq_selfcare,EQ-5D 자기관리,proximal,문제 없음,218909.0000,15.0985
+eq_selfcare,EQ-5D 자기관리,proximal,다소,11103.0000,49.5992
+eq_selfcare,EQ-5D 자기관리,proximal,심함,1278.0000,60.3755
+eq_usual,EQ-5D 일상활동,proximal,문제 없음,206525.0000,14.1100
+eq_usual,EQ-5D 일상활동,proximal,다소,23036.0000,45.2525
+eq_usual,EQ-5D 일상활동,proximal,심함,1729.0000,66.0167
+eq_pain,EQ-5D 통증·불편,proximal,없음,154951.0000,10.8822
+eq_pain,EQ-5D 통증·불편,proximal,다소,69988.0000,28.1386
+eq_pain,EQ-5D 통증·불편,proximal,심함,6350.0000,63.2228
+happiness,행복감 지수,proximal,0-4,12525.0000,64.1153
+happiness,행복감 지수,proximal,5,35042.0000,31.4609
+happiness,행복감 지수,proximal,6,26631.0000,21.3967
+happiness,행복감 지수,proximal,7,49970.0000,13.5944
+happiness,행복감 지수,proximal,8,60434.0000,7.9403
+happiness,행복감 지수,proximal,9-10,46528.0000,5.3149
+bedridden,최근 1달 침상와병,proximal,예,13996.0000,43.7773
+bedridden,최근 1달 침상와병,proximal,아니오,217293.0000,14.5102
+internet_interf,인터넷·게임·스마트폰 일상 지장,proximal,이용 안 함,35029.0000,22.5700
+internet_interf,인터넷·게임·스마트폰 일상 지장,proximal,지장 없음,174873.0000,14.1461
+internet_interf,인터넷·게임·스마트폰 일상 지장,proximal,월1회 미만,5679.0000,17.9804
+internet_interf,인터넷·게임·스마트폰 일상 지장,proximal,월1회,5395.0000,21.9739
+internet_interf,인터넷·게임·스마트폰 일상 지장,proximal,주1회,6599.0000,29.5495
+internet_interf,인터넷·게임·스마트폰 일상 지장,proximal,거의 매일,3695.0000,35.5327
+gambling_interf,도박으로 인한 일상 지장,proximal,도박 안 함,179235.0000,16.3372
+gambling_interf,도박으로 인한 일상 지장,proximal,지장 없음,47095.0000,15.8285
+gambling_interf,도박으로 인한 일상 지장,proximal,월1회 미만,2190.0000,15.3440
+gambling_interf,도박으로 인한 일상 지장,proximal,월1회,1287.0000,17.0507
+gambling_interf,도박으로 인한 일상 지장,proximal,주1회,1341.0000,20.2414
+gambling_interf,도박으로 인한 일상 지장,proximal,거의 매일,132.0000,51.4582
+cognitive_decline,인지장애(기억력 감소) 경험,proximal,예,40932.0000,34.2653
+cognitive_decline,인지장애(기억력 감소) 경험,proximal,아니오,146619.0000,11.8403
+cognitive_decline,인지장애(기억력 감소) 경험,proximal,40세 미만,43716.0000,16.2120

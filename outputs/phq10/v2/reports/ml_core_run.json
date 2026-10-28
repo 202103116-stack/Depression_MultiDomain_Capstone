@@ -1,0 +1,13 @@
+{
+  "cutoff": 10,
+  "domain_algorithm": "LightGBM",
+  "n_train": 184762,
+  "n_test": 46528,
+  "n_features": 53,
+  "test_prevalence": 0.03896578404401651,
+  "cv": "5-fold StratifiedGroupKFold by household",
+  "bootstrap": "1000 paired household resamples, pointwise percentile 95% CI",
+  "elapsed_seconds": 411.96444725990295,
+  "SHAP": "LightGBM native TreeSHAP, one-hot/missing indicators aggregated to original fields before mean(abs)",
+  "scope": "Full-sample exploratory domain comparison. Not the original six-algorithm CatBoost pipeline."
+}

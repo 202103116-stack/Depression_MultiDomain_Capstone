@@ -1,0 +1,54 @@
+﻿feature,mean_abs_shap,label,domain
+sex,0.23472746254567586,성별,demo
+chewing,0.21862955064503506,저작불편,phys
+body_image,0.14877657353335905,본인 인지 체형,phys
+fall,0.133642891695304,연간 낙상 경험,phys
+breakfast,0.12026249809502704,아침식사 빈도,behav
+oral_health,0.11893357822831774,주관적 구강건강,phys
+hl_explain,0.10968804124590283,의료진 설명 이해 어려움,care
+contact_friend,0.1061931619933916,친구와 연락 빈도,social
+region,0.10396814413540863,시도,env
+neighbor_trust,0.09997010945702084,이웃 간 신뢰,social
+age,0.0966765612257886,만 나이,demo
+log_income_equiv,0.0962848926529145,log(1+균등화 가구 연소득),econ
+urban_type,0.07928513312066181,동/읍·면,env
+occupation,0.07174595374106343,직업분류,econ
+contact_neighbor,0.06643457080594554,이웃과 연락 빈도,social
+log_met_min,0.06604473124692499,log(1+주간 신체활동량 MET-분),behav
+unmet_medical,0.0652867792541239,연간 미충족 의료,care
+unmet_dental,0.06367178578597336,연간 미충족 치과의료,care
+smoking_status,0.06065670303387683,흡연 상태,behav
+marital,0.05850711115441916,혼인상태,demo
+dm,0.05447195291461872,당뇨병 진단 경험,phys
+osteo,0.053662759045120606,골다공증 진단,phys
+dementia_care,0.050797205130890206,치매환자 가족,social
+htn,0.04939415296159807,고혈압 진단 경험,phys
+env_nature,0.049088159530509344,동네 자연환경 만족,env
+brushing_lunch,0.04804867609586079,점심 후 칫솔질,behav
+env_medical,0.04560209416444501,동네 의료서비스 만족,env
+hl_seek,0.045383989857846,건강정보 찾기 어려움,care
+bmi,0.043819619176888314,체질량지수,phys
+env_safety,0.042412535144013566,동네 안전 만족,env
+env_living,0.03935205296200135,동네 생활환경 만족,env
+weight_control,0.03851937979813425,체중조절 노력,behav
+emp_status,0.036633030772102344,종사상 지위,econ
+housing,0.03357561385002605,주택유형,env
+food_insecurity,0.03352487623694775,가구 식품안정성,econ
+strength_code,0.03284430631406811,근력운동 일수 코드,behav
+drinking_freq,0.03193937354904305,음주 빈도,behav
+contact_family,0.03133539892559603,친척과 연락 빈도,social
+env_transport,0.03115543941423846,동네 대중교통 만족,env
+hh_type,0.0295700811437776,세대유형,demo
+hl_written,0.027540820242836248,글로 된 건강정보 이해,care
+ecig_current,0.02753760067601642,전자담배 현재 사용,behav
+binge_freq,0.02631693521285845,폭음 빈도,behav
+livelihood,0.02452299017723242,기초생활수급,econ
+mod_days,0.022014272412794064,중강도 신체활동 일수,behav
+public_health_use,0.02031862798510774,보건기관 이용,care
+injury,0.01983877445988225,연간 사고·중독 경험,phys
+walk_days,0.018020226568385166,주간 걷기 일수,behav
+educ,0.010878417922852877,교육수준 5분류,demo
+neighbor_events,0.010189705020715152,이웃 경조사 참여,social
+vig_days,0.005235947566247461,고강도 신체활동 일수,behav
+checkup,0.0026272659049956923,최근 2년 건강검진,care
+flu_vax,0.0022747405366270773,연간 독감 예방접종,care

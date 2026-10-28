@@ -73,7 +73,8 @@ class Runner:
         res = {"set": set_name, "domains": "+".join(domains), "algo": algo, "n_features": len(num) + len(cat)}
         if cv:
             aps, aucs = [], []
-            for i_tr, i_va in group_cv(5).split(Xtr, self.ytr, self.train["household_key"]):
+            for fold, (i_tr, i_va) in enumerate(group_cv(5).split(Xtr, self.ytr, self.train["household_key"]),1):
+                print(f'[{tag}] CV fold {fold}/5 start',flush=True)
                 m = self._model(algo, num, cat).fit(Xtr.iloc[i_tr], self.ytr[i_tr])
                 p = m.predict_proba(Xtr.iloc[i_va])[:, 1]
                 aps.append(average_precision_score(self.ytr[i_va], p))
@@ -223,6 +224,8 @@ def plots(results: pd.DataFrame, deltas: pd.DataFrame, imp, dom_age, age_add, in
         ax.errorbar(cb["dAP"], y, xerr=[cb["dAP"] - cb["low"], cb["high"] - cb["dAP"]], fmt="none", ecolor="#333",
                     capsize=3)
         for algo, mk in [("lightgbm", "D"), ("logistic", "o")]:
+            if algo not in set(d['algo']):
+                continue
             o = d[d["algo"] == algo].set_index("domain").reindex(doms)
             ax.scatter(o["dAP"], y, marker=mk, color=INK, s=22, zorder=3, label=ALGO_LABELS[algo])
         ax.axvline(0, color=INK_MUTED, lw=1)
@@ -317,6 +320,8 @@ def plots(results: pd.DataFrame, deltas: pd.DataFrame, imp, dom_age, age_add, in
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--quick", action="store_true")
+    ap.add_argument('--primary-only', action='store_true',
+                    help='Full sample/default iterations: CatBoost primary and logistic comparator; omit RF/MLP/LightGBM benchmark fits.')
     ap.add_argument("--shap-only", action="store_true", help="저장된 결과 CSV를 쓰고 CatBoost 해석(SHAP 등)과 그림만 다시 만든다")
     args = ap.parse_args()
     df = load_v2_table()
@@ -354,7 +359,8 @@ def main():
 
     rows, preds = [], {}
     # (1) 알고리즘 비교 (CV 포함)
-    cv_algos = ["dummy", "logistic", "lightgbm", "random_forest", "mlp", "catboost"]
+    cv_algos = ['dummy', 'logistic', 'catboost'] if args.primary_only else ["dummy", "logistic", "lightgbm", "random_forest", "mlp", "catboost"]
+    domain_algos = ['catboost', 'logistic'] if args.primary_only else ['catboost', 'lightgbm', 'logistic']
     for sname in ["full", "full+proximal"]:
         for algo in cv_algos:
             if args.quick and algo in ("random_forest", "mlp"):
@@ -363,7 +369,7 @@ def main():
             rows.append({**res, "cv": True})
     # (2) 영역 추가·제거 (CatBoost·LightGBM·로지스틱, 시험셋 1회)
     for sname, doms in sets.items():
-        for algo in ["catboost", "lightgbm", "logistic"]:
+        for algo in domain_algos:
             keep = algo == "catboost" and sname in ("full", "full+proximal")
             res, p = R.run(sname, doms, algo, keep=keep)
             rows.append({**res, "cv": False})
@@ -372,7 +378,7 @@ def main():
 
     # (3) ΔAP: 추가(base+d − base), 제거(full − (full−d)), 증상근접(full+prox − full)
     drows = []
-    for algo in ["catboost", "lightgbm", "logistic"]:
+    for algo in domain_algos:
         nb = n_boot if algo == "catboost" else 200
         for d in ADDABLE_DOMAINS:
             r = group_bootstrap_delta(R.yte, preds[(f"base+{d}", algo)], preds[("base", algo)], groups, nb)

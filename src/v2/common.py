@@ -9,13 +9,14 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from utils import PROCESSED_DIR, ROOT  # noqa: E402
+from analysis_config import ANALYSIS_ID  # noqa: E402
 
 V2_PROCESSED = PROCESSED_DIR / "v2"
 V2_TABLE = V2_PROCESSED / "analysis_table_v2.csv"
 V2_RUNS = V2_PROCESSED / "model_runs"
-V2_DOCS = ROOT / "docs" / "v2"
-V2_FIG = ROOT / "outputs" / "v2" / "figures"
-V2_REPORT = ROOT / "outputs" / "v2" / "reports"
+V2_DOCS = ROOT / "docs" / ANALYSIS_ID / "v2"
+V2_FIG = ROOT / "outputs" / ANALYSIS_ID / "v2" / "figures"
+V2_REPORT = ROOT / "outputs" / ANALYSIS_ID / "v2" / "reports"
 
 # 영역 코드 → (한글명, 수정 가능 여부 요약). 표시 순서도 이 순서를 따른다.
 DOMAINS = {

@@ -1,4 +1,4 @@
-"""v2 전처리 — 우울 증상(PHQ-9 ≥ 10)의 다차원 요인 분석용 테이블.
+"""v2 전처리 — PHQ_CUTOFF(주 분석5, 민감도10)의 다차원 분석용 테이블.
 
 실행: python src/v2/preprocess_v2.py
 산출: data/processed/v2/analysis_table_v2.csv
@@ -21,6 +21,7 @@ from common import V2_PROCESSED, V2_TABLE
 from preprocess import (_binary_yes_no, _valid, build_activity, build_contact, build_controls, build_identifiers,
                         build_outcome, validate_raw)
 from utils import ANALYSIS_TABLE, COMBO_LABELS, load_raw
+from analysis_config import PHQ_CUTOFF, EXPECTED_OUTCOME_COUNTS, OUTCOME_LABEL
 
 # ---------------------------------------------------------------------------
 # 변수 메타데이터
@@ -41,7 +42,7 @@ meta("spot_key", "표본지점(집락) 키", "design", None, None, "CTPRVN_CODE�
 meta("kstrata", "층화 변수", "design", None, None, "kstrata", "원본")
 meta("wt_p", "개인 가중치", "design", None, None, "wt_p", "원본")
 meta("phq9_total", "PHQ-9 총점", "outcome", None, None, "mtb_07a1~i1", "1차와 동일")
-meta("Y", "우울 증상 기준 충족(PHQ-9 ≥ 10)", "outcome", None, None, "phq9_total", "1차와 동일")
+meta("Y", OUTCOME_LABEL, "outcome", None, None, "phq9_total", f"총점 ≥{PHQ_CUTOFF}, 유효9문항")
 # 인구
 meta("age", "만 나이", "demo", "num", False, "age", "원본")
 meta("sex", "성별", "demo", "cat", False, "sex", "1=남, 2=여")
@@ -380,7 +381,10 @@ def validate_branches(raw: pd.DataFrame) -> None:
 
 
 def validate_v2(df: pd.DataFrame) -> None:
-    assert (df["Y"] == 1).sum() == 8704 and (df["Y"] == 0).sum() == 222586 and df["Y"].isna().sum() == 325
+    pos, neg = EXPECTED_OUTCOME_COUNTS
+    assert (df["Y"] == 1).sum() == pos and (df["Y"] == 0).sum() == neg and df["Y"].isna().sum() == 325
+    valid = df['phq9_total'].notna()
+    assert df.loc[valid, 'Y'].eq(df.loc[valid, 'phq9_total'].ge(PHQ_CUTOFF)).all()
     assert df["household_key"].nunique() == 136845
     s = df[df["Y"].notna()]
     assert len(s) == 231290
