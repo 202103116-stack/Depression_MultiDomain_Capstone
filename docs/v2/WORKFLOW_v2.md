@@ -215,4 +215,5 @@
 - 디자인: `presentation/design/DESIGN.md`. 4주차 14조 미션D 발표자료에서는 시각 요소(짙은 남색 표지, 파스텔 태그, 둥근 패널, 큰 숫자, "읽는 법" 막대)만 가져오고 장 구성은 가져오지 않았다(사용자 요청). 참고한 스킬: frontend-design, hallmark, ui-ux-pro-max, slides·design-system(`~/.claude/skills`), Apple DESIGN.md(`presentation/design/reference/`, getdesign.md).
 - 산출: `presentation/proposal_v2.pptx` ← `python -X utf8 presentation/make_figures.py && node presentation/build_proposal.js`. 수치는 `paper/paper_data.json`에서 읽는다. 막대 차트는 PowerPoint 기본 차트, 신뢰구간·히트맵·조합·점수·두 렌즈 비교는 발표용으로 다시 그린 그림(`presentation/figures/`). `presentation/apply_theme.js`는 pptx 스킬의 테마 적용 모듈 사본.
 - 점검: 스키마 검증 통과, PowerPoint로 전 장을 PNG로 내보내 글자 넘침·정렬 확인.
+- **중간발표 통합본(2026-10-29)**: 팀 결정에 따라 연구 1(v2)과 연구 2(v3 경제적 역전점)를 한 발표에 담았다. `presentation/midterm_integrated.pptx` ← `node presentation/build_midterm.js && python -X utf8 presentation/embed_fonts.py`. 팀 Canva 구조안의 주석 요청을 반영했고, 브랜딩 기준은 `presentation/design/BRAND_midterm.md`, 구성은 `docs/v2/proposal_outline.md` 끝 절. 결과는 PHQ-9 ≥ 10 예비 분석으로 표시하고, PHQ-9 ≥ 5 전환은 피드백 반영 결정으로만 적었다(수치 없음).
 - 저자가 채울 항목: 표지의 `[팀명 · 발표자]`.

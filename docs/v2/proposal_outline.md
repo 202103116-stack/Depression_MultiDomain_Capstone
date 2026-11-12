@@ -42,3 +42,26 @@
 - A2. 생활요인 선정 대응표
 - A3. 점수 민감도(하나씩 빼기, 수면 포함)
 - A4. 임계값별 운영점
+
+---
+
+# 중간발표 통합본 (연구 1 + 연구 2, 2026-10-29)
+
+> 산출: `presentation/midterm_integrated.pptx` ← `node presentation/build_midterm.js && python -X utf8 presentation/embed_fonts.py`
+> 구조: 팀 Canva 구조안 `우울연구 자체제작.pptx`(17장)의 순서와 `#` 주석 요청을 따른다. RQ3·RQ4는 자료가 많아 두 장씩으로 나눠 20장이 되었다.
+> 디자인: `presentation/design/BRAND_midterm.md`(Canva 글꼴·색). 모든 내용 장 위쪽에 목차 탭 6개를 두고 진행 중인 장만 강조한다.
+> 수치: 연구 1 = `paper/paper_data.json`, 연구 2 = `presentation/v3_report_data.json`(`v3-econ-reversal` 브랜치 `report_v3/report_data.json` 사본). 그림은 `presentation/figures/`(v2 발표용), `paper/figures/`, `presentation/figures/v3/`(v3 그림 사본)를 쓴다.
+> 결과변수: 결과는 실제 분석 기준인 PHQ-9 ≥ 10으로 적는다. PHQ-9 ≥ 5 전환은 "피드백 반영 결정"으로 9장·추후 계획에만 적고 수치는 만들지 않는다. 결과 장 아래에 예비 분석 꼬리표를 단다.
+
+| # | 장 | 내용 |
+|---|---|---|
+| 1~2 | 표지·목차 | 팀 구조안 유지(목차 쪽수 갱신) |
+| 3 | 연구 배경 | 진료 환자 25%↑(심평원 청구 자료), 다양한 조건, 연구 1 → 연구 2 |
+| 4~5 | 이론·선행연구 | 생물심리사회·사회생태 / 자원 대체·증폭·근본 원인, 선행연구 표 2개 + 빈틈 ①②③ |
+| 6~7 | 목적·질문·모형 | RQ1~4와 방법 대응표, 통합 연구 모형과 H1~H4 |
+| 8~9 | 자료·방법 | 원자료 구성(201 → 103 → 66), X와 Y 구분, 세 갈래 방법, 피드백 반영 상자 |
+| 10~15 | 예비 분석 | RQ1 영역·두 렌즈, RQ2 조정 OR, RQ3 격차·기울기, RQ4 역전점·분해·민감도·운동 요인 |
+| 16~18 | 결과·의의 | 핵심 결과, 의의와 한계, 추후 계획 |
+| 19~20 | 참고문헌·부록 | APA 7, 연구 2 흐름과 운동 요인 보충 |
+
+- 선행연구 확인: J. Wang(2025, JAD), Jeong(2023, CMJ), G. M. Kim(2025, Frontiers)는 서지 확인 후 사용. 팀 구조안의 X. Wang(2026)은 해당 논문을 찾지 못해 가장 가까운 Y. Wang(2024, Lancet Healthy Longevity, 24개국 5개 코호트)으로 바꿨고, Lee(2017)는 확인되지 않아 뺐다.
