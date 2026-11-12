@@ -1,0 +1,78 @@
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py:147: RuntimeWarning: invalid value encountered in sqrt
+  self.se = np.sqrt(np.diag(self.vcov))
+탐색: 모형 1458개, 대비 2016개 (1초)
+후보 5개 (y5 대비 시도 1008개 중 규칙 통과 82개)
+stratum   sport         x metric  contrast     lo     hi   p  contrast_mood
+     전체    walk breakfast    syn    -2.812 -4.018 -1.607 0.0         -1.598
+     남성 aerobic   tobacco    syn    -3.226 -4.755 -1.697 0.0         -0.738
+     전체   walk3 breakfast    syn    -2.671 -3.957 -1.385 0.0         -1.103
+     여성    walk breakfast    syn    -4.257 -6.373 -2.141 0.0         -3.105
+     남성    walk breakfast    syn    -2.729 -4.184 -1.274 0.0         -1.038
+outcome stratum   sport         x metric  contrast      lo      hi      p  p_holm
+     y5      남성 aerobic   tobacco    syn   -1.8273 -4.7416  1.0870 0.2191  0.6572
+     y5      남성    walk breakfast    syn   -1.5208 -4.2700  1.2283 0.2782  0.6572
+     y5      여성    walk breakfast    syn   -3.4720 -7.8961  0.9521 0.1240  0.4960
+     y5      전체    walk breakfast    syn   -2.0105 -4.3316  0.3106 0.0896  0.4478
+     y5      전체   walk3 breakfast    syn   -0.8287 -3.3877  1.7302 0.5256  0.6572
+ y_mood      남성 aerobic   tobacco    syn   -0.7162 -2.5179  1.0856 0.4359     NaN
+ y_mood      남성    walk breakfast    syn    1.1679 -0.5105  2.8463 0.1726     NaN
+ y_mood      여성    walk breakfast    syn   -2.3588 -5.4137  0.6960 0.1302     NaN
+ y_mood      전체    walk breakfast    syn   -0.6106 -2.1313  0.9100 0.4312     NaN
+ y_mood      전체   walk3 breakfast    syn   -1.0681 -2.7471  0.6108 0.2124     NaN
+    y10      남성 aerobic   tobacco    syn   -2.0677 -3.6238 -0.5116 0.0092     NaN
+    y10      남성    walk breakfast    syn   -0.8830 -2.2563  0.4903 0.2076     NaN
+    y10      여성    walk breakfast    syn   -1.5078 -4.0330  1.0175 0.2419     NaN
+    y10      전체    walk breakfast    syn   -1.3528 -2.5444 -0.1611 0.0261     NaN
+    y10      전체   walk3 breakfast    syn   -0.7964 -2.1791  0.5862 0.2589     NaN
+       a         b  both_pct    p00    p11  joint  joint_lo  joint_hi    syn  syn_lo  syn_hi  equal_joint_p
+ aerobic    social    19.298 21.341 14.563 -6.778    -8.549    -5.007  1.199  -1.350   3.748            0.0
+ aerobic   tobacco    18.378 21.340 14.583 -6.757    -8.500    -5.013  0.366  -2.315   3.047            0.0
+ aerobic  brushing    23.394 22.089 15.337 -6.752    -9.355    -4.150  0.977  -5.136   7.091            0.0
+ aerobic breakfast    13.593 18.864 14.694 -4.170    -5.676    -2.664  1.152  -0.908   3.212            0.0
+ aerobic   alcohol    21.067 18.416 15.274 -3.142    -5.109    -1.175 -0.520  -3.921   2.880            0.0
+pa_guide  brushing    21.340 22.508 14.646 -7.863   -10.434    -5.292  5.591  -1.377  12.559            0.0
+pa_guide    social    16.984 21.453 13.706 -7.747    -9.530    -5.964  1.037  -1.588   3.661            0.0
+pa_guide   tobacco    17.097 21.766 14.327 -7.439    -9.208    -5.670  2.796  -0.072   5.665            0.0
+pa_guide breakfast    12.616 18.959 13.992 -4.967    -6.550    -3.383  1.312  -0.918   3.542            0.0
+pa_guide   alcohol    19.415 18.640 14.557 -4.083    -6.039    -2.126  0.249  -3.328   3.826            0.0
+strength  brushing    27.533 22.952 15.076 -7.876   -10.485    -5.267  7.003   1.311  12.696            0.0
+strength    social    21.912 21.526 14.018 -7.508    -9.220    -5.796  0.743  -1.663   3.149            0.0
+strength   tobacco    22.168 21.832 14.626 -7.206    -8.928    -5.484  2.332  -0.284   4.948            0.0
+strength breakfast    16.288 19.058 14.312 -4.746    -6.200    -3.293  1.276  -0.734   3.286            0.0
+strength   alcohol    25.119 18.514 14.902 -3.612    -5.550    -1.673 -0.533  -3.859   2.794            0.0
+    walk  brushing    52.339 23.394 15.341 -8.053   -11.002    -5.103  1.817  -2.561   6.195            0.0
+    walk    social    42.990 22.438 14.440 -7.998    -9.752    -6.244  0.976  -1.101   3.053            0.0
+    walk   tobacco    43.141 22.620 14.653 -7.967    -9.846    -6.088  1.118  -1.256   3.491            0.0
+    walk breakfast    31.142 19.791 14.382 -5.409    -6.729    -4.088  0.714  -1.001   2.429            0.0
+    walk   alcohol    48.214 19.056 15.304 -3.751    -5.906    -1.596 -0.792  -3.732   2.148            0.0
+완료 748초

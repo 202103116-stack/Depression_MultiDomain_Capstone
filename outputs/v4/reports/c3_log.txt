@@ -1,0 +1,42 @@
+선택된 조합(탐색 세트):
+        a        b  joint   syn
+pa_guide brushing -7.473 2.067
+strength brushing -7.329 1.028
+[c3_M1_components] 적합 344.2초
+[c3_M2_indicators] 적합 241.5초
+가중 2.0: CV AP 0.4302
+가중 5.0: CV AP 0.4256
+[c3_M3_weights2] 적합 210.0초
+        model     AP  AP_lo  AP_hi  ROC_AUC  Brier  cal_slope  dAP_vs_M1  dAP_vs_M1_lo  dAP_vs_M1_hi
+        M0 기본 0.4495 0.4368 0.4620   0.7714 0.1136     1.0327    -0.0003       -0.0015        0.0010
+    M1 +구성 변수 0.4498 0.4369 0.4621   0.7718 0.1136     1.0361        NaN           NaN           NaN
+  M2 +조합 지시변수 0.4487 0.4358 0.4610   0.7710 0.1137     1.0329    -0.0011       -0.0024        0.0000
+M3 +특성 가중(2배) 0.4488 0.4359 0.4613   0.7710 0.1137     1.0486    -0.0011       -0.0026        0.0002
+             f1               f2  mean_abs_interaction  involves_sport  rank
+            sex   smoking_status                0.0695           False     1
+            age      oral_health                0.0189           False     2
+    log_met_min       emp_status                0.0177            True     3
+            age    drinking_freq                0.0133           False     4
+            sex brush_evening_ok                0.0117           False     5
+            age   contact_family                0.0109           False     6
+            age              bmi                0.0106           False     7
+            sex          marital                0.0105           False     8
+            age       emp_status                0.0105           False     9
+            age       binge_freq                0.0102           False    10
+            age          hh_type                0.0096           False    11
+      breakfast          housing                0.0094           False    12
+     emp_status   contact_friend                0.0094           False    13
+            age        walk_days                0.0092            True    14
+food_insecurity          chewing                0.0089           False    15
+운동 관련 상위:
+               f1             f2  mean_abs_interaction  involves_sport  rank
+     log_met_min     emp_status                0.0177            True     3
+             age      walk_days                0.0092            True    14
+  contact_friend   pa_guideline                0.0071            True    21
+   strength_code         region                0.0062            True    29
+log_income_equiv       mod_days                0.0061            True    30
+     log_met_min            sex                0.0058            True    33
+   strength_code   pa_guideline                0.0051            True    41
+        mod_days        hl_seek                0.0045            True    51
+             bmi       vig_days                0.0042            True    65
+   strength_code contact_friend                0.0040            True    69

@@ -1,0 +1,51 @@
+탐색: 모형 1458개, 대비 2016개 (1621초)
+후보 5개 (y5 대비 시도 1008개 중 규칙 통과 82개)
+stratum   sport         x metric  contrast     lo     hi   p  contrast_mood
+     전체    walk breakfast    syn    -2.812 -4.018 -1.607 0.0         -1.598
+     남성 aerobic   tobacco    syn    -3.226 -4.755 -1.697 0.0         -0.738
+     전체   walk3 breakfast    syn    -2.671 -3.957 -1.385 0.0         -1.103
+     여성    walk breakfast    syn    -4.257 -6.373 -2.141 0.0         -3.105
+     남성    walk breakfast    syn    -2.729 -4.184 -1.274 0.0         -1.038
+outcome stratum   sport         x metric  contrast      lo      hi      p  p_holm
+     y5      남성 aerobic   tobacco    syn   -1.8273 -4.7416  1.0870 0.2191  0.6572
+     y5      남성    walk breakfast    syn   -1.5208 -4.2700  1.2283 0.2782  0.6572
+     y5      여성    walk breakfast    syn   -3.4720 -7.8961  0.9521 0.1240  0.4960
+     y5      전체    walk breakfast    syn   -2.0105 -4.3316  0.3106 0.0896  0.4478
+     y5      전체   walk3 breakfast    syn   -0.8287 -3.3877  1.7302 0.5256  0.6572
+ y_mood      남성 aerobic   tobacco    syn   -0.7162 -2.5179  1.0856 0.4359     NaN
+ y_mood      남성    walk breakfast    syn    1.1679 -0.5105  2.8463 0.1726     NaN
+ y_mood      여성    walk breakfast    syn   -2.3588 -5.4137  0.6960 0.1302     NaN
+ y_mood      전체    walk breakfast    syn   -0.6106 -2.1313  0.9100 0.4312     NaN
+ y_mood      전체   walk3 breakfast    syn   -1.0681 -2.7471  0.6108 0.2124     NaN
+    y10      남성 aerobic   tobacco    syn   -2.0677 -3.6238 -0.5116 0.0092     NaN
+    y10      남성    walk breakfast    syn   -0.8830 -2.2563  0.4903 0.2076     NaN
+    y10      여성    walk breakfast    syn   -1.5078 -4.0330  1.0175 0.2419     NaN
+    y10      전체    walk breakfast    syn   -1.3528 -2.5444 -0.1611 0.0261     NaN
+    y10      전체   walk3 breakfast    syn   -0.7964 -2.1791  0.5862 0.2589     NaN
+Traceback (most recent call last):
+  File "c:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\v4\combo_v4.py", line 252, in <module>
+    main()
+  File "c:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\v4\combo_v4.py", line 235, in main
+    pr, _, rk = run_cell((y, sname, "test", list(SPORT_MAIN), LIFE_MAIN))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\v4\combo_v4.py", line 154, in run_cell
+    pairs = [{**tag, **fit_pair(d, r, F, a, b, y, mask, inf)} for a, b in needed_pairs(sports, xs)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\v4\combo_v4.py", line 154, in <listcomp>
+    pairs = [{**tag, **fit_pair(d, r, F, a, b, y, mask, inf)} for a, b in needed_pairs(sports, xs)]
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\v4\combo_v4.py", line 98, in fit_pair
+    mdl = fit_logit(X, d, y, mask)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\v4\common_v4.py", line 48, in fit_logit
+    d["kstrata"].to_numpy(), d["spot_key"].to_numpy()).fit()
+                                                       ^^^^^
+  File "C:\Users\yeob0\Depression_ActivityNetwork_Capstone\src\survey_regression.py", line 118, in fit
+    step = np.linalg.solve(H, X.T @ (w * (y - p)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yeob0\Depression_ActivityNetwork_Capstone\.venv\Lib\site-packages\numpy\linalg\_linalg.py", line 451, in solve
+    r = gufunc(a, b, signature=signature)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yeob0\Depression_ActivityNetwork_Capstone\.venv\Lib\site-packages\numpy\linalg\_linalg.py", line 144, in _raise_linalgerror_singular
+    raise LinAlgError("Singular matrix")
+numpy.linalg.LinAlgError: Singular matrix

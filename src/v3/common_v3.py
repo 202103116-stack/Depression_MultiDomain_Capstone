@@ -20,7 +20,19 @@ import common  # noqa: E402,F401  (src, src/v2 경로 등록)
 from common import load_v2_table  # noqa: E402
 from eda_v2 import weighted_quintile  # noqa: E402
 from survey_regression import SurveyLogit  # noqa: E402
-from survey_regression_v2 import PARTNERS, SPEC, design, recode  # noqa: E402
+from survey_regression_v2 import SPEC, design, recode  # noqa: E402
+
+# v3 생활요인 7개의 운동 외 6개(v3 작성 당시 survey_regression_v2.PARTNERS). v2.1(2026-10-27)에서 PARTNERS가
+# 생활요인 5개로 바뀌었으므로, v4 병합 뒤에도 v3 결과가 재현되도록 당시 정의를 여기에 고정한다(decision_log D-46).
+PARTNERS = [  # (이름, 영역, 충족 정의, 증상근접 여부)
+    ("친구와 주 1회 이상 연락", "social", lambda d: (d["contact_friend"] >= 4).astype(float).where(d["contact_friend"].notna()), False),
+    ("이웃을 신뢰함", "social", lambda d: (d["neighbor_trust"] == 1).astype(float).where(d["neighbor_trust"].notna()), False),
+    ("비흡연(현재 흡연 아님)", "behav", lambda d: (d["smoking_status"] != 2).astype(float).where(d["smoking_status"].notna()), False),
+    ("고위험음주 아님", "behav", lambda d: (d["high_risk_drinking"] == 0).astype(float).where(d["high_risk_drinking"].notna()), False),
+    ("아침식사 주 5회 이상", "behav", lambda d: (d["breakfast"] == 1).astype(float).where(d["breakfast"].notna()), False),
+    ("동네가 안전하다고 느낌", "env", lambda d: (d["env_safety"] == 1).astype(float).where(d["env_safety"].notna()), False),
+    ("주중 수면 7~9시간", "proximal", lambda d: d["sleep_weekday"].between(7, 9).astype(float).where(d["sleep_weekday"].notna()), True),
+]
 from utils import ROOT  # noqa: E402
 
 V3_FIG = ROOT / "outputs" / "v3" / "figures"

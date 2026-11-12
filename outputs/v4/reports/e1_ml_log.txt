@@ -1,0 +1,30 @@
+[e1_base] 적합 44.7초
+[e1_base+econ] 적합 55.5초
+[e1_base+phys] 적합 64.7초
+[e1_base+behav] 적합 68.3초
+[e1_base+social] 적합 117.4초
+[e1_base+env] 적합 68.0초
+[e1_base+care] 적합 68.9초
+[e1_full-demo] 적합 141.8초
+[e1_full-econ] 적합 156.2초
+[e1_full-phys] 적합 150.5초
+[e1_full-behav] 적합 159.0초
+[e1_full-social] 적합 154.8초
+[e1_full-env] 적합 149.2초
+[e1_full-care] 적합 146.9초
+        set kind domain_label     AP    dAP  dAP_lo  dAP_hi
+       base   기준          NaN 0.2557    NaN     NaN     NaN
+       full   전체          NaN 0.4495    NaN     NaN     NaN
+       full   고유           인구    NaN 0.0084  0.0059  0.0107
+  base+econ   단독           경제    NaN 0.0589  0.0516  0.0660
+       full   고유           경제    NaN 0.0112  0.0086  0.0146
+  base+phys   단독         신체건강    NaN 0.1096  0.1010  0.1186
+       full   고유         신체건강    NaN 0.0339  0.0289  0.0390
+ base+behav   단독         건강행태    NaN 0.0487  0.0425  0.0547
+       full   고유         건강행태    NaN 0.0090  0.0060  0.0118
+base+social   단독         사회관계    NaN 0.0495  0.0429  0.0568
+       full   고유         사회관계    NaN 0.0085  0.0060  0.0111
+   base+env   단독         생활환경    NaN 0.0395  0.0330  0.0459
+       full   고유         생활환경    NaN 0.0078  0.0050  0.0105
+  base+care   단독    의료접근·건강정보    NaN 0.0772  0.0683  0.0851
+       full   고유    의료접근·건강정보    NaN 0.0187  0.0148  0.0222

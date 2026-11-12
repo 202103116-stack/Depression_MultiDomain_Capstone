@@ -1,0 +1,20 @@
+특성 53개, 학습 184,762 / 시험 46,528
+[y5__none] 적합 151.3초
+[y5__balanced] 적합 180.1초
+[y5__smotenc] 적합 325.3초
+[y_mood__none] 적합 169.9초
+[y_mood__balanced] 적합 188.8초
+[y_mood__smotenc] 적합 350.6초
+train_target eval_target  prevalence     AP  AP_lo  AP_hi  AP_lift  ROC_AUC  AP_retained_pct
+          y5          y5      0.1627 0.4495 0.4368 0.4620   2.7631   0.7714         100.0000
+          y5      y_mood      0.0627 0.2002 0.1853 0.2146   3.1926   0.7313          91.9690
+      y_mood          y5      0.1627 0.4172 0.4048 0.4291   2.5648   0.7508          92.8237
+      y_mood      y_mood      0.0627 0.2177 0.2027 0.2330   3.4714   0.7465         100.0000
+target   method     AP  ROC_AUC  Brier     OE  cal_slope  dAP_vs_none  dAP_lo  dAP_hi
+    y5     none 0.4495   0.7714 0.1136 1.0231     1.0327          NaN     NaN     NaN
+    y5 balanced 0.4494   0.7718 0.1878 0.3875     1.0270      -0.0001 -0.0018  0.0013
+    y5  smotenc 0.4353   0.7626 0.1155 0.9153     1.0148      -0.0142 -0.0178 -0.0104
+y_mood     none 0.2177   0.7465 0.0542 1.0259     1.0284          NaN     NaN     NaN
+y_mood balanced 0.2118   0.7452 0.1838 0.1575     0.9988      -0.0060 -0.0096 -0.0020
+y_mood  smotenc 0.1878   0.7144 0.0560 0.7795     0.9097      -0.0299 -0.0363 -0.0234
+{'top10_overlap': 7, 'overlap_features': '가구 식품안정성, 만 나이, 성별, 연간 낙상 경험, 저작불편, 종사상 지위, 친구와 연락 빈도', 'spearman_all': 0.7285115303983231}
