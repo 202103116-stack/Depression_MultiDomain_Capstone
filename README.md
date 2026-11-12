@@ -78,11 +78,29 @@ $env:PYTHONIOENCODING = "utf-8"
 .venv\Scripts\python src2\performance_v2.py       # 성능 CI·보정·하위집단
 .venv\Scripts\python paperuild_paper_data.py      # 논문 수치 JSON
 cd paper; npm install; node build_manuscript.js       # paper/manuscript_v2.docx
-cd ..; .venv\Scripts\python paperender_check.py paper\manuscript_v2.docx; .venv\Scripts\python paper\section_pages.py
+cd ..; .venv\Scripts\python paper
+ender_check.py paper\manuscript_v2.docx; .venv\Scripts\python paper\section_pages.py
 cd paper; node build_checklist.js                     # paper/strobe_tripod_checklist.docx
 ```
 
 진행 기록은 `docs/v2/WORKFLOW_v2.md`, 변수 검증은 `docs/v2/data_dictionary_v2.md`에 있다.
+
+## 3차 방향 (v3): 건강 생활요인은 경제적 불리함을 상쇄하는가 — 브랜치 `v3-econ-reversal`
+
+경제 불리 지표 3종(소득 하위 20%·기초생활수급·식품 불안정) × 건강 생활요인 7개의 역전점, 자원 대체(가법 상호작용), 격차 분해,
+운동 요인(걷기·유산소·근력)의 추가 효과를 조사설계 회귀로 분석했다. v2는 태그 `v2-multidomain-final`로 동결했다.
+
+```powershell
+.venv\Scripts\python src3eversal_v3.py      # 주 분석(역전점·상호작용·격차 분해)
+.venv\Scripts\python src3\eda_v3.py           # 경제 집단별 EDA(reversal 결과의 모형 n 사용)
+.venv\Scripts\python src3\sensitivity_v3.py   # 민감도 4종
+.venv\Scripts\python src3\exercise_v3.py      # S1 운동 누적·S2 운동 종류
+.venv\Scripts\python src3uild_report_data.py  # report_v3/report_data.json, 그림 복사
+cd report_v3; npm install; node make_report_v3.js; ..\.venv\Scripts\python postprocess.py <docx 절대경로>
+powershell -ExecutionPolicy Bypass -File finalize.ps1 <docx 절대경로> <pdf 절대경로>
+```
+
+진행 기록은 `docs/v3/WORKFLOW_v3.md`, 판단 근거는 `docs/decision_log.md` D-33~.
 
 ## 1차 결과 요약 (2026-10-12)
 
