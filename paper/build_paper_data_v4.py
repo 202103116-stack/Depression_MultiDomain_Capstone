@@ -66,6 +66,13 @@ def main():
         D["c3_inter_top"] = rec(it.head(10))
         D["c3_inter_sport_top"] = rec(it[it.involves_sport].head(10))
 
+    # 보충: 1:1 조합 30쌍 순위, 소득 계층별 순위, 충족률
+    D["r_pairs"] = rec(R("r_pairs.csv"))
+    D["r_by_factor"] = rec(R("r_by_factor.csv"))
+    D["r_income"] = rec(R("r_income_pairs.csv"))
+    D["r_income_tests"] = rec(R("r_income_tests.csv"))
+    D["r_prev"] = rec(R("r_prevalence.csv"))
+
     # 단계 E
     vt = R("e1_variable_tests.csv")
     D["e1_variable_tests"] = rec(vt.head(15))

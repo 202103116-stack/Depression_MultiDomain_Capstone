@@ -239,9 +239,47 @@ def fig_domains(plt):
     plt.close(fig)
 
 
+def fig_pair_ranks(plt):
+    """1:1 조합 30쌍: (a) 전체 결합 감소 순위, (b) 소득 하위 vs 상위 20% 감소 폭(소득 차이 순). 운동 조합은 주황."""
+    t = R("r_pairs.csv")
+    t = t[t.outcome == "y5"].sort_values("joint")
+    g = R("r_income_pairs.csv")
+    g = g[g.outcome == "y5"].sort_values("gap")
+    lab = lambda df: [f"{a} + {b}" for a, b in zip(df.a_label if "a_label" in df else df.pair.str.split(" \\+ ").str[0],
+                                                    df.b_label if "b_label" in df else df.pair.str.split(" \\+ ").str[1])]
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(15, 9.5), gridspec_kw={"wspace": 0.55})
+    y = np.arange(len(t))
+    col = np.where(t.kind == "운동+일반", ORANGE, BLUE)
+    a1.hlines(y, t.joint_lo, t.joint_hi, color=col, lw=2)
+    a1.scatter(t.joint, y, color=col, zorder=3)
+    a1.set_yticks(y, [f"{i}. {s}" for i, s in zip(t.rank_all, lab(t))], fontsize=8.5)
+    a1.invert_yaxis()
+    a1.set_xlabel("둘 다 충족 시 감소(%p) · 95% CI — 전체")
+    a1.set_title("(a) 전체: 운동 조합(주황)은 최고 8위", loc="left")
+    y = np.arange(len(g))
+    col = np.where(g.kind == "운동+일반", ORANGE, BLUE)
+    a2.hlines(y, g.low_joint, g.high_joint, color="#c9c9c9", lw=3, zorder=1)
+    a2.scatter(g.low_joint, y, color=col, s=36, zorder=3, label="소득 하위 20%(채운 점)")
+    a2.scatter(g.high_joint, y, facecolor="white", edgecolor=col, s=36, zorder=3, label="소득 상위 20%(빈 점)")
+    for yi, v in zip(y, g.gap):
+        a2.text(1.0, yi, f"{v:+.1f}", va="center", ha="right", fontsize=8, color=INK_MUTED)
+    a2.set_yticks(y, [f"{i}. {s}" for i, s in zip(g.rank_gap, g.pair)], fontsize=8.5)
+    a2.invert_yaxis()
+    a2.set_xlim(None, 1.5)
+    a2.set_xlabel("둘 다 충족 시 감소(%p) — 오른쪽 숫자 = 하위 - 상위 차이")
+    a2.set_title("(b) 소득 차이 순: 2~7위가 모두 운동 조합", loc="left")
+    a2.legend(loc="lower left", fontsize=8)
+    fig.suptitle("1:1 생활요인 조합 30쌍의 우울 증상 감소(PHQ-9 ≥ 5, 전체 표본) — 주황 = 운동 포함 조합", x=0.01, ha="left",
+                 fontsize=13, fontweight="bold")
+    fig.tight_layout()
+    save(fig, "fig_v4_09_pair_ranks.png")
+    plt.close(fig)
+
+
 def main():
     plt = setup_matplotlib()
-    for fn in (fig_joint_heatmap, fig_spec_curve, fig_income_link, fig_cross, fig_imbalance, fig_reversal, fig_weighted, fig_domains):
+    for fn in (fig_joint_heatmap, fig_spec_curve, fig_income_link, fig_cross, fig_imbalance, fig_reversal, fig_weighted, fig_domains,
+               fig_pair_ranks):
         try:
             fn(plt)
             print("그림:", fn.__name__)

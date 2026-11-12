@@ -49,6 +49,33 @@ const inc = inter("income"), liv = inter("livelihood"), foo = inter("food");
 const xA = cross("y5", "y_mood"), xB = cross("y_mood", "y5"), xAA = cross("y5", "y5"), xBB = cross("y_mood", "y_mood");
 const so = D.c2_shap_overlap;
 const walkRank = LIVES.map((x) => rank("walk", x)).sort((a, b) => a.joint - b.joint);
+// 보충: 1:1 조합 30쌍(전체 표본) — 전체 순위, 생활요인별 짝 순위, 소득 계층별 순위
+const RP = D.r_pairs.filter((r) => r.outcome === "y5").sort((a, b) => a.rank_all - b.rank_all);
+const bestSportPair = RP.find((r) => r.kind === "운동+일반");
+const nGenBefore = RP.filter((r) => r.rank_all < bestSportPair.rank_all).length;
+const RBF = D.r_by_factor.filter((r) => r.outcome === "y5" && r.rank_in_x != null);
+const RBFm = D.r_by_factor.filter((r) => r.outcome === "y_mood" && r.rank_in_x != null);
+const sportBest = (rows, x) => Math.min(...rows.filter((r) => r.x === x && r.partner_is_sport).map((r) => r.rank_in_x));
+const sportBestRanks = LIVES.map((x) => sportBest(RBF, x)), sportBestRanksM = LIVES.map((x) => sportBest(RBFm, x));
+const bfTest = (x) => one(D.r_by_factor, (r) => r.outcome === "y5" && r.x === x && r.rank_in_x == null && String(r.partner_label).startsWith("운동 최고"), x);
+const bfDiffs = LIVES.map((x) => bfTest(x).joint);
+const walkTie = one(D.r_by_factor, (r) => r.outcome === "y5" && r.x === "walk" && String(r.partner_label).includes("2위"), "walk tie");
+const RI = D.r_income.filter((r) => r.outcome === "y5").sort((a, b) => a.gap - b.gap);
+const RIm = D.r_income.filter((r) => r.outcome === "y_mood").sort((a, b) => a.gap - b.gap);
+const nSportTop7 = RI.slice(0, 7).filter((r) => r.kind === "운동+일반").length;
+const nSportTop7m = RIm.slice(0, 7).filter((r) => r.kind === "운동+일반").length;
+const wsI = one(RI, (r) => r.a === "walk" && r.b === "social", "walk+social income");
+const topLow = [...RI].sort((a, b) => a.low_joint - b.low_joint)[0];
+const tGap = one(D.r_income_tests, (t) => t.outcome === "y5" && t.measure.startsWith("소득") && t.other === wsI.pair, "gap test");
+const tLow = one(D.r_income_tests, (t) => t.outcome === "y5" && t.measure.startsWith("하위") && t.other === wsI.pair, "low test");
+const meanBy = (rows, kind, col) => { const q = rows.filter((r) => r.kind === kind); return q.reduce((a, r) => a + r[col], 0) / q.length; };
+const PV = (k) => one(D.r_prev, (r) => r.factor === k, k);
+const SPORTKEYS = ["walk", "aerobic", "strength", "pa_guide"];
+const partnersOf = (rows, x) => rows.filter((r) => r.a === x || r.b === x).map((r) => ({ ...r, partner: r.a === x ? r.b : r.a }));
+const avg = (q, col) => q.reduce((a, r) => a + r[col], 0) / q.length;
+const socP = partnersOf(RI, "social").sort((a, b) => a.gap - b.gap);
+const gapSportSoc = avg(socP.filter((r) => SPORTKEYS.includes(r.partner)), "gap"), gapGenSoc = avg(socP.filter((r) => !SPORTKEYS.includes(r.partner)), "gap");
+const NM = { ...SPORT, ...LIFE, walk: "걷기", pa_guide: "권고 충족", strength: "근력", aerobic: "유산소", tobacco: "담배 미사용", alcohol: "절주", breakfast: "아침식사", brushing: "칫솔질" };
 
 // 단계 D·E-2(있으면)
 const C3 = D.c3_models || null;
@@ -112,8 +139,8 @@ C.push(pageBreak());
 C.push(H1("국문 초록"));
 C.push(PL([{ t: "목적: ", b: true }, "운동은 우울 증상과 관련된 대표적 생활요인이지만, 실제 생활에서는 다른 생활습관과 함께 실천된다. 이 연구는 (1) 운동을 어떤 생활요인과 함께할 때 우울 증상 비율이 가장 낮은지, (2) 그 효과가 경제적으로 불리한 집단에서 더 큰지, (3) 우울 위험 예측 모델이 특정 설문 척도가 아닌 우울 위험 자체를 학습하는지를 검토하였다."], { noIndent: true }));
 C.push(PL([{ t: "방법: ", b: true }, `2025년 지역사회건강조사의 성인 ${n0(y5.n)}명을 분석한 횡단면 연구이다. 주 결과는 PHQ-9 5점 이상(가중 ${pct(y5.weighted_pct)})이며, 별도 문항인 최근 1년 우울감 경험(${pct(ym.weighted_pct)})으로 교차 검증하였다. 운동 요인 4개(걷기, 중강도 이상 유산소, 근력운동, 신체활동 권고)와 생활요인 5개(담배제품 미사용, 고위험음주 아님, 아침식사, 사회적 연결, 칫솔질)의 쌍마다 조사설계 로지스틱 회귀로 4칸 조정 유병률을 추정하였다. 가구 단위로 나눈 탐색 세트에서 운동 정의·층·결과를 넓게 시도해 후보를 고르고(${n0(D.c1_n_specs)}개 명세), 확인 세트에서 Holm 보정으로 검정하였다. 예측은 CatBoost로 교차 결과 예측, 불균형 보정, 스포츠 조합 가중 모델을 비교하였다.`], { noIndent: true }));
-C.push(PL([{ t: "결과: ", b: true }, `걷기와 사회적 연결을 함께 충족한 사람의 조정 유병률은 ${pct(ws.p11)}로, 둘 다 충족하지 않은 사람(${pct(ws.p00)})보다 ${abs(ws.joint)}%p 낮았다(확인 세트). 이 감소 폭은 소득 하위 20%에서 ${abs(wsLow.joint)}%p, 상위 20%에서 ${abs(wsHigh.joint)}%p였다(차이 ${neg(p2w.contrast)}%p, 95% CI ${cpp(p2w.lo, p2w.hi)}, Holm p ${pv(p2w.p_holm)}). 반면 "운동과 짝지을 때만 특히 커지는" 생활요인은 확인되지 않았다. 생활요인을 5개 이상 충족한 소득 하위 집단의 유병률은 생활요인이 적은 상위 집단보다 낮았다(역전). 다른 결과로 학습한 모델도 자기 결과 모델 AP의 ${f(xA.AP_retained_pct, 0)}~${f(xB.AP_retained_pct, 0)}%를 회복했고, 불균형 보정은 성능을 높이지 못하였다.`], { noIndent: true }));
-C.push(PL([{ t: "결론: ", b: true }, "운동, 특히 걷기는 사회적 연결과 함께할 때 우울 증상 비율이 가장 낮았고, 그 차이는 경제적으로 불리한 집단에서 컸다. 걷기에 사람을 묶는 저비용 프로그램(함께 걷기)을 취약 집단에 우선 제공하는 것을 제언한다. 횡단면 자료이므로 인과로 해석할 수 없다."], { noIndent: true }));
+C.push(PL([{ t: "결과: ", b: true }, `걷기와 사회적 연결을 함께 충족한 사람의 조정 유병률은 ${pct(ws.p11)}로, 둘 다 충족하지 않은 사람(${pct(ws.p00)})보다 ${abs(ws.joint)}%p 낮았다(확인 세트). 이 감소 폭은 소득 하위 20%에서 ${abs(wsLow.joint)}%p, 상위 20%에서 ${abs(wsHigh.joint)}%p였다(차이 ${neg(p2w.contrast)}%p, 95% CI ${cpp(p2w.lo, p2w.hi)}, Holm p ${pv(p2w.p_holm)}). 1:1 조합 30쌍 중 운동이 포함된 조합은 전체 감소 폭으로는 최고 ${bestSportPair.rank_all}위로 금연·사회적 연결·아침식사·칫솔질끼리의 조합보다 작았고, "운동과 짝지을 때만 특히 커지는" 생활요인도 확인되지 않았다. 소득 하위와 상위 20%의 감소 폭 차이는 사회적 연결·아침식사를 포함한 조합에서 컸고, 이 두 요인의 짝으로는 운동(걷기·권고 충족·근력)이 금연·절주·칫솔질보다 차이가 컸다(차이 상위 7개 중 ${nSportTop7}개가 운동 + 사회적 연결·아침식사). 생활요인을 5개 이상 충족한 소득 하위 집단의 유병률은 생활요인이 적은 상위 집단보다 낮았다(역전). 다른 결과로 학습한 모델도 자기 결과 모델 AP의 ${f(xA.AP_retained_pct, 0)}~${f(xB.AP_retained_pct, 0)}%를 회복했고, 불균형 보정은 성능을 높이지 못하였다.`], { noIndent: true }));
+C.push(PL([{ t: "결론: ", b: true }, "운동은 다른 생활요인보다 강한 짝은 아니었지만, 다른 요인과 겹치지 않고 더해졌다. 취약계층에서 감소 폭이 커지는 핵심은 사회적 연결과 규칙적 식사였고, 운동은 이들과 함께할 때 소득 간 차이를 키우는 짝이었다. 따라서 운동의 가치는 단독 효과의 크기보다, 사회적 연결과 묶여 취약계층의 우울 격차를 좁힐 가능성에 있다. 걷기에 사람을 묶는 저비용 프로그램(함께 걷기)을 취약 집단에 우선 제공하는 것을 제언한다. 횡단면 자료이므로 인과로 해석할 수 없다."], { noIndent: true }));
 C.push(PL([{ t: "주요어: ", b: true }, "우울 증상, PHQ-9, 걷기, 사회적 연결, 생활요인 조합, 경제적 불리, 머신러닝, 지역사회건강조사"], { noIndent: true }));
 C.push(pageBreak());
 
@@ -121,8 +148,8 @@ C.push(pageBreak());
 C.push(H1("Abstract"));
 C.push(PL([{ t: "Objective: ", b: true }, "We examined which healthy habits, when combined with exercise, are associated with the lowest prevalence of depressive symptoms, whether these associations are larger among economically disadvantaged adults, and whether machine-learning risk models generalize beyond a single questionnaire."], { noIndent: true }));
 C.push(PL([{ t: "Methods: ", b: true }, `Cross-sectional analysis of ${n0(y5.n)} adults in the 2025 Korea Community Health Survey. The primary outcome was PHQ-9 ≥ 5 (weighted ${pct(y5.weighted_pct)}); a separate item on persistent depressed mood (${pct(ym.weighted_pct)}) served as a cross-check. For each pair of four exercise factors and five lifestyle factors, survey-weighted logistic models gave adjusted prevalences in four cells. Candidates were searched broadly in an exploration set (${n0(D.c1_n_specs)} specifications) and tested once in a household-separated confirmation set with Holm correction. CatBoost models assessed cross-outcome prediction, class-imbalance corrections, and exercise-combination weighting.`], { noIndent: true }));
-C.push(PL([{ t: "Results: ", b: true }, `Meeting both walking and social-connection criteria was associated with ${abs(ws.joint)} percentage points lower prevalence than meeting neither (${pct(ws.p11)} vs ${pct(ws.p00)}). This difference was ${abs(wsLow.joint)} points in the lowest income quintile and ${abs(wsHigh.joint)} in the highest (difference ${neg(p2w.contrast)}, 95% CI ${cpp(p2w.lo, p2w.hi)}, Holm p ${pv(p2w.p_holm)}). No lifestyle factor showed a confirmed exercise-specific synergy. Disadvantaged adults meeting five or more healthy factors had lower prevalence than advantaged adults meeting few. Models trained on one outcome recovered ${f(xA.AP_retained_pct, 0)}–${f(xB.AP_retained_pct, 0)}% of the other outcome's own-model AP; imbalance corrections did not help.`], { noIndent: true }));
-C.push(PL([{ t: "Conclusion: ", b: true }, "Walking combined with social connection marked the lowest depressive-symptom prevalence, particularly in low-income adults, supporting low-cost group-walking programs targeted to disadvantaged communities. Causal inference is not possible with cross-sectional data."], { noIndent: true }));
+C.push(PL([{ t: "Results: ", b: true }, `Meeting both walking and social-connection criteria was associated with ${abs(ws.joint)} percentage points lower prevalence than meeting neither (${pct(ws.p11)} vs ${pct(ws.p00)}). This difference was ${abs(wsLow.joint)} points in the lowest income quintile and ${abs(wsHigh.joint)} in the highest (difference ${neg(p2w.contrast)}, 95% CI ${cpp(p2w.lo, p2w.hi)}, Holm p ${pv(p2w.p_holm)}). Among 30 one-to-one combinations, exercise-containing pairs ranked no higher than ${bestSportPair.rank_all}th in overall reduction and no exercise-specific synergy was confirmed, while low- versus high-income differences were largest for pairs involving social connection or regular breakfast, where exercise partners (walking, guideline, strength) showed larger differences than smoking, alcohol, or tooth-brushing partners. Disadvantaged adults meeting five or more healthy factors had lower prevalence than advantaged adults meeting few. Models trained on one outcome recovered ${f(xA.AP_retained_pct, 0)}–${f(xB.AP_retained_pct, 0)}% of the other outcome's own-model AP; imbalance corrections did not help.`], { noIndent: true }));
+C.push(PL([{ t: "Conclusion: ", b: true }, "Exercise was not the strongest partner habit, but it added independently. Social connection and regular meals drove the larger reductions in low-income adults, and exercise amplified them as a partner, supporting low-cost group-walking programs targeted to disadvantaged communities. Causal inference is not possible with cross-sectional data."], { noIndent: true }));
 C.push(pageBreak());
 
 // ---- 서론
@@ -177,16 +204,41 @@ const vt = D.e1_variable_tests;
 C.push(P(`조사설계 회귀에서 변수별 결합 검정 F가 큰 변수는 ${vt.slice(0, 6).map((v) => v.name).join(", ")} 순이었다. 바꿀 수 있는 요인 중에서는 저작불편 "매우 불편"(${orT(orF("저작불편", "매우 불편"))}), 미충족 의료(${orT(orF("미충족 의료", "있음"))}), 식품 "자주 부족"(${orT(orF("식품안정성", "자주 부족"))})의 관련이 컸다. 결과 기준이 낮아져 오즈비는 PHQ-9 10점 기준보다 1에 가까워졌지만 순서는 거의 같았다. 신체활동 권고와 생활요인 5개의 충족 수가 하나 늘 때마다 오즈는 ${f(cnt5.trend_OR, 2)}배(95% CI ${ci(cnt5.trend_low, cnt5.trend_high, 2)})였다.`));
 
 C.push(H2("RQ2. 운동과 함께할 때 효과가 큰 생활요인"));
-C.push(P(`확인 세트에서 걷기와 짝을 이룬 생활요인의 결합 감소는 ${walkRank.map((r) => `${LIFE[r.b]} ${neg(r.joint)}%p`).join(", ")} 순이었다(그림 ${ML ? 2 : 1}). 걷기와 사회적 연결을 함께 충족한 사람은 ${pct(ws.both_pct, 0)}였고, 이들의 조정 유병률은 ${pct(ws.p11)}로 둘 다 아닌 사람(${pct(ws.p00)})보다 ${abs(ws.joint)}%p(결합 감소 95% CI ${cpp(ws.joint_lo, ws.joint_hi)}) 낮았다. 이 감소는 우울감 경험(${neg(wsMood.joint)}%p, ${cpp(wsMood.joint_lo, wsMood.joint_hi)})과 PHQ-9 10점 기준(${neg(ws10.joint)}%p, ${cpp(ws10.joint_lo, ws10.joint_hi)})에서도 재현되었다. 상위 세 짝(사회적 연결, 칫솔질, 담배 미사용)의 크기는 비슷했고, 시너지는 모두 0 근처로 운동과 생활요인의 효과는 대체로 독립적으로 더해졌다.`));
+C.push(P(`확인 세트에서 걷기와 짝을 이룬 생활요인의 결합 감소는 ${walkRank.map((r) => `${LIFE[r.b]} ${neg(r.joint)}%p`).join(", ")} 순이었다(그림 ${ML ? 2 : 1}). 걷기와 사회적 연결을 함께 충족한 사람은 ${pct(ws.both_pct, 0)}였고, 이들의 조정 유병률은 ${pct(ws.p11)}로 둘 다 아닌 사람(${pct(ws.p00)})보다 ${abs(ws.joint)}%p(결합 감소 95% CI ${cpp(ws.joint_lo, ws.joint_hi)}) 낮았다. 이 감소는 우울감 경험(${neg(wsMood.joint)}%p, ${cpp(wsMood.joint_lo, wsMood.joint_hi)})과 PHQ-9 10점 기준(${neg(ws10.joint)}%p, ${cpp(ws10.joint_lo, ws10.joint_hi)})에서도 재현되었다. 상위 세 짝(사회적 연결, 칫솔질, 담배 미사용)의 크기는 비슷해(전체 표본에서 1위와 2위의 차이 ${neg(walkTie.joint)}%p, p ${pv(walkTie.p)}) 걷기의 최고 짝을 하나로 정할 수는 없었다. 시너지는 모두 0 근처로 운동과 생활요인의 효과는 대체로 독립적으로 더해졌다.`));
 C.push(...apaFigure({ file: "v4/fig_v4_01_joint_heatmap.png", title: "운동 × 생활요인을 함께 충족할 때의 우울 증상 감소(확인 세트, PHQ-9 5점 이상)",
   note: "칸 값 = 둘 다 충족한 사람과 둘 다 아닌 사람의 조정 유병률 차이(%p). 인구·경제·신체건강 변수를 조정하였다." }));
 C.push(P(`탐색 세트의 PHQ-9 5점 대비 ${n0(D.c1_n_specs_y5)}개 중 ${n0(D.c1_n_rule_pass)}개가 후보 규칙을 통과했고, 상위 5개는 모두 걷기(또는 유산소)와 아침식사·담배 미사용의 시너지 대비였다. 그러나 확인 세트에서는 5개 모두 신뢰구간이 0을 포함하였다. 가장 강한 후보인 ${bestC.stratum} 층의 ${SPORT[bestC.sport] || bestC.sport_label} + ${LIFE[bestC.x] || bestC.x_label} 대비는 ${neg(bestC.contrast)}%p(95% CI ${cpp(bestC.lo, bestC.hi)}, Holm p ${pv(bestC.p_holm)})였다${c10best ? `(PHQ-9 10점 기준에서는 ${neg(c10best.contrast)}%p, ${cpp(c10best.lo, c10best.hi)})` : ""}. 운동 쌍의 평균 시너지가 일반 생활요인 쌍보다 작다는 탐색 패턴도 확인되지 않았다(모든 p > ${f(Math.min(...p1.map((x) => x.p)), 2).replace(/^0/, "")}). 따라서 "운동과 짝지을 때만 특히 커지는" 생활요인은 이 자료에서 확인되지 않았고, 탐색 후보로만 보고한다.`));
+C.push(H3("운동 짝의 상대 순위"));
+C.push(P(`운동을 일반 생활요인과 직접 비교하기 위해, 운동 4개와 일반 생활요인 5개로 만들 수 있는 1:1 조합 30쌍(운동끼리는 정의가 겹쳐 제외)의 결합 감소를 전체 표본에서 비교하였다. 1~${nGenBefore}위는 모두 일반 생활요인끼리의 조합이었고(1위 ${RP[0].a_label} + ${RP[0].b_label} ${neg(RP[0].joint)}%p), 운동이 포함된 조합의 최고 순위는 ${bestSportPair.rank_all}위(${bestSportPair.a_label} + ${bestSportPair.b_label}, ${neg(bestSportPair.joint)}%p)였다. 일반 생활요인 하나를 기준으로 8개 짝(일반 4개, 운동 4개)을 비교하면, 운동 짝의 최고 순위는 ${Math.min(...sportBestRanks)}~${Math.max(...sportBestRanks)}위였고 각 생활요인의 1위 짝보다 결합 감소가 ${f(Math.min(...bfDiffs), 1)}~${f(Math.max(...bfDiffs), 1)}%p 작았다(모두 p ≤ .001). 운동이 이긴 일반 생활요인은 효과가 가장 약한 고위험음주 아님뿐이었다. 우울감 경험에서도 운동 짝의 최고 순위는 ${Math.min(...sportBestRanksM)}~${Math.max(...sportBestRanksM)}위였다. 운동 사이에서는 신체활동 권고 충족(유산소 + 근력) > 근력운동 > 걷기 > 중강도 이상 유산소 순이었다. 결합 감소는 두 요인 각각의 관련을 더한 값에 가까우므로, 이 순위는 운동 변수 하나와 우울의 관련이 금연·사회적 연결·칫솔질보다 작다는 뜻이다. 다만 도달 범위는 달랐다. 걷기 실천은 성인의 ${f(PV("walk")["전체"], 1)}%였으나 신체활동 권고 충족은 ${f(PV("pa_guide")["전체"], 1)}%에 그쳤다.`));
+C.push(...apaTable({
+  title: "일반 생활요인별 짝 순위(1:1 조합, 결합 감소 기준, PHQ-9 5점 이상)",
+  head: ["기준 생활요인", "1위 짝", "2위", "3위", "4위", "운동 짝 최고 순위", "1위 대비 차이"],
+  rows: LIVES.map((x) => {
+    const r = RBF.filter((q) => q.x === x).sort((a, b) => a.rank_in_x - b.rank_in_x);
+    const nm = (q) => `${q.partner_label}${q.partner_is_sport ? "*" : ""} ${neg(q.joint)}`;
+    const t = bfTest(x);
+    return [LIFE[x], nm(r[0]), nm(r[1]), nm(r[2]), nm(r[3]), `${sportBest(RBF, x)}위`, `${neg(t.joint)} ${cpp(t.joint_lo, t.joint_hi)}`];
+  }),
+  widths: [2, 2, 2, 2, 2, 1.2, 1.8],
+  note: "* = 운동 요인. 값은 둘 다 충족과 둘 다 아님의 조정 유병률 차이(%p, 전체 표본). 1위 대비 차이 = 운동 짝 최고 − 1위 짝(양수 = 운동 짝의 감소가 작음).",
+}));
 C.push(...apaFigure({ file: "v4/fig_v4_02_spec_curve.png", title: "스포츠 특이 시너지 대비의 명세 곡선(탐색)과 후보의 확인 세트 추정",
   note: "(a) 탐색 세트에서 시도한 PHQ-9 5점 대비 전체. 파란색 = 95% CI가 0을 포함하지 않음. (b) 미리 정한 규칙으로 고른 후보 5개의 확인 세트 추정." }));
 
 C.push(H2("RQ3. 경제적 불리와 운동 조합, 역전점"));
 C.push(P(`걷기와 사회적 연결의 결합 감소는 소득 하위 20%에서 ${abs(p2w.value_1)}%p, 상위 20%에서 ${abs(p2w.value_2)}%p로, 하위 집단에서 ${abs(p2w.contrast)}%p(차이 95% CI ${cpp(p2w.lo, p2w.hi)}, Holm p ${pv(p2w.p_holm)}) 더 컸다. PHQ-9 10점 기준에서도 같은 차이가 유의하였고(${neg(p2w10.contrast)}%p, ${cpp(p2w10.lo, p2w10.hi)}), 우울감 경험에서는 같은 방향이지만 유의하지 않았다(${neg(p2wm.contrast)}%p, ${cpp(p2wm.lo, p2wm.hi)}). 유산소, 근력운동, 신체활동 권고와 사회적 연결의 조합도 같은 방향이었으나 보정 후 유의하지 않았다(차이 ${p2others.map((x) => neg(x.contrast)).join(", ")}%p).`));
 C.push(...apaFigure({ file: "v4/fig_v4_03_income_link.png", title: "운동 + 사회적 연결의 결합 감소: 소득 하위 20% 대 상위 20%(확인 세트)" }));
+C.push(P(`이 패턴이 운동 조합에 특징적인지 보기 위해 30쌍 모두를 소득 하위·상위 20%에서 추정하였다(전체 표본, 탐색적). 하위 20%의 결합 감소 자체는 ${topLow.pair}(${neg(topLow.low_joint)}%p)이 가장 컸고 걷기 + 사회적 연결은 ${wsI.rank_low}위(${neg(wsI.low_joint)}%p; 1위와 차이 ${neg(tLow.diff)}%p, p ${pv(tLow.p)})였다. 그러나 하위와 상위의 감소 폭 차이로 순위를 매기면, 1위 ${RI[0].pair}(${neg(RI[0].gap)}%p) 다음으로 걷기 + 사회적 연결이 ${wsI.rank_gap}위(${neg(wsI.gap)}%p; 1위와 차이 ${neg(tGap.diff)}%p, p ${pv(tGap.p)})였고, 상위 7개 중 ${nSportTop7}개가 운동 조합이었다. 다만 이 순위는 운동 조합 전체의 특징이 아니었다. 운동 조합 20쌍의 소득 간 차이 평균은 ${neg(meanBy(RI, "운동+일반", "gap"))}%p로 일반 조합 10쌍(${neg(meanBy(RI, "일반+일반", "gap"))}%p)과 비슷했다. 차이를 만든 것은 짝이었다. 사회적 연결이나 아침식사를 포함한 조합은 짝이 운동이든 일반 생활요인이든 소득 간 차이가 컸고, 담배 미사용·칫솔질·절주와의 조합은 작았다. 사회적 연결의 짝을 소득 간 차이 순으로 보면 ${socP.map((r) => `${NM[r.partner]} ${neg(r.gap)}`).join(", ")}였다(운동 짝 평균 ${neg(gapSportSoc)}, 일반 짝 평균 ${neg(gapGenSoc)}%p). 즉 운동은 아침식사 다음으로, 금연·절주·칫솔질보다 큰 차이를 보이는 짝이었다. 우울감 경험에서도 소득 차이 상위 7개 중 ${nSportTop7m}개가 운동 조합이었다. 한편 소득 하위층은 운동 실천율이 낮았다(근력운동 ${f(PV("strength")["소득 하위 20%"], 1)}% 대 ${f(PV("strength")["소득 상위 20%"], 1)}%, 신체활동 권고 충족 ${f(PV("pa_guide")["소득 하위 20%"], 1)}% 대 ${f(PV("pa_guide")["소득 상위 20%"], 1)}%, 사회적 연결 ${f(PV("social")["소득 하위 20%"], 1)}% 대 ${f(PV("social")["소득 상위 20%"], 1)}%). 즉 취약계층에서 감소 폭이 큰 조합은 그 계층이 현재 덜 실천하는 조합이기도 하다.`));
+C.push(...apaTable({
+  title: "소득 하위·상위 20%의 감소 폭 차이가 큰 조합(상위 10쌍, PHQ-9 5점 이상)",
+  head: ["순위", "조합", "유형", "하위 20%", "상위 20%", "차이(하위 − 상위) [95% CI]"],
+  rows: RI.slice(0, 10).map((r) => ({ bold: r.a === "walk" && r.b === "social",
+    cells: [String(r.rank_gap), r.pair, r.kind === "운동+일반" ? "운동" : "일반", neg(r.low_joint), neg(r.high_joint), `${neg(r.gap)} ${cpp(r.gap_lo, r.gap_hi)}`] })),
+  widths: [0.8, 3.4, 0.9, 1.2, 1.2, 2.4],
+  note: `값은 둘 다 충족과 둘 다 아님의 조정 유병률 차이(%p, 전체 표본, 탐색적). 굵은 행(걷기 + 사회적 연결)은 확인 세트에서 별도로 검증되었다(차이 ${neg(p2w.contrast)}%p, Holm p ${pv(p2w.p_holm)}). 1위와 2위의 차이는 ${neg(tGap.diff)}%p(p ${pv(tGap.p)})로 유의하지 않다. 운동 조합 20쌍 전체의 평균 차이는 ${neg(meanBy(RI, "운동+일반", "gap"))}%p로 일반 조합(${neg(meanBy(RI, "일반+일반", "gap"))}%p)과 비슷하다.`,
+}));
+C.push(...apaFigure({ file: "v4/fig_v4_09_pair_ranks.png", title: "1:1 생활요인 조합 30쌍: 전체 감소 순위와 소득 계층 간 차이 순위", widthIn: 6.4,
+  note: "주황 = 운동 포함 조합, 파랑 = 일반 생활요인끼리의 조합. (b) 채운 점 = 소득 하위 20%, 빈 점 = 상위 20%. 전체 표본 기술 분석이며, 걷기 + 사회적 연결의 소득 차이만 확인 세트에서 별도 검증되었다." }));
 C.push(P(`생활요인 개수로 보면, 소득 하위 20%의 조정 유병률은 0~2개 ${pct(100 * cell("income", "하위(1분위)", "0~2개").adj_prev)}에서 6개 ${pct(100 * cell("income", "하위(1분위)", "6개").adj_prev)}로, 상위 20%(${pct(100 * cell("income", "상위(5분위)", "0~2개").adj_prev)} → ${pct(100 * cell("income", "상위(5분위)", "6개").adj_prev)})보다 크게 낮아졌다(가법 상호작용 ${neg(inc.additive_pp)}%p, 95% CI ${cpp(inc.additive_low, inc.additive_high)}). 하위 집단은 5개부터 생활요인이 적은 상위 집단보다 낮았고(역전 ①, ${neg(rev("income", "5개", "유리 집단 0~2개").diff_pp)}%p), 6개에서는 상위 집단 전체 평균보다도 낮았다(역전 ②). 기초생활수급과 식품 불안정도 5개부터 역전 ①이 나타났지만 역전 ②는 없었다. 생활요인 분포 차이로 설명되는 격차는 소득 ${f(100 * dec("income").share_explained, 0)}%, 수급 ${f(100 * dec("livelihood").share_explained, 0)}%, 식품 ${f(100 * dec("food").share_explained, 0)}%였다.`));
 C.push(...apaTable({
   title: "경제 불리 지표별 역전점과 가법 상호작용(PHQ-9 5점 이상)",
@@ -213,18 +265,19 @@ if (c3) {
 // ---- 논의
 C.push(H1("논의"));
 C.push(H2("주요 결과"));
-C.push(P("이 연구의 핵심은 세 가지다. 첫째, 운동은 사회적 연결, 금연, 구강 관리 같은 생활요인과 함께할 때 우울 증상 비율이 가장 낮았다. 다만 그 효과는 운동과 생활요인이 각각 기여하는 몫이 더해진 것이며, 운동과 짝지을 때만 특별히 커지는 생활요인은 확인되지 않았다. 둘째, 걷기와 사회적 연결의 조합은 소득 하위 집단에서 감소 폭이 상위 집단의 약 3배였다. 이는 생활요인 개수에서 본 역전점과 가법 상호작용(자원 대체; Ross & Mirowsky, 2006)을 운동 조합 수준에서 다시 보여 준다. 셋째, 예측 모델은 서로 다른 두 우울 측정을 상호 예측하여, 특정 설문에 맞춰진 것이 아니라 우울 위험 자체를 학습한 것으로 보인다."));
+C.push(P("이 연구의 핵심은 네 가지다. 첫째, 운동은 가장 강한 짝은 아니었다. 1:1 조합에서 운동이 포함된 조합은 금연·사회적 연결·아침식사·칫솔질끼리의 조합보다 감소 폭이 작았고, 운동과 짝지을 때만 특별히 커지는 생활요인도 확인되지 않았다. 둘째, 그럼에도 운동은 다른 생활요인과 겹치지 않고 독립적으로 더해졌다(시너지 ≈ 0). 금연과 사회적 연결을 이미 실천하는 사람도 운동을 더하면 추가로 낮아질 수 있다는 뜻이다. 셋째, 운동 조합의 가치는 형평성에서 드러났다. 걷기와 사회적 연결의 조합은 소득 하위 집단에서 감소 폭이 상위 집단의 약 3배였고(확인 세트에서 검증), 30쌍 전체에서도 소득 간 차이가 큰 조합은 사회적 연결·아침식사를 포함한 조합이었고, 이 두 요인의 짝으로는 운동이 금연·절주·칫솔질보다 차이가 컸다. 운동 조합 전체의 평균 차이는 일반 조합과 비슷했으므로, 형평성의 핵심은 사회적 연결과 규칙적 식사이고 운동은 그 효과를 키우는 짝으로 보는 것이 정확하다. 이는 생활요인 개수에서 본 역전점과 가법 상호작용(자원 대체; Ross & Mirowsky, 2006)을 운동 조합 수준에서 다시 보여 주며, 운동이 사회적 관계·생활 리듬과 묶일 때 자원이 부족한 집단에서 대체 자원의 역할을 할 가능성을 시사한다. 넷째, 예측 모델은 서로 다른 두 우울 측정을 상호 예측하여, 특정 설문에 맞춰진 것이 아니라 우울 위험 자체를 학습한 것으로 보인다."));
 C.push(H2("스포츠 분야에 주는 시사점"));
-C.push(P("걷기는 비용과 시설이 거의 필요 없어 경제적 제약이 큰 사람도 바로 시작할 수 있는 운동이다. 이 연구에서 걷기의 이점은 사회적 연결과 함께할 때 가장 컸고 소득 하위 집단에서 특히 컸다. 이를 근거로 다음을 제언한다."));
-C.push(bullet(["함께 걷기: 지자체 건강 걷기 사업과 생활체육 프로그램에 모임·동행 요소(걷기 동호회, 이웃 걷기 모임)를 기본으로 넣는다."]));
-C.push(bullet(["취약계층 우선: 저소득층·수급 가구가 많은 지역에서 무료·근거리 프로그램을 우선 배치한다. 같은 노력에서 감소 폭이 가장 크다."]));
-C.push(bullet(["생활습관 묶음: 운동 프로그램 안에서 금연·구강 관리 안내를 함께 제공한다. 효과는 서로 더해진다."]));
+C.push(P("걷기는 비용과 시설이 거의 필요 없어 경제적 제약이 큰 사람도 바로 시작할 수 있는 운동이다. 이 연구에서 운동의 이점은 단독 크기보다 다른 생활요인과의 결합, 그리고 취약계층에서 커지는 효과에서 드러났다. 이를 근거로 다음을 제언한다."));
+C.push(bullet(["운동을 사람과 묶기(함께 걷기): 사회적 연결의 짝 가운데 소득 간 차이가 큰 것은 아침식사 다음으로 걷기였다. 지자체 건강 걷기 사업과 생활체육 프로그램에 모임·동행 요소(걷기 동호회, 이웃 걷기 모임)를 기본으로 넣는다."]));
+C.push(bullet(["취약계층 우선: 저소득층은 운동과 사회적 연결의 실천율이 낮으면서 같은 실천에서 감소 폭은 컸다. 저소득층·수급 가구가 많은 지역에 무료·근거리 프로그램을 우선 배치하면 우울 격차를 좁히는 데 기여할 수 있다."]));
+C.push(bullet(["운동만 강조하지 않기: 금연·사회적 연결·규칙적 식사가 운동보다 강한 짝이었다. 운동 프로그램 안에서 식사·금연·구강 관리 안내를 함께 제공하면 효과가 서로 더해진다."]));
+C.push(bullet(["유산소와 근력을 함께: 운동 중에서는 유산소와 근력을 모두 충족한 경우의 결합 감소가 가장 컸다. 다만 충족률이 낮으므로(성인 약 5명 중 1명), 걷기로 시작해 근력운동을 더하는 단계적 구성이 현실적이다."]));
 C.push(H2("선행연구와의 비교"));
 C.push(P("신체활동과 우울의 관련(Schuch et al., 2018; Pearce et al., 2022)과 생활요인 결합의 이점(Zhao et al., 2023)은 이 연구에서도 확인되었다. 이 연구는 여기에 더해 같은 생활요인을 운동과 짝지을 때와 다른 생활요인과 짝지을 때를 직접 비교하고, 넓게 탐색한 결과를 별도 확인 세트로 검증하였다. 사회경제적 지위에 따른 생활요인 효과 차이(Zhang et al., 2021)를 우울에서 운동 조합 단위로 보인 점도 새롭다."));
 C.push(H2("한계"));
-C.push(P("첫째, 횡단면 자료이므로 우울하지 않은 사람이 운동과 사회 활동을 더 잘 지키는 역인과를 배제할 수 없다. 둘째, 모든 변수가 자기보고이고, 신체활동 문항은 업무 중 활동을 포함한다(Holtermann et al., 2018). 셋째, 소득 집단 차이는 가법 척도의 비교이므로 기저 유병률이 높은 하위 집단에서 커지는 부분이 있다. 넷째, 탐색 범위가 넓었으므로 확인 세트에서 검증되지 않은 결과는 가설 생성 수준으로만 해석해야 한다."));
+C.push(P("첫째, 횡단면 자료이므로 우울하지 않은 사람이 운동과 사회 활동을 더 잘 지키는 역인과를 배제할 수 없다. 둘째, 모든 변수가 자기보고이고, 신체활동 문항은 업무 중 활동을 포함한다(Holtermann et al., 2018). 셋째, 소득 집단 차이는 가법 척도의 비교이므로 기저 유병률이 높은 하위 집단에서 커지는 부분이 있다. 넷째, 탐색 범위가 넓었으므로 확인 세트에서 검증되지 않은 결과는 가설 생성 수준으로만 해석해야 한다. 특히 30쌍의 순위 비교는 전체 표본의 기술 분석이며, 확인 세트에서 별도로 검증된 것은 걷기 + 사회적 연결의 소득 차이다."));
 C.push(H2("결론"));
-C.push(P("운동, 특히 걷기를 사회적 연결과 함께 실천하는 사람에서 우울 증상 비율이 가장 낮았고, 그 차이는 경제적으로 불리한 집단에서 컸다. 걷기에 사람을 묶는 저비용 프로그램을 취약 집단에 우선 제공하는 것이 스포츠 분야가 우울 예방에 기여할 수 있는 실천적 방향이다."));
+C.push(P("운동은 우울 증상과 관련된 생활요인 가운데 가장 강한 요인은 아니었지만, 다른 생활습관과 겹치지 않고 더해졌다. 취약계층에서 감소 폭이 커지는 핵심은 사회적 연결과 규칙적 식사였고, 운동은 이들과 함께할 때 소득 간 차이를 키우는 짝이었다. 운동의 가치는 단독 효과의 크기보다, 사회적 연결과 묶여 취약계층과의 우울 격차를 좁힐 가능성에 있다. 걷기에 사람을 묶는 저비용 프로그램을 취약 집단에 우선 제공하는 것이 스포츠 분야가 우울 예방에 기여할 수 있는 실천적 방향이다."));
 
 // ---- 참고문헌
 C.push(pageBreak());
