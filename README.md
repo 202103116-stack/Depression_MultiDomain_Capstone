@@ -91,7 +91,8 @@ cd paper; node build_checklist.js                     # paper/strobe_tripod_chec
 운동 요인(걷기·유산소·근력)의 추가 효과를 조사설계 회귀로 분석했다. v2는 태그 `v2-multidomain-final`로 동결했다.
 
 ```powershell
-.venv\Scripts\python src3eversal_v3.py      # 주 분석(역전점·상호작용·격차 분해)
+.venv\Scripts\python src3
+eversal_v3.py      # 주 분석(역전점·상호작용·격차 분해)
 .venv\Scripts\python src3\eda_v3.py           # 경제 집단별 EDA(reversal 결과의 모형 n 사용)
 .venv\Scripts\python src3\sensitivity_v3.py   # 민감도 4종
 .venv\Scripts\python src3\exercise_v3.py      # S1 운동 누적·S2 운동 종류
@@ -101,6 +102,15 @@ powershell -ExecutionPolicy Bypass -File finalize.ps1 <docx 절대경로> <pdf �
 ```
 
 진행 기록은 `docs/v3/WORKFLOW_v3.md`, 판단 근거는 `docs/decision_log.md` D-33~.
+
+## 4차 방향 (v4): 스포츠와 함께할 때 더 큰 효과 — 브랜치 `v4-sport`
+
+중간발표 피드백("스포츠 분야와의 관련성 부족")을 반영한다. 주 결과는 PHQ-9 ≥ 5로 바꾸고, 우울감 경험(`mtb_01z1`)으로 교차 검증한다. 진행할 분석은 세 가지다.
+- 스포츠 요인 × 생활요인 조합(스포츠 특이 시너지·권고 조합)
+- 다른 결과변수로 학습한 ML 교차 예측
+- 스포츠 조합 가중 모델 비교
+
+요청과 계획은 `docs/v4/REQUEST_v4.md`·`docs/v4/WORKFLOW_v4.md`, 판단 근거는 `docs/decision_log.md` D-41~에 있다.
 
 ## 1차 결과 요약 (2026-10-12)
 
